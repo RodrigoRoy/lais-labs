@@ -2,7 +2,7 @@
   <v-footer>
     <!-- Pie de página -->
     <!-- Debe contener la siguiente información (en 3 columnas): -->
-    <!-- Datos del LAIS, Licencia Creative Commons, Datos de contacto -->
+    <!-- Datos del LAIS, Licencia Creative Commons y open source, Datos de contacto -->
     <v-row align="center" justify="center">
 
         <!-- Datos del LAIS -->
@@ -11,8 +11,9 @@
             {{ new Date().getFullYear() }} — LAIS
         </v-col>
 
-        <!-- Licencia Creative Commons -->
+        <!-- Licencia Creative Commons y open source -->
         <!-- TODO: Incluir licencia "Attribution-ShareAlike 4.0 International" (https://creativecommons.org/) -->
+        <!-- TODO: icono Github + "Código fuente" (Incluir link a GitHub del código fuente) -->
         <v-col class="text-center">
             Creative Commons Licence
         </v-col>
