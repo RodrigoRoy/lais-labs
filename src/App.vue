@@ -23,7 +23,7 @@
           <v-col sm="2">
             <v-sheet class="fill-height">
               <v-list>
-                <v-list-item v-for="lab in laboratorios" :key="lab.name" :title="lab.name"></v-list-item>
+                <p v-for="lab in laboratorios" :key="lab.name" class="list-item" v-on:click="selectData(lab)">{{lab.name}}</p>
               </v-list>
             </v-sheet>
           </v-col>
@@ -33,15 +33,31 @@
             <v-sheet>
               <l-map ref="leafletMap" style="height: 300px" :zoom="lmap.zoom" :center="lmap.center" :options="lmap.options">
                 <l-tile-layer :url="lmap.url" :attribution="lmap.attribution"></l-tile-layer>
-                <l-marker :lat-lng="lmap.markerLatLng"></l-marker>
+                <template v-for="(item, index) in laboratorios" :key="index">
+                  <l-circle v-if="item===laboratorioSeleccionado"
+                    :lat-lng="item.location"
+                    :radius="20500"
+                    color="red"
+                  />
+                  <l-marker v-else :lat-lng="item.location" color="red" v-on:click="selectData(item)"></l-marker>
+                </template>
+                <!-- <l-marker :lat-lng="lmap.markerLatLng"></l-marker> -->
               </l-map>
             </v-sheet>
           </v-col>
 
           <!-- Información del laboratorio seleccionado -->
           <v-col sm="4">
-            <v-sheet>
-              Info
+            <v-sheet v-if="laboratorioSeleccionado!==null">
+              <v-card>
+                <p class="title">{{laboratorioSeleccionado.name}}</p>
+                <v-card-text>Description: {{laboratorioSeleccionado.description}}</v-card-text>
+                <v-card-text>Sitio web: {{laboratorioSeleccionado.website}}</v-card-text>
+                <v-card-text>Redes sociales:</v-card-text>
+                <v-list>
+                  <li class="list-item" v-for="(item, index) in laboratorioSeleccionado.social" :key="index">{{item}}</li>
+                </v-list>
+              </v-card>
             </v-sheet>
           </v-col>
         </v-row>
@@ -55,7 +71,7 @@
 <script>
   import Footer from '@/components/Footer.vue'
   // Vue Leaflet:
-  import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet"
+  import { LMap, LTileLayer, LMarker, LIcon, LCircle } from "@vue-leaflet/vue-leaflet"
   import "leaflet/dist/leaflet.css"
 
   export default {
@@ -66,6 +82,7 @@
       LTileLayer,
       LMarker,
       LIcon,
+      LCircle
     },
     data() {
       return {
@@ -75,115 +92,115 @@
         laboratorios: [
           {
             name: 'Laboratorio Nacional de Materiales Orales',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.649719816958516, -101.22234969999998],
           },
           {
             name: 'El Archivo de la Palabra: Taller de Historia oral',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [21.02593632709256, -89.55809730609775],
           },
           {
             name: 'Laboratorio de Medios',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [20.014395931616146, -102.7436015],
           },
           {
             name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59 "LAB 59"',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [20.615184757619822, -103.31399172513775],
           },
           {
             name: 'Laboratorio de Investigación-Creación Audiovisual - Lab-i-CreA',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [25.540922503749655, -103.44593723132313],
           },
           {
             name: 'Laboratorio Iberoamericano de Documental',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.370506733713963, -99.26388957199511],
           },
-          {
-            name: 'Laboratorio de lo Invisible',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
-          },
+          // {
+          //   name: 'Laboratorio de lo Invisible',
+          //   description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+          //   social: ['red1', 'red2', 'red3'],
+          //   website: 'website.com',
+          //   location: [],
+          // },
           {
             name: 'Laboratorio Interdisciplinario de Investigación Audiovisual',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [20.68101900853452, -103.34605615487195],
           },
           {
             name: 'Laboratorio de Medios Audiovisuales (LaMA)',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.383380472727215, -99.17375848190244],
           },
           {
             name: 'Acervo Audiovisual InterNeta.Memoria de las y los invisibles',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.42847, -99.12766],
           },
           {
             name: 'Tlacuilo producción comunitaria',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.416556445868775, -99.15195692883556],
           },
           {
             name: 'Faz a Faz',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [18.31394978267513, -92.62473986565865],
           },
           {
             name: 'Laboratorio Audiovisual de Investigación Social (LAIS)',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.37805338689813, -99.18272794738233],
           },
           {
             name: 'Laboratorio de Antropología Visual',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.362076768057424, -99.07346270739559],
           },
           {
             name: 'Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [19.289408161458297, -99.16894367301333],
           },
           {
             name: 'Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)',
-            description: '',
-            social: [],
-            website: '',
-            location: {},
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            social: ['red1', 'red2', 'red3'],
+            website: 'website.com',
+            location: [22.129423469806035, -101.0163491576711],
           },
         ],
         // Configuración del mapa <l-map>
@@ -191,9 +208,9 @@
           url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
           attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-          zoom: 15,
-          center: [51.505, -0.159],
-          markerLatLng: [51.504, -0.159],
+          zoom: 4,
+          center: [23.634501, -102.552784],
+          markerLatLng: [23.634501, -102.552784],
           options: {
             zoomControl: true,
             attributionControl: true,
@@ -201,6 +218,7 @@
             scrollWheelZoom: false,
           },
         },
+        laboratorioSeleccionado: null
       }
     },
     methods: {
@@ -211,7 +229,27 @@
       switchTheme: function(){
         this.theme = this.theme === 'light' ? 'dark' : 'light'
       },
+      /**
+       * Selecciona la información de un laboratorio
+       */
+      selectData: function(selectedData) {
+        this.laboratorioSeleccionado = selectedData;
+      }
     }
   }
   
 </script>
+
+<style scoped>
+  .title {
+    font-display: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem 2rem;
+  }
+  .list-item {
+    font-display: bold;
+    font-size: 1.2rem;
+    padding: 0.5rem 2rem;
+  }
+</style>
