@@ -92,10 +92,35 @@
         laboratorios: [
           {
             name: 'Laboratorio Nacional de Materiales Orales',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            description: 'El Laboratorio Nacional de Materiales Orales es un espacio de trabajo interinstitucional para el estudio multidisciplinario de los discursos orales y las manifestaciones asociadas a ellos (gestos, sonoridad, memoria, corporalidad, ritualidad, expresiones musicales, etc.). Con esto se pretende abordar desde distintas perspectivas un tipo de materiales orales, que son el objeto de estudio para entender dinámicas sociales, formas de comunicación, estructuras de pensamiento, conformación de saberes locales, prácticas tradicionales, manifestaciones artísticas, etc.',
             social: ['red1', 'red2', 'red3'],
-            website: 'website.com',
+            socialMedia: [
+              {url: 'https://www.facebook.com/lanmo.mx', username: 'lanmo.mx', type: 'facebook', icon: 'mdi-facebook'},
+              {url: 'https://www.instagram.com/lanmo.mx', username: 'lanmo.mx', type: 'instagram', icon: 'mdi-instagram'},
+              {url: 'https://twitter.com/lanmo_mx', username: 'lanmo_mx', type: 'twitter', icon: 'mdi-twitter'},
+              // {url: 'https://www.tiktok.com/@lanmo.mx', username: 'lanmo.mx', type: 'tiktok', icon: ''},
+            ],
+            contact: {
+              mail: 'andres.arroyo@lanmo.unam.mx',
+              name: '',
+              url: 'https://goo.gl/maps/nqpnE573rSoEvZmi7',
+            },
+            website: 'https://lanmo.unam.mx/',
             location: [19.649719816958516, -101.22234969999998],
+            fullLocation: {
+              name: 'Escuela Nacional de Estudios Superiores Unidad Morelia, UNAM Campus Morelia',
+              latLng: [19.64957329489176, -101.22234970227854],
+            },
+            images: {
+              path: 'LANMO',
+              src: [
+                'LANMO_V2 - Andres Arroyo Vallín.png', 
+                'Repositorio Color-17 - Andres Arroyo Vallín.jpg', 
+                'Repositorio Color-25 - Andres Arroyo Vallín.jpg', 
+                'Repositorio Color-30 - Andres Arroyo Vallín.jpg',
+              ]
+            },
+            verified: true,
           },
           {
             name: 'El Archivo de la Palabra: Taller de Historia oral',
@@ -113,17 +138,45 @@
           },
           {
             name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59 "LAB 59"',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            description: 'Un proyecto de investigación audiovisual  con alumnos de educación básica,  historia oral y documental.',
             social: ['red1', 'red2', 'red3'],
-            website: 'website.com',
+            socialMedia: [
+              {url: 'https://www.youtube.com/@liainvestigacionaudiovisua632', username: 'liainvestigacionaudiovisua632', type: 'youtube', icon: 'mdi-youtube'},
+            ],
+            contact: {
+              mail: 'kultudoc@gmail.com',
+              name: '',
+            },
+            website: '',
             location: [20.615184757619822, -103.31399172513775],
+            fullLocation: {
+              name: 'Secundaria Mixta 59, Tlaquepaque, Jalisco',
+              latLng: [20.615029095430028, -103.31401318508095],
+              url: 'https://goo.gl/maps/1jUyzgx3FpjKXz3P9',
+            },
+            verified: true,
           },
           {
-            name: 'Laboratorio de Investigación-Creación Audiovisual - Lab-i-CreA',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            name: 'Laboratorio de Investigación-Creación Audiovisual (Lab i-CreA)',
+            description: 'El Lab i-CreA nace en 2019 el marco del proyecto de investigación "Comunidades Emergentes de Conocimiento y Procesos de Investigación-Creación Audiovisual" ganador de la convocatoria Ciencia Básica Fondo SEP-CONACYT , dentro del cual se plantea que el conocimiento se genera y circula en formatos que van más allá del textual y se propone la creación de sistemas de información en formatos visuales, sonoros, cartográficos, entre otros. Es producto también de más de 10 años de trabajo de investigación en los cruces entre artes y ciencias sociales. Desde perspectivas teóricas relacionadas con la interdisciplina, los sistemas complejos, las metodologías participativas, los estudios visuales, asumimos que la investigación/creación tiene lugar cuando implica reflexividad creativa constante. ',
             social: ['red1', 'red2', 'red3'],
+            socialMedia: [],
+            contact: {
+              mail: 'adrihana@gmail.com',
+              name: '',
+            },
             website: 'website.com',
             location: [25.540922503749655, -103.44593723132313],
+            fullLocation: {
+              name: 'Facultad de Ciencias Sociales, Universidad Autónoma de Coahuila. Saltillo, Coahuila',
+              latLng: [25.421544273802244, -101.00076170221335],
+              url: 'https://goo.gl/maps/TdjHccpPfhPhW6Va8',
+            },
+            images: {
+              path: 'Lab i-CreA',
+              src: ['Logo Lab i-CreA - Adriana Moreno.png']
+            },
+            verified: true,
           },
           {
             name: 'Laboratorio Iberoamericano de Documental',
@@ -147,11 +200,29 @@
             location: [20.68101900853452, -103.34605615487195],
           },
           {
-            name: 'Laboratorio de Medios Audiovisuales (LaMA)',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            name: 'Laboratorio de Medios Audiovisuales',
+            description: 'Espacio de investigación, docencia y producción audiovisual',
             social: ['red1', 'red2', 'red3'],
+            socialMedia: [
+              {url: 'https://www.facebook.com/LAMACHYCSUACM', username: 'LAMACHYCSUACM', type: 'facebook', icon: 'mdi-facebook'},
+              {url: 'https://twitter.com/LamaChycsUACM', username: 'LamaChycsUACM', type: 'twitter', icon: 'mdi-twitter'},
+            ],
             website: 'website.com',
+            contact: {
+              mail: 'rodrigo.martinez@uacm.edu.mx',
+              name: '',
+            },
             location: [19.383380472727215, -99.17375848190244],
+            fullLocation: {
+              name: 'Calle San Lorenzo 290. Col. Del Valle, Del. Benito Juárez',
+              latLng: [19.374591361838846, -99.171600800434],
+              url: 'https://goo.gl/maps/poDp21YeYtendUgQ8',
+            },
+            images: {
+              path: 'LAMA',
+              src: ['Logo LaMA PNG - Laboratorio Medios Audiovisuales.png']
+            },
+            verified: true,
           },
           {
             name: 'Acervo Audiovisual InterNeta.Memoria de las y los invisibles',
@@ -161,11 +232,34 @@
             location: [19.42847, -99.12766],
           },
           {
-            name: 'Tlacuilo producción comunitaria',
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            name: 'Tlacuilo Producción Comunitaria',
+            description: 'Es un colectivo interdisciplinario interesado en el arte, el patrimonio, la comunicación y la historia de las comunidades y pueblos originarios del país. A través del uso de los medios audiovisuales, el colectivo pretende contribuir a la recuperación de la memoria y la formación de un archivo que resguarde la historia individual y colectiva.',
             social: ['red1', 'red2', 'red3'],
+            socialMedia: [
+              {url: 'https://www.facebook.com/profile.php?id=100077468262989', username: '', type: 'facebook', icon: 'mdi-facebook'},
+            ],
+            contact: {
+              mail: 'carmen.diaz@uacm.edu.mx',
+              name: 'María del Carmen Díaz Vázquez',
+            },
             website: 'website.com',
             location: [19.416556445868775, -99.15195692883556],
+            fullLocation: {
+              name: 'Cubículo 213 , Plantel Centro Histórico UACM',
+              latLng: [19.423988868706267, -99.13832000228066],
+              url: 'https://goo.gl/maps/Md76WXvod9gK6R5v7',
+            },
+            images: {
+              path: 'Lab i-CreA',
+              src: [
+                'DSC_0377 - María del Carmen Díaz Vázquez.JPG',
+                'DSC_0491 - María del Carmen Díaz Vázquez.JPG',
+                'DSC_0517 - María del Carmen Díaz Vázquez.JPG',
+                'DSC_0596 (1) - María del Carmen Díaz Vázquez.JPG',
+                'Logo-Tlacuilo Blanco - María del Carmen Díaz Vázquez.png',
+              ]
+            },
+            verified: true,
           },
           {
             name: 'Faz a Faz',
@@ -182,11 +276,28 @@
             location: [19.37805338689813, -99.18272794738233],
           },
           {
-            name: 'Laboratorio de Antropología Visual',
+            name: 'Laboratorio de Antropología Visual UAM-I',
             description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
             social: ['red1', 'red2', 'red3'],
+            socialMedia: [
+              {url: 'https://www.facebook.com/labantrovisual', username: 'labantrovisual', type: 'facebook', icon: 'mdi-facebook'},
+            ],
+            contact: {
+              mail: 'labantrovisual@gmail.com',
+              name: '',
+            },
             website: 'website.com',
-            location: [19.362076768057424, -99.07346270739559],
+            location: [19.36600425171695, -99.07274990644807],
+            fullLocation: {
+              name: 'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+              latLng: [19.36600425171695, -99.07274990644807],
+              url: 'https://goo.gl/maps/FkgoqWQLtJ9ESR44A',
+            },
+            images: {
+              path: 'Lab i-CreA',
+              src: ['Logo del LAV - LAV UAM-I.png']
+            },
+            verified: true,
           },
           {
             name: 'Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social',
