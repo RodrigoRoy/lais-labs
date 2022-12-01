@@ -23,7 +23,10 @@
           <v-col sm="2">
             <v-sheet class="fill-height">
               <v-list>
-                <p v-for="lab in laboratorios" :key="lab.name" class="list-item" v-on:click="selectData(lab)">{{lab.name}}</p>
+                <template v-for="lab in laboratorios" :key="lab.name">
+                  <p v-if="lab===laboratorioSeleccionado" class="list-item selected-item" v-on:click="selectData(lab)">{{lab.name}}</p>
+                  <p v-else class="list-item" v-on:click="selectData(lab)">{{lab.name}}</p>
+                </template>
               </v-list>
             </v-sheet>
           </v-col>
@@ -34,12 +37,20 @@
               <l-map ref="leafletMap" style="height: 300px" :zoom="lmap.zoom" :center="lmap.center" :options="lmap.options">
                 <l-tile-layer :url="lmap.url" :attribution="lmap.attribution"></l-tile-layer>
                 <template v-for="(item, index) in laboratorios" :key="index">
-                  <l-circle v-if="item===laboratorioSeleccionado"
-                    :lat-lng="item.location"
-                    :radius="20500"
-                    color="red"
-                  />
-                  <l-marker v-else :lat-lng="item.location" color="red" v-on:click="selectData(item)"></l-marker>
+                  <l-marker v-if="item===laboratorioSeleccionado" :lat-lng="item.location" v-on:click="selectData(item)">
+                    <l-icon
+                      :icon-anchor="[16, 37]"
+                      class-name="someExtraClass">
+                      <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|F50000&chf=a,s,ee00FFFF">
+                    </l-icon>
+                  </l-marker>
+                  <l-marker v-else :lat-lng="item.location" v-on:click="selectData(item)">
+                    <l-icon
+                      :icon-anchor="[16, 37]"
+                      class-name="someExtraClass">
+                      <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00A3F5&chf=a,s,ee00FFFF">
+                    </l-icon>
+                  </l-marker>
                 </template>
                 <!-- <l-marker :lat-lng="lmap.markerLatLng"></l-marker> -->
               </l-map>
@@ -51,11 +62,17 @@
             <v-sheet v-if="laboratorioSeleccionado!==null">
               <v-card>
                 <p class="title">{{laboratorioSeleccionado.name}}</p>
-                <v-card-text>Description: {{laboratorioSeleccionado.description}}</v-card-text>
-                <v-card-text>Sitio web: {{laboratorioSeleccionado.website}}</v-card-text>
+                <v-card-text>Descripción: {{laboratorioSeleccionado.description}}</v-card-text>
+                <v-card-text>Sitio web: 
+                  <a :href="laboratorioSeleccionado.website" target="_blank">
+                    {{laboratorioSeleccionado.website}}
+                  </a>
+                </v-card-text>
                 <v-card-text>Redes sociales:</v-card-text>
                 <v-list>
-                  <li class="list-item" v-for="(item, index) in laboratorioSeleccionado.social" :key="index">{{item}}</li>
+                  <li class="list-item" v-for="(item, index) in laboratorioSeleccionado.social" :key="index">
+                    <a :href="item" target="_blank">{{item}}</a>
+                  </li>
                 </v-list>
               </v-card>
             </v-sheet>
@@ -362,5 +379,9 @@
     font-display: bold;
     font-size: 1.2rem;
     padding: 0.5rem 2rem;
+    cursor: pointer;
+  }
+  .selected-item {
+    background-color: #C1C1C1;
   }
 </style>
