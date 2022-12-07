@@ -2,7 +2,9 @@
   <v-app :theme="theme">
     <!-- Barra superior -->
     <!-- Incluye el título e icono para cambiar tema de color -->
-    <v-app-bar title="Laboratorios Audiovisuales de Investigación en México">
+    <v-app-bar>
+      <v-spacer></v-spacer>
+      <p class="navbar-title">Laboratorios Audiovisuales de Investigación en México</p>
       <v-spacer></v-spacer>
       <v-btn :prepend-icon=" theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night' " @click="switchTheme" >Tema</v-btn >
     </v-app-bar>
@@ -28,17 +30,18 @@
         <v-row align="start">
           <!-- Lista de laboratorios -->
           <v-col sm="2">
-            <v-sheet class="fill-height">
+            <v-sheet rounded="xl" class="fill-height" >
               <v-list>
                 <!-- <v-list-subheader>LABORATORIOS</v-list-subheader> -->
 
                 <!-- TODO: Esta manera es canónica pero los nombres se recortan a una línea (y creo que on:click es inconsistente) -->
-                <!-- <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
-                  <v-list-item-title v-text="lab.name"></v-list-item-title>
-                </v-list-item> -->
+                <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
+                  <!-- <v-list-item-title v-text="lab.name"></v-list-item-title> -->
+                  <p>{{lab.name}}</p>
+                </v-list-item>
 
                 <!-- TODO: Esta representación muestra todo el texto pero no usa estilo de Material Design -->
-                <template v-for="lab in laboratorios" :key="lab.name">
+                <!-- <template v-for="lab in laboratorios" :key="lab.name">
                   <p
                     v-if="lab === laboratorioSeleccionado"
                     class="list-item selected-item"
@@ -49,17 +52,17 @@
                   <p v-else class="list-item" v-on:click="selectData(lab)">
                     {{ lab.name }}
                   </p>
-                </template>
+                </template> -->
               </v-list>
             </v-sheet>
           </v-col>
 
           <!-- Mapa -->
           <v-col sm="6">
-            <v-sheet>
+            <v-sheet rounded="xl">
               <l-map
                 ref="leafletMap"
-                style="height: 300px"
+                style="height: 700px"
                 :zoom="lmap.zoom"
                 :center="lmap.center"
                 :options="lmap.options"
@@ -99,7 +102,7 @@
 
           <!-- Información del laboratorio seleccionado -->
           <v-col sm="4">
-            <v-sheet v-if="laboratorioSeleccionado !== null">
+            <v-sheet rounded="xl" v-if="laboratorioSeleccionado !== null">
 
               <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
               <info-laboratorio
@@ -557,19 +560,7 @@ export default {
 </script>
 
 <style scoped>
-.title {
-  font-display: bold;
-  font-size: 1.2rem;
-  text-align: center;
-  padding: 1rem 2rem;
-}
-.list-item {
-  font-display: bold;
-  font-size: 1.2rem;
-  padding: 0.5rem 2rem;
-  cursor: pointer;
-}
-.selected-item {
-  background-color: #c1c1c1;
+.navbar-title {
+  font-size: 1.25rem;
 }
 </style>

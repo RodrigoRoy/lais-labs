@@ -21,6 +21,27 @@ export default createVuetify({
           secondary: '#5CBBF6',
         },
       },
+      dark: {
+        colors: {
+          primary: '#FFF300',
+          secondary: '#FFF300',
+          accent: '#FFF300',
+          error: '#FFF300',
+          info: '#FFF300',
+          success: '#FFF300',
+          warning: '#FFF300',
+          base: "#FFF300",
+          lighten5: "#FFF300",
+          lighten4: "#FFF300",
+          lighten3: "#FFF300",
+          lighten2: "#FFF300",
+          lighten1: "#FFF300",
+          darken1: "#FFF300",
+          darken2: "#FFF300",
+          darken3: "#FFF300",
+          darken4: "#FFF300",
+        }
+      }
     },
   },
 })
