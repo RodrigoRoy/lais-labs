@@ -2,15 +2,9 @@
   <v-app :theme="theme">
     <!-- Barra superior -->
     <!-- Incluye el título e icono para cambiar tema de color -->
-    <v-app-bar title="Laboratorios Audiovisuales en México">
+    <v-app-bar title="Laboratorios Audiovisuales de Investigación en México">
       <v-spacer></v-spacer>
-      <v-btn
-        :prepend-icon="
-          theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'
-        "
-        @click="switchTheme"
-        >Tema</v-btn
-      >
+      <v-btn :prepend-icon=" theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night' " @click="switchTheme" >Tema</v-btn >
     </v-app-bar>
 
     <!-- En caso de requerir un espacio auxiliar: -->
@@ -24,10 +18,26 @@
     <v-main class="bg-surface-variant">
       <v-container>
         <v-row>
+          <v-col xs="12" class="my-8">
+            <p class="text-center">
+              Departamentos, centros, grupos y laboratorios de México cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales, ya sean de carácter universitarios, comunitarios, de investigación o independientes.
+            </p>
+          </v-col>
+        </v-row>
+
+        <v-row align="start">
           <!-- Lista de laboratorios -->
           <v-col sm="2">
             <v-sheet class="fill-height">
               <v-list>
+                <!-- <v-list-subheader>LABORATORIOS</v-list-subheader> -->
+
+                <!-- TODO: Esta manera es canónica pero los nombres se recortan a una línea (y creo que on:click es inconsistente) -->
+                <!-- <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
+                  <v-list-item-title v-text="lab.name"></v-list-item-title>
+                </v-list-item> -->
+
+                <!-- TODO: Esta representación muestra todo el texto pero no usa estilo de Material Design -->
                 <template v-for="lab in laboratorios" :key="lab.name">
                   <p
                     v-if="lab === laboratorioSeleccionado"
@@ -132,7 +142,7 @@ export default {
           name: "Laboratorio Nacional de Materiales Orales",
           description:
             "El Laboratorio Nacional de Materiales Orales es un espacio de trabajo interinstitucional para el estudio multidisciplinario de los discursos orales y las manifestaciones asociadas a ellos (gestos, sonoridad, memoria, corporalidad, ritualidad, expresiones musicales, etc.). Con esto se pretende abordar desde distintas perspectivas un tipo de materiales orales, que son el objeto de estudio para entender dinámicas sociales, formas de comunicación, estructuras de pensamiento, conformación de saberes locales, prácticas tradicionales, manifestaciones artísticas, etc.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
           socialMedia: [
             {
               url: "https://www.facebook.com/lanmo.mx",
@@ -181,7 +191,7 @@ export default {
           name: "El Archivo de la Palabra: Taller de Historia oral",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Docencia', 'Investigación'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -199,7 +209,7 @@ export default {
           name: "Laboratorio de Medios",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -217,7 +227,7 @@ export default {
           name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59 "LAB 59"',
           description:
             "Un proyecto de investigación audiovisual  con alumnos de educación básica,  historia oral y documental.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Docencia', 'Investigación'],
           socialMedia: [
             {
               url: "https://www.youtube.com/@liainvestigacionaudiovisua632",
@@ -248,7 +258,7 @@ export default {
           name: "Laboratorio de Investigación-Creación Audiovisual (Lab i-CreA)",
           description:
             'El Lab i-CreA nace en 2019 el marco del proyecto de investigación "Comunidades Emergentes de Conocimiento y Procesos de Investigación-Creación Audiovisual" ganador de la convocatoria Ciencia Básica Fondo SEP-CONACYT , dentro del cual se plantea que el conocimiento se genera y circula en formatos que van más allá del textual y se propone la creación de sistemas de información en formatos visuales, sonoros, cartográficos, entre otros. Es producto también de más de 10 años de trabajo de investigación en los cruces entre artes y ciencias sociales. Desde perspectivas teóricas relacionadas con la interdisciplina, los sistemas complejos, las metodologías participativas, los estudios visuales, asumimos que la investigación/creación tiene lugar cuando implica reflexividad creativa constante. ',
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Difusión', 'Investigación', 'Producción AV'],
           socialMedia: [],
           contact: {
             mail: "adrihana@gmail.com",
@@ -272,7 +282,7 @@ export default {
           name: "Laboratorio Iberoamericano de Documental",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -286,20 +296,21 @@ export default {
             src: [],
           },
         },
-        // {
-        //   name: 'Laboratorio de lo Invisible',
-        //   description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        //   social: ['red1', 'red2', 'red3'],
-        //   socialMedia: [],
-        //   website: 'website.com',
-        //   lugar: "lugar",
-        //   location: [],
-        // },
+        {
+          name: 'Laboratorio de lo Invisible',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+          keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
+          social: ['red1', 'red2', 'red3'],
+          socialMedia: [],
+          website: 'website.com',
+          lugar: "lugar",
+          location: [],
+        },
         {
           name: "Laboratorio Interdisciplinario de Investigación Audiovisual",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -317,7 +328,7 @@ export default {
           name: "Laboratorio de Medios Audiovisuales",
           description:
             "Espacio de investigación, docencia y producción audiovisual",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Digitalización', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
           socialMedia: [
             {
               url: "https://www.facebook.com/LAMACHYCSUACM",
@@ -354,7 +365,7 @@ export default {
           name: "Acervo Audiovisual InterNeta.Memoria de las y los invisibles",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Producción AV', 'Producción escrita', 'Resguardo'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -372,7 +383,7 @@ export default {
           name: "Tlacuilo Producción Comunitaria",
           description:
             "Es un colectivo interdisciplinario interesado en el arte, el patrimonio, la comunicación y la historia de las comunidades y pueblos originarios del país. A través del uso de los medios audiovisuales, el colectivo pretende contribuir a la recuperación de la memoria y la formación de un archivo que resguarde la historia individual y colectiva.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
           socialMedia: [
             {
               url: "https://www.facebook.com/profile.php?id=100077468262989",
@@ -409,7 +420,7 @@ export default {
           name: "Faz a Faz",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -427,7 +438,7 @@ export default {
           name: "Laboratorio Audiovisual de Investigación Social (LAIS)",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -445,7 +456,7 @@ export default {
           name: "Laboratorio de Antropología Visual UAM-I",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [
             {
               url: "https://www.facebook.com/labantrovisual",
@@ -476,7 +487,7 @@ export default {
           name: "Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
@@ -494,7 +505,7 @@ export default {
           name: "Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)",
           description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ["key1", "key2", "key3"],
+          keywords: ['Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [],
           contact: {
             mail: "PENDIENTE@CORREO.COM",
