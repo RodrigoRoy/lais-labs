@@ -149,7 +149,7 @@ export default {
               type: "twitter",
               icon: "mdi-twitter",
             },
-            // {url: 'https://www.tiktok.com/@lanmo.mx', username: 'lanmo.mx', type: 'tiktok', icon: ''},
+            {url: 'https://www.tiktok.com/@lanmo.mx', username: 'lanmo.mx', type: 'tiktok', icon: 'fas fa-plus'},
           ],
           contact: {
             mail: "andres.arroyo@lanmo.unam.mx",

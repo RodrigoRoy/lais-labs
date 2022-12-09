@@ -45,14 +45,18 @@
         :key="'social_' + index"
       >
         <v-btn :href="social.url" target="_blank" icon size="x-large" variant="plain" color="black">
-          <v-icon> {{ social.icon }} </v-icon>
+          <!-- <v-icon> {{ social.icon }} </v-icon> -->
+          <v-icon v-if="social.icon.includes('mdi')" :icon="`mdi:${social.icon}`" />
+          <v-icon v-else :icon="`${social.icon}`" />
+          <!-- <font-awesome-icons icon="fa-user" /> -->
         </v-btn>
       </template>
 
       <!-- SITIO WEB DEL LABORATORIO -->
       <template v-if="laboratorioSelected.website">
         <v-btn :href="laboratorioSelected.website" target="_blank" icon size="x-large" variant="plain" color="black">
-          <v-icon> mdi-web </v-icon>
+          <!-- <v-icon> mdi-web </v-icon> -->
+          <v-icon icon="mdi:mdi-web" />
         </v-btn>
       </template>
 
@@ -65,7 +69,8 @@
           variant="plain" 
           color="black"
         >
-          <v-icon> mdi-email-open-outline </v-icon>
+          <!-- <v-icon> mdi-email-open-outline </v-icon> -->
+          <v-icon icon="mdi:mdi-email-open-outline" />
         </v-btn>
       </template>
     </v-card-actions>
