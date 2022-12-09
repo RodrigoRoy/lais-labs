@@ -24,13 +24,13 @@
     </div>
 
     <!-- CARRUSEL CON FOTOS Y VIDEO -->
-    <v-carousel hide-delimiters show-arrows="hover" cycle height="400">      
+    <v-carousel hide-delimiters show-arrows="hover" cycle height="400" v-show="laboratorioSelected.images && laboratorioSelected.images.path && laboratorioSelected.images.src && laboratorioSelected.images.src.length > 0">
       <!-- IMÁGENES DEL LABORATORIO -->
       <!-- PENDIENTE LEER LA IMAGEN DE FORMA LOCAL EN LUGAR DE GITHUB -->
       <v-carousel-item
       v-for="(item,i) in laboratorioSelected.images.src"
       :key="i"
-      :src="`https://github.com/RodrigoRoy/lais-labs/blob/master/src/assets/Laboratorios/${laboratorioSelected.images.path}/${item}?raw=true`"
+      :src="`/Laboratorios/${laboratorioSelected.images.path}/${item}`"
       ></v-carousel-item>
     </v-carousel>
     

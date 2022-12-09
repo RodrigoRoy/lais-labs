@@ -33,26 +33,10 @@
             <v-sheet rounded="xl" class="fill-height" >
               <v-list>
                 <!-- <v-list-subheader>LABORATORIOS</v-list-subheader> -->
-
-                <!-- TODO: Esta manera es canónica pero los nombres se recortan a una línea (y creo que on:click es inconsistente) -->
                 <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
                   <!-- <v-list-item-title v-text="lab.name"></v-list-item-title> -->
                   <p>{{lab.name}}</p>
                 </v-list-item>
-
-                <!-- TODO: Esta representación muestra todo el texto pero no usa estilo de Material Design -->
-                <!-- <template v-for="lab in laboratorios" :key="lab.name">
-                  <p
-                    v-if="lab === laboratorioSeleccionado"
-                    class="list-item selected-item"
-                    v-on:click="selectData(lab)"
-                  >
-                    {{ lab.name }}
-                  </p>
-                  <p v-else class="list-item" v-on:click="selectData(lab)">
-                    {{ lab.name }}
-                  </p>
-                </template> -->
               </v-list>
             </v-sheet>
           </v-col>
@@ -74,7 +58,7 @@
                 <template v-for="(item, index) in laboratorios" :key="index">
                   <l-marker
                     v-if="item === laboratorioSeleccionado"
-                    :lat-lng="item.location"
+                    :lat-lng="item.fullLocation.latLng"
                     v-on:click="selectData(item)"
                   >
                     <l-icon :icon-anchor="[16, 37]" class-name="someExtraClass">
@@ -85,7 +69,7 @@
                   </l-marker>
                   <l-marker
                     v-else
-                    :lat-lng="item.location"
+                    :lat-lng="item.fullLocation.latLng"
                     v-on:click="selectData(item)"
                   >
                     <l-icon :icon-anchor="[16, 37]" class-name="someExtraClass">
@@ -173,8 +157,6 @@ export default {
             url: "https://goo.gl/maps/nqpnE573rSoEvZmi7",
           },
           website: "https://lanmo.unam.mx/",
-          lugar: "lugar",
-          location: [19.649719816958516, -101.22234969999998],
           fullLocation: {
             name: "Escuela Nacional de Estudios Superiores Unidad Morelia, UNAM Campus Morelia",
             latLng: [19.64957329489176, -101.22234970227854],
@@ -190,44 +172,60 @@ export default {
           },
           verified: true,
         },
-        {
-          name: "El Archivo de la Palabra: Taller de Historia oral",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-          keywords: ['Docencia', 'Investigación'],
-          socialMedia: [],
-          contact: {
-            mail: "PENDIENTE@CORREO.COM",
-            name: "",
-          },
-          website: "website.com",
-          lugar: "lugar",
-          location: [21.02593632709256, -89.55809730609775],
-          images: {
-            path: "",
-            src: [],
-          },
-        },
+        // {
+        //   // No participó en el Encuentro de Laboratorios 2022
+        //   name: "El Archivo de la Palabra: Taller de Historia Oral",
+        //   description:
+        //     "Constituido por un grupo de profesores de la Facultad de Ciencias Antropológicas de la Universidad Autónoma de Yucatán en torno a la práctica de la historia oral, imparte cursos de historia oral a nivel licenciatura y doctorado, y se encuentra recopilando los testimonios orales de los normalista de la península. Nuestro interés como grupo de trabajo está en consolidar nuestros planteamientos teóricos-metodológicos de la historial para que a través del trabajo interdisciplinario pueda construirse nuevas perspectivas para la investigación social e histórica.",
+        //   keywords: ['Docencia', 'Investigación'],
+        //   socialMedia: [],
+        //   contact: {
+        //     mail: "lorgio.coba@correo.uady.mx",
+        //     name: "Lorgio Gilberto Cobá Noh",
+        //   },
+        //   website: "",
+        //   fullLocation: {
+        //     name: "Universidad Autónoma de Yucatán, Facultad de Ciencias Antropológicas",
+        //     latLng: [21.025869788653967, -89.55807547800507],
+        //     url: "https://goo.gl/maps/mPWi2s4E8hiY6UgW9",
+        //   },
+        //   images: {
+        //     path: "",
+        //     src: [],
+        //   },
+        //   verified: false,
+        // },
         {
           name: "Laboratorio de Medios",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "El Laboratorio de Medios, es un espacio que nació dentro de la Licenciatura en Estudios Multiculturales,  de la Universidad de La Ciénega del Estado de Michoacán de Ocampo (UCEMICH), la cual comprende tres ejes formativos: Investigación, gestión cultural y producción de medios. Su finalidad es que estudiantes, profesores, investigadores, cuenten con las herramientas y tecnologías para que desarrollen sus actividades escolares, académicas y de investigación.  Impulsamos la producción audiovisual estudiantil: cortometrajes, reportajes, programas de televisión y podcats.",
           keywords: ['Docencia', 'Investigación', 'Producción AV'],
-          socialMedia: [],
+          socialMedia: [
+            {
+              url: "https://www.facebook.com/lab.med.9469",
+              username: "lab.med.9469",
+              type: "facebook",
+              icon: "mdi-facebook",
+            },
+          ],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
-            name: "",
+            mail: "rzepeda@ucemich.edu.mx",
+            name: "Roberto Zepeda Anaya",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [20.014395931616146, -102.7436015],
+          website: "",
+          fullLocation: {
+            name: "Universidad de La Ciénega del Estado de Michoacán de Ocampo (UCEMICH)",
+            latLng: [20.014459386238457, -102.74361466542592],
+            url: "https://goo.gl/maps/YWiGEn4jSSL13XARA",
+          },
           images: {
             path: "",
             src: [],
           },
+          verified: false,
         },
         {
-          name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59 "LAB 59"',
+          name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59',
           description:
             "Un proyecto de investigación audiovisual  con alumnos de educación básica,  historia oral y documental.",
           keywords: ['Docencia', 'Investigación'],
@@ -241,11 +239,9 @@ export default {
           ],
           contact: {
             mail: "kultudoc@gmail.com",
-            name: "",
+            name: "Fernando López Martínez",
           },
           website: "",
-          lugar: "lugar",
-          location: [20.615184757619822, -103.31399172513775],
           fullLocation: {
             name: "Secundaria Mixta 59, Tlaquepaque, Jalisco",
             latLng: [20.615029095430028, -103.31401318508095],
@@ -265,11 +261,9 @@ export default {
           socialMedia: [],
           contact: {
             mail: "adrihana@gmail.com",
-            name: "",
+            name: "Adriana Marcela Moreno Acosta",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [25.540922503749655, -103.44593723132313],
+          website: "",
           fullLocation: {
             name: "Facultad de Ciencias Sociales, Universidad Autónoma de Coahuila. Saltillo, Coahuila",
             latLng: [25.421544273802244, -101.00076170221335],
@@ -284,48 +278,106 @@ export default {
         {
           name: "Laboratorio Iberoamericano de Documental",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "El Laboratorio Iberoamericano de Documental es una plataforma de pensamiento y producción de arte documental que, desde el Departamento de Comunicación de la Universidad Iberoamericana, propone abordar la realidad adoptando una postura crítica y creativa. Nuestra misión es fomentar la transformación social y el impacto positivo en la consecución de un entorno más justo mediante la producción de contenido de vanguardia y socialmente relevante. Tenemos la visión de crear alternativas de comunicación en el panorama latinoamericano como un vehículo de fortalecimiento comunitario e identitario.",
           keywords: ['Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
-            name: "",
+            mail: "pablo.martinez@ibero.mx",
+            name: "Pablo Martínez-Zárate",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [19.370506733713963, -99.26388957199511],
+          website: "https://iberodocslab.org",
+          fullLocation: {
+            name: "Universidad Iberoamericana Ciudad de México",
+            latLng: [19.37057418636741, -99.26415707493447],
+            url: "https://goo.gl/maps/Suy9d8CkXJ3Pefm7A",
+          },
           images: {
             path: "",
             src: [],
           },
+          verified: false,
         },
         {
           name: 'Laboratorio de lo Invisible',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+          description: 'El Laboratorio de lo Invisible es una iniciativa de experimentación y creación audiovisual para personas con y sin discapacidad, cuenta con 5 años de vida pública. Nace a partir de la colaboración entre Cine para Imaginar (el único colectivo en México que realiza traducción audiovisual y accesibilidad de cine para personas con discapacidad) y personas interesadas en la búsqueda de prácticas participativas entre personas con ceguera o baja visión, y sin ceguera. En la actualidad personas de la Comunidad Sorda de México dedicadas al cine, desarrollan piezas en lengua de señas mexicana, visual vernacular, teatro de sombras con gestualidad, y mediación cultural en Lengua de Señas Mexicana junto al Encuentro de Estudios en Comunidades Sordas ECOS. Es un laboratorio nómada, que ha contado con ediciones en México y en el extranjero. Basamos nuestras prácticas con la intuición y diálogos permanentes con la comunalidad, y experiencias e investigación sentidas, como es La Expansión Social propuesta por el fotógrafo ciego Lorenzo Morales.',
           keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
-          social: ['red1', 'red2', 'red3'],
-          socialMedia: [],
-          website: 'website.com',
-          lugar: "lugar",
-          location: [],
+          socialMedia: [
+            {
+              url: "https://www.facebook.com/laboratoriodeloinvisible",
+              username: "laboratoriodeloinvisible",
+              type: "facebook",
+              icon: "mdi-facebook",
+            },
+            {
+              url: "https://www.instagram.com/laboratoriodeloinvisible/",
+              username: "laboratoriodeloinvisible",
+              type: "instagram",
+              icon: "mdi-instagram",
+            },
+            {
+              url: "https://www.youtube.com/@laboratorioinvisible6490",
+              username: "laboratorioinvisible6490",
+              type: "youtube",
+              icon: "mdi-youtube",
+            },
+            {
+              url: "https://vimeo.com/laboinvisible",
+              username: "laboinvisible",
+              type: "vimeo",
+              icon: "mdi-vimeo",
+            },
+          ],
+          contact: {
+            mail: "laboratoriodeloinvisible@gmail.com",
+            name: "Moisés García Rojas",
+          },
+          website: 'http://www.laboratoriodeloinvisible.com',
+          fullLocation: {
+            // Presencial virtual, con múltiples sedes. Solo se incluyó la primera indicada
+            name: "CINEMA | Escuela de Cinematografía y Medios Audiovisuales",
+            latLng: [19.008178409943753, -98.21217772606161],
+            url: "https://goo.gl/maps/kzSqNgcDSsjBHqibA",
+          },
+          images: {
+            path: "Invisible",
+            src: [
+              "28N, Comunidades Sordas Floreciendo, Cortomtraje - Moises Garcia.jpg",
+              "Historias de la Comunidad Sorda Largometraje - Moises Garcia.jpg",
+              "Laboratorio de lo Invisible Costa Oaxaca - Moises Garcia.jpg",
+              "Pintado con Luz Xalapa - Moises Garcia.jpg",
+              "Visual Vernacular Puebla - Moises Garcia.jpg",
+            ],
+          },
+          verified: true,
         },
         {
           name: "Laboratorio Interdisciplinario de Investigación Audiovisual",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "LABIIA es un espacio de creación colectiva en el que se desarrollan actividades de formación, investigación y divulgación de saberes a través de proyectos audiovisuales que planteen otras formas de narrar historias relacionadas al Patrimonio Audiovisual. Partimos de un conocimiento interdisciplinario que establece un diálogo entre varias disciplinas, metodologías, saberes, lenguajes, artes, tecnologías y procesos creativos.",
           keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
-          socialMedia: [],
+          socialMedia: [
+            {
+              url: "https://www.facebook.com/labiiamx",
+              username: "labiiamx",
+              type: "facebook",
+              icon: "mdi-facebook",
+            },
+          ],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
-            name: "",
+            mail: "labiiamx@gmail.com",
+            name: "David Flores Magón Guzmán",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [20.68101900853452, -103.34605615487195],
+          website: "https://labiia.webnode.mx/",
+          fullLocation: {
+            name: "Mezquitán 330, Guadalajara, México",
+            latLng: [20.6814644557943, -103.35297560364222],
+            url: "https://goo.gl/maps/1EEVeWQh1bMYNtKd7",
+          },
           images: {
             path: "",
             src: [],
           },
+          verified: false,
         },
         {
           name: "Laboratorio de Medios Audiovisuales",
@@ -346,13 +398,11 @@ export default {
               icon: "mdi-twitter",
             },
           ],
-          website: "website.com",
+          website: "",
           contact: {
             mail: "rodrigo.martinez@uacm.edu.mx",
             name: "",
           },
-          lugar: "lugar",
-          location: [19.383380472727215, -99.17375848190244],
           fullLocation: {
             name: "Calle San Lorenzo 290. Col. Del Valle, Del. Benito Juárez",
             latLng: [19.374591361838846, -99.171600800434],
@@ -365,22 +415,33 @@ export default {
           verified: true,
         },
         {
-          name: "Acervo Audiovisual InterNeta.Memoria de las y los invisibles",
+          name: "Acervo Audiovisual InterNeta. Memoria de las y los invisibles",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "El Acervo Audiovisual InterNeta tiene el objetivo de acopiar, preservar,  conservar, catalogar documentos audiovisuales para su acceso público proactivo y reactivo (consulta y reutilización de los documentos audiovisuales que lo componen). Ya que dichos documentos contienen valor histórico y cultural producido como herencia audiovisual de quienes “no han sido vistos” hasta ahora por las instituciones culturales y académicas de nuestro país. Esta herencia audiovisual es asimismo un patrimonio cultural de barrios urbanos, barrios originarios y comunidades indígenas migrantes.",
           keywords: ['Producción AV', 'Producción escrita', 'Resguardo'],
-          socialMedia: [],
+          socialMedia: [
+            {
+              url: "https://www.facebook.com/culturasmetropolitanas",
+              username: "culturasmetropolitanas",
+              type: "facebook",
+              icon: "mdi-facebook",
+            },
+          ],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
-            name: "",
+            mail: "pgs_uamx@hotmail.com",
+            name: "Pablo Gaytán Santiago",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [19.42847, -99.12766],
+          website: "",
+          fullLocation: {
+            name: "Ciudad de México",
+            latLng: [19.4326111814556, -99.13320220104225],
+            url: "https://goo.gl/maps/a6EYYQjJYxAhzjA2A",
+          },
           images: {
             path: "",
             src: [],
           },
+          verified: false,
         },
         {
           name: "Tlacuilo Producción Comunitaria",
@@ -399,9 +460,7 @@ export default {
             mail: "carmen.diaz@uacm.edu.mx",
             name: "María del Carmen Díaz Vázquez",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [19.416556445868775, -99.15195692883556],
+          website: "",
           fullLocation: {
             name: "Cubículo 213 , Plantel Centro Histórico UACM",
             latLng: [19.423988868706267, -99.13832000228066],
@@ -422,43 +481,83 @@ export default {
         {
           name: "Faz a Faz",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "Proyecto dedicado a la promoción del cine y el audiovisual a través de la exhibición, realización y preservación. Al reconocer el potencial del cine y el audiovisual como generadores de experiencias, procuramos el desarrollo de procesos formativos desde dinámicas colaborativas y esquemas comunitarios en cada uno de los proyectos que desarrollamos. En la práctica analizamos y exploramos el potencial del audiovisual como recurso y herramienta de organización y reflexión colectiva, al igual que las dinámicas de realización y exhibición cinematográfica como procesos catalizadores de encuentros, capaces de generar espacios en los que es posible observar, dialogar y negociar la vida social. Apostamos por las metodologías participativas y colaborativas, e ideamos formas de aplicar esquemas de producción comunitaria; todo esto desde el diálogo y el intercambio con los agentes locales que se suman a cada uno de los proyectos, en aras de devenir colaboradores. Nuestro objetivo es propiciar encuentros, diálogos y reflexiones colectivas detonadas por las imágenes compartidas, ya sea aquellas que se aprecian y analizan, o las que son creadas en conjunto.",
           keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV'],
-          socialMedia: [],
+          socialMedia: [
+            {
+              url: "https://www.facebook.com/PerfilFFaz",
+              username: "PerfilFFaz",
+              type: "facebook",
+              icon: "mdi-facebook",
+            },
+            {
+              url: "https://vimeo.com/fazafaz",
+              username: "fazafaz",
+              type: "vimeo",
+              icon: "mdi-vimeo",
+            },
+          ],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
-            name: "",
+            mail: "faf.inbox@gmail.com",
+            name: "Diana Isabel Armenta Ramírez",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [18.31394978267513, -92.62473986565865],
+          website: "",
+          fullLocation: {
+            name: "Tabasco",
+            latLng: [17.989455917953457, -92.94750948232529],
+            url: "https://goo.gl/maps/2dJ7KGn9t4nKAyFH9"
+          },
           images: {
             path: "",
             src: [],
           },
+          verified: false,
         },
         {
           name: "Laboratorio Audiovisual de Investigación Social (LAIS)",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "El Laboratorio Audiovisual de Investigación Social (LAIS) es un espacio colectivo e interdisciplinario dedicado a la investigación social con imágenes. Creado en 2002 con un equipo multidisciplinario, el LAIS realiza estudios que incorporan imágenes y material audiovisual como fuentes primarias de investigación, sean estas recopiladas en diversidad de acervos y colecciones, o bien generadas desde la misma investigación; forma recursos humanos en esta línea de manera permanente; e impulsa la documentación y divulgación de investigaciones sociales y acervos documentales.",
           keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
-          socialMedia: [],
+          socialMedia: [
+            {
+              url: "https://www.facebook.com/LAIS.InstitutoMora",
+              username: "LAIS.InstitutoMora",
+              type: "facebook",
+              icon: "mdi-facebook",
+            },
+            {
+              url: "https://www.instagram.com/lais.im",
+              username: "lais.im",
+              type: "instagram",
+              icon: "mdi-instagram",
+            },
+            {
+              url: "https://www.youtube.com/laismora",
+              username: "laismora",
+              type: "youtube",
+              icon: "mdi-youtube",
+            },
+          ],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
+            mail: "lais@mora.edu.mx",
             name: "",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [19.37805338689813, -99.18272794738233],
+          website: "http://lais.mora.edu.mx/",
+          fullLocation: {
+            name: "Instituto Mora",
+            latLng: [19.376215866305298, -99.18507349164311],
+            url: "https://goo.gl/maps/RVPgGkMp4QNyT6a37",
+          },
           images: {
             path: "",
             src: [],
           },
+          verified: false,
         },
         {
-          name: "Laboratorio de Antropología Visual UAM-I",
+          name: "Laboratorio de Antropología Visual",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "El Laboratorio de Antropología Visual es un espacio dedicado a la investigación y a la docencia en donde alumnos y profesores desarrollan proyectos antropológicos que requieren de la utilización de la fotografía y el video.",
           keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [
             {
@@ -470,18 +569,16 @@ export default {
           ],
           contact: {
             mail: "labantrovisual@gmail.com",
-            name: "",
+            name: "Karla Ballesteros Gómez",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [19.36600425171695, -99.07274990644807],
+          website: "https://divcsh.izt.uam.mx/depto_antropologia/",
           fullLocation: {
             name: "Universidad Autónoma Metropolitana Unidad Iztapalapa",
             latLng: [19.36600425171695, -99.07274990644807],
             url: "https://goo.gl/maps/FkgoqWQLtJ9ESR44A",
           },
           images: {
-            path: "Lab i-CreA",
+            path: "UAM-I",
             src: ["Logo del LAV - LAV UAM-I.png"],
           },
           verified: true,
@@ -489,38 +586,54 @@ export default {
         {
           name: "Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            // Pendiente
+            "Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social (Laboratorio Audiovisual del CIESAS)",
           keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
-          socialMedia: [],
+          socialMedia: [
+            {
+              url: "https://www.youtube.com/CIESASAudiovisual",
+              username: "CIESASAudiovisual",
+              type: "youtube",
+              icon: "mdi-youtube",
+            },
+          ],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
-            name: "",
+            mail: "msa@ciesas.edu.mx",
+            name: "Mauricio Sánchez Álvarez",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [19.289408161458297, -99.16894367301333],
+          website: "https://lab.ciesas.edu.mx/audiovisual/",
+          fullLocation: {
+            name: "Centro de Investigaciones y Estudios Superiores en Antropología Social (CIESAS)",
+            latLng: [19.289301832744933, -99.16887930029213],
+            url: "https://goo.gl/maps/DfJPXjL2A6oqyEMx5",
+          },
           images: {
             path: "",
             src: [],
           },
+          verified: false,
         },
         {
           name: "Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "El LAVSAN es un espacio para realizar prácticas e investigación de carácter audiovisual promoviendo el diálogo entre arte y antropología con el fin de construir conocimiento social. Nuestros objetivos son 1) desarrollar una línea de investigación en antropología visual; 2) fortalecer la investigación y la docencia apoyando a investigadores y a estudiantes con acervo filmográfico y fotográfico, equipo, capacitación audiovisual y vinculación; y 3) contribuir al intercambio, difusión y divulgación de la producción audiovisual etnográfica y antropológica.",
           keywords: ['Docencia', 'Investigación', 'Producción AV'],
           socialMedia: [],
           contact: {
-            mail: "PENDIENTE@CORREO.COM",
+            mail: "lavsan.colsan@gmail.com",
             name: "",
           },
-          website: "website.com",
-          lugar: "lugar",
-          location: [22.129423469806035, -101.0163491576711],
-          images: {
-            path: "",
-            src: [],
+          website: "www.lavsan.colsan.edu.mx",
+          fullLocation: {
+            name: "Parque Macul 155, Colinas del Parque, 78260 San Luis, S.L.P.",
+            latLng: [22.12836307981747, -101.01548413244936],
+            url: "https://goo.gl/maps/7hck7h9qG19gtiki7",
           },
+          images: {
+            path: "LAVSAN",
+            src: ["Logo LAVSAN - Frances Paola Garnica Quiñones.png"],
+          },
+          verified: true,
         },
       ],
       // Configuración del mapa <l-map>
