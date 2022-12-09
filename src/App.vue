@@ -33,7 +33,7 @@
             <v-sheet rounded="xl" class="fill-height" >
               <v-list>
                 <!-- <v-list-subheader>LABORATORIOS</v-list-subheader> -->
-                <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
+                <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" :active="lab === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
                   <!-- <v-list-item-title v-text="lab.name"></v-list-item-title> -->
                   <p>{{lab.name}}</p>
                 </v-list-item>
