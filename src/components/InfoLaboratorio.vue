@@ -24,7 +24,7 @@
     </div>
 
     <!-- CARRUSEL CON FOTOS Y VIDEO -->
-    <v-carousel hide-delimiters show-arrows="hover" cycle height="400" v-show="laboratorioSelected.images && laboratorioSelected.images.path && laboratorioSelected.images.src && laboratorioSelected.images.src.length > 0">
+    <v-carousel hide-delimiters :show-arrows="laboratorioSelected.images.src.length > 1 ? 'hover' : false" cycle height="300" v-show="laboratorioSelected.images.src.length > 0" class="my-2">
       <!-- IMÁGENES DEL LABORATORIO -->
       <!-- PENDIENTE LEER LA IMAGEN DE FORMA LOCAL EN LUGAR DE GITHUB -->
       <v-carousel-item
@@ -40,39 +40,19 @@
     <!-- ACCIONES DEL COMPONENTE -->
     <v-card-actions>
       <!-- REDES SOCIALES -->
-      <template
-        v-for="(social, index) in laboratorioSelected.socialMedia"
-        :key="'social_' + index"
-      >
-        <v-btn :href="social.url" target="_blank" icon size="x-large" variant="plain" color="black">
-          <!-- <v-icon> {{ social.icon }} </v-icon> -->
-          <v-icon v-if="social.icon.includes('mdi')" :icon="`mdi:${social.icon}`" />
-          <v-icon v-else :icon="`${social.icon}`" />
-          <!-- <font-awesome-icons icon="fa-user" /> -->
-        </v-btn>
-      </template>
+      <v-btn v-for="(social, index) in laboratorioSelected.socialMedia" :key="index" :href="social.url" target="_blank" icon size="medium" variant="plain" color="primary">
+        <v-icon :icon="`fas ${social.faIcon}`" />
+      </v-btn>
 
       <!-- SITIO WEB DEL LABORATORIO -->
-      <template v-if="laboratorioSelected.website">
-        <v-btn :href="laboratorioSelected.website" target="_blank" icon size="x-large" variant="plain" color="black">
-          <!-- <v-icon> mdi-web </v-icon> -->
-          <v-icon icon="mdi:mdi-web" />
-        </v-btn>
-      </template>
+      <v-btn v-if="laboratorioSelected.website" :href="laboratorioSelected.website" target="_blank" icon size="medium" variant="plain" color="primary">
+        <v-icon icon="fas fa-regular fa-globe" />
+      </v-btn>
 
       <!-- CONTACTO - EMAIL -->
-      <template v-if="laboratorioSelected.contact">
-        <v-btn
-          :href="'mailto:' + laboratorioSelected.contact.mail"
-          target="_blank"
-          icon size="x-large" 
-          variant="plain" 
-          color="black"
-        >
-          <!-- <v-icon> mdi-email-open-outline </v-icon> -->
-          <v-icon icon="mdi:mdi-email-open-outline" />
-        </v-btn>
-      </template>
+      <v-btn v-if="laboratorioSelected.contact" :href="'mailto:' + laboratorioSelected.contact.mail" target="_blank" icon size="medium" variant="plain" color="primary">
+        <v-icon icon="fas fa-regular fa-envelope" />
+      </v-btn>
     </v-card-actions>
   </v-card>
 
