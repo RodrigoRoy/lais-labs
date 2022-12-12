@@ -3,14 +3,28 @@
     <!-- Barra superior -->
     <!-- Incluye el título e icono para cambiar tema de color -->
     <v-app-bar>
+      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="d-md-none"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <p class="navbar-title">Laboratorios Audiovisuales de Investigación en México</p>
+      <p class="text-uppercase text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</p>
       <v-spacer></v-spacer>
       <v-btn icon @click="switchTheme"><v-icon :icon="theme === 'light' ? 'mdi:mdi-weather-sunny' : 'mdi:mdi-weather-night'" /></v-btn >
     </v-app-bar>
 
-    <!-- En caso de requerir un espacio auxiliar: -->
-    <!-- <v-navigation-drawer></v-navigation-drawer> -->
+    <v-navigation-drawer v-model="drawer" temporary location="left" class="bg-primary d-flex d-md-none">
+      <v-list density="compact" nav>
+        <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" :active="laboratorio === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(laboratorio)">
+          <p> {{ laboratorio.name }} </p>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <!-- Copia del v-navigation-drawer anterior para solo ser mostrado en tamaños mayores a md -->
+    <v-navigation-drawer location="left" class="bg-primary d-none d-md-flex">
+      <v-list density="compact" nav>
+        <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" :active="laboratorio === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(laboratorio)">
+          <p> {{ laboratorio.name }} </p>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <!-- Contenedor principal -->
     <!-- Generar 3 columnas principales: -->
@@ -27,19 +41,17 @@
           </v-col>
         </v-row>
 
+        <!-- Lista de laboratorios -->
         <v-row align="start">
-          <!-- Lista de laboratorios -->
-          <v-col md="2" cols="12">
-            <v-sheet rounded="xl" elevation="12"> <!-- class="fill-height" -->
+          <!-- <v-col md="6" cols="12">
+            <v-sheet rounded="xl" elevation="12" class="fill-height">
               <v-list>
-                <!-- <v-list-subheader>LABORATORIOS</v-list-subheader> -->
                 <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" :active="lab === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
-                  <!-- <v-list-item-title v-text="lab.name"></v-list-item-title> -->
                   <p>{{lab.name}}</p>
                 </v-list-item>
               </v-list>
             </v-sheet>
-          </v-col>
+          </v-col> -->
 
           <!-- Mapa -->
           <v-col md="6" cols="12">
@@ -85,7 +97,7 @@
           </v-col>
 
           <!-- Información del laboratorio seleccionado -->
-          <v-col md="4" cols="12">
+          <v-col md="6" cols="12">
             <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
 
               <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
@@ -96,9 +108,9 @@
           </v-col>
         </v-row>
       </v-container>
+    
+      <Footer />
     </v-main>
-
-    <Footer />
   </v-app>
 </template>
 
@@ -124,7 +136,7 @@ export default {
     return {
       // Tema claro/oscuro
       theme: "light",
-      // Lista de (19) laboratorios
+      drawer: false,
       // Configuración del mapa <l-map>
       lmap: {
         url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -165,7 +177,4 @@ export default {
 </script>
 
 <style scoped>
-.navbar-title {
-  font-size: 1.25rem;
-}
 </style>

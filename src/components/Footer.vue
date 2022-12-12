@@ -7,7 +7,7 @@
 
         <!-- Datos del LAIS -->
         <!-- TODO: Logo del LAIS, nombre, link a página web -->
-        <v-col class="text-center">
+        <v-col class="text-left">
           <p>
             {{ new Date().getFullYear() }} — Laboratorio Audiovisual de Investigación Social (LAIS)
           </p>
@@ -31,12 +31,12 @@
 
         <!-- Información de contacto -->
         <!-- TODO: icono email + Correo del LAIS (lais@mora.edu.mx) -->
-        <v-col class="text-center">
+        <v-col class="text-right">
           <p>
             Creado con <v-icon icon="mdi:mdi-nodejs" /> <v-icon icon="mdi:mdi-vuetify" /> <v-icon icon="mdi:mdi-heart" /> 
           </p>
           <p>
-              Código fuente <v-icon icon="fas fa-brands fa-github" />
+              Código fuente <v-icon icon="fas fa-brands fa-github"/>
             </p>
         </v-col>
     </v-row>
