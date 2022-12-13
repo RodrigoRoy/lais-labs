@@ -2,23 +2,17 @@
   <v-app :theme="theme">
     <!-- Barra superior -->
     <!-- Incluye el título e icono para cambiar tema de color -->
-    <v-app-bar>
-      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="d-md-none"></v-app-bar-nav-icon>
+    <v-app-bar color="primary">
+      <!-- Icono de "hamburguesa" que solo aparece en pantalla pequeñas para desplegar lista lateral -->
+      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="d-flex d-md-none"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <p class="text-uppercase text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</p>
+      <p class="text-uppercase text-center text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</p>
       <v-spacer></v-spacer>
       <v-btn icon @click="switchTheme"><v-icon :icon="theme === 'light' ? 'mdi:mdi-weather-sunny' : 'mdi:mdi-weather-night'" /></v-btn >
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" temporary location="left" class="bg-primary d-flex d-md-none">
-      <v-list density="compact" nav>
-        <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" :active="laboratorio === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(laboratorio)">
-          <p> {{ laboratorio.name }} </p>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <!-- Copia del v-navigation-drawer anterior para solo ser mostrado en tamaños mayores a md -->
-    <v-navigation-drawer location="left" class="bg-primary d-none d-md-flex">
+    <!-- Lista lateral de navegación con los nombres de los laboratorios. Se oculta en pantallas pequeñas y es permanente en pantallas de tamaño mediano en adelante -->
+    <v-navigation-drawer v-model="drawer" :temporary="$vuetify.display.smAndDown" :permanent="$vuetify.display.mdAndUp" location="left" width="400" class="bg-secondary">
       <v-list density="compact" nav>
         <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" :active="laboratorio === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(laboratorio)">
           <p> {{ laboratorio.name }} </p>
@@ -28,11 +22,11 @@
 
     <!-- Contenedor principal -->
     <!-- Generar 3 columnas principales: -->
-    <!-- * Lista de laboratorio -->
     <!-- * Mapa con marcadores -->
     <!-- * Información del laboratorio seleccionado -->
-    <v-main> <!-- class="bg-surface-variant" -->
+    <v-main>
       <v-container>
+
         <v-row>
           <v-col cols="12" class="my-8">
             <p class="text-center text-h6">
@@ -41,20 +35,9 @@
           </v-col>
         </v-row>
 
-        <!-- Lista de laboratorios -->
         <v-row align="start">
-          <!-- <v-col md="6" cols="12">
-            <v-sheet rounded="xl" elevation="12" class="fill-height">
-              <v-list>
-                <v-list-item v-for="(lab, index) in laboratorios" :key="index" :value="lab" :active="lab === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(lab)">
-                  <p>{{lab.name}}</p>
-                </v-list-item>
-              </v-list>
-            </v-sheet>
-          </v-col> -->
-
           <!-- Mapa -->
-          <v-col md="6" cols="12">
+          <v-col sm="4" md="6" cols="12">
             <v-sheet rounded="xl">
               <l-map
                 ref="leafletMap"
@@ -97,7 +80,7 @@
           </v-col>
 
           <!-- Información del laboratorio seleccionado -->
-          <v-col md="6" cols="12">
+          <v-col sm="8" md="6" cols="12">
             <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
 
               <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
@@ -172,6 +155,7 @@ export default {
   },
   mounted: function() {
     this.laboratorios = laboratorios
+    // console.log('mobile?:', this.$vuetify.display.mobile);
   },
 };
 </script>

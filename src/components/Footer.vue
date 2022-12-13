@@ -12,7 +12,7 @@
             {{ new Date().getFullYear() }} — Laboratorio Audiovisual de Investigación Social (LAIS)
           </p>
           <p>
-            lais@mora.edu.mx
+            <v-icon icon="mdi:mdi-email-outline" /> lais@mora.edu.mx
           </p>
         </v-col>
 
@@ -25,7 +25,7 @@
             </a>
             <br />
             <p>
-              Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.
+              Esta obra está bajo una <a class="text-accent" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.
             </p>
         </v-col>
 
@@ -33,11 +33,11 @@
         <!-- TODO: icono email + Correo del LAIS (lais@mora.edu.mx) -->
         <v-col class="text-right">
           <p>
-            Creado con <v-icon icon="mdi:mdi-nodejs" /> <v-icon icon="mdi:mdi-vuetify" /> <v-icon icon="mdi:mdi-heart" /> 
+            Creado con NodeJs <v-icon icon="mdi:mdi-nodejs"/>NodeJs + Vuetify <v-icon icon="mdi:mdi-vuetify" />
           </p>
           <p>
-              Código fuente <v-icon icon="fas fa-brands fa-github"/>
-            </p>
+            Código fuente en <a href="https://github.com/RodrigoRoy/lais-labs/" class="text-accent">GitHub</a> <v-icon icon="fas fa-brands fa-github"/>
+          </p>
         </v-col>
     </v-row>
   </v-footer>
