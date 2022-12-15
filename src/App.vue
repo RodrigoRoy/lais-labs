@@ -20,13 +20,12 @@
       </v-list>
     </v-navigation-drawer>
 
-    <!-- Contenedor principal -->
-    <!-- Generar 3 columnas principales: -->
+    <!-- Contenedor principal con 2 columnas: -->
     <!-- * Mapa con marcadores -->
     <!-- * Información del laboratorio seleccionado -->
     <v-main>
       <v-container>
-
+        <!-- Párrafo explicativo -->
         <v-row>
           <v-col cols="12" class="my-8">
             <p class="text-center text-h6">
@@ -38,11 +37,10 @@
         <v-row align="start">
           <!-- Mapa -->
           <v-col sm="4" md="6" cols="12">
-            <v-sheet rounded="xl">
+            <v-sheet rounded="xl" style="height: 700px">
               <l-map
                 ref="leafletMap"
-                style="height: 700px"
-                :zoom="lmap.zoom"
+                v-model:zoom="lmap.zoom"
                 :center="lmap.center"
                 :options="lmap.options"
               >
@@ -52,29 +50,17 @@
                 ></l-tile-layer>
                 <template v-for="(item, index) in laboratorios" :key="index">
                   <l-marker
-                    v-if="item === laboratorioSeleccionado"
                     :lat-lng="item.fullLocation.latLng"
+                    :zIndexOffset="item.name === laboratorioSeleccionado.name ? 100 : 0" 
                     v-on:click="selectData(item)"
                   >
                     <l-icon :icon-anchor="[16, 37]" class-name="someExtraClass">
                       <img
-                        src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|F50000&chf=a,s,ee00FFFF"
-                      />
-                    </l-icon>
-                  </l-marker>
-                  <l-marker
-                    v-else
-                    :lat-lng="item.fullLocation.latLng"
-                    v-on:click="selectData(item)"
-                  >
-                    <l-icon :icon-anchor="[16, 37]" class-name="someExtraClass">
-                      <img
-                        src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00A3F5&chf=a,s,ee00FFFF"
+                        :src="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${item.name === laboratorioSeleccionado.name ? 'F50000' : '00A3F5'}&chf=a,s,ee00FFFF`"
                       />
                     </l-icon>
                   </l-marker>
                 </template>
-                <!-- <l-marker :lat-lng="lmap.markerLatLng"></l-marker> -->
               </l-map>
             </v-sheet>
           </v-col>
@@ -98,40 +84,40 @@
 </template>
 
 <script>
+import InfoLaboratorio from "./components/InfoLaboratorio.vue";
 import Footer from "@/components/Footer.vue";
+import { laboratorios } from "./data/labs.mjs"
 // Vue Leaflet:
 import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
-import InfoLaboratorio from "./components/InfoLaboratorio.vue";
-import { laboratorios } from "./data/labs.mjs"
 
 export default {
   name: "Labs",
   components: {
+    InfoLaboratorio,
     Footer,
     LMap,
     LTileLayer,
     LMarker,
     LIcon,
-    InfoLaboratorio,
   },
   data() {
     return {
       // Tema claro/oscuro
       theme: "light",
-      drawer: false,
+      drawer: true,
+      zoom: 10,
       // Configuración del mapa <l-map>
       lmap: {
         url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        zoom: 4,
+        zoom: 5,
         center: [23.634501, -102.552784],
-        markerLatLng: [23.634501, -102.552784],
         options: {
-          zoomControl: true,
+          zoomControl: false,
           attributionControl: true,
-          zoomSnap: true,
+          zoomSnap: false,
           scrollWheelZoom: false,
         },
       },
@@ -144,18 +130,25 @@ export default {
      * <v-app> aplica el cambio de manera general
      */
     switchTheme: function () {
-      this.theme = this.theme === "light" ? "dark" : "light";
+      this.theme = this.theme === "light" ? "dark" : "light"
+      localStorage.setItem('theme', this.theme)
+    },
+    switchDrawer: function(){
+      this.drawer = !this.drawer
     },
     /**
      * Selecciona la información de un laboratorio
      */
     selectData: function (selectedData) {
-      this.laboratorioSeleccionado = selectedData;
+      this.laboratorioSeleccionado = selectedData
     },
   },
-  mounted: function() {
+  beforeMount(){
     this.laboratorios = laboratorios
-    // console.log('mobile?:', this.$vuetify.display.mobile);
+  },
+  mounted: function() {
+    this.theme = localStorage.getItem('theme') || 'light'
+    this.laboratorioSeleccionado = this.laboratorios[Math.floor(Math.random()*this.laboratorios.length)] // pre-selected random lab
   },
 };
 </script>

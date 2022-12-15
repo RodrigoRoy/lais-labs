@@ -53,6 +53,7 @@ export const laboratorios = [
                 "Repositorio Color-30 - Andres Arroyo Vallín.jpg",
             ],
         },
+        video: 'https://www.youtube.com/embed/xheOSRBpfPs',
         verified: true,
     },
     // {
@@ -76,6 +77,7 @@ export const laboratorios = [
     //     path: "",
     //     src: [],
     //   },
+    //   video: '',
     //   verified: false,
     // },
     {
@@ -106,6 +108,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
+        video: '',
         verified: false,
     },
     {
@@ -136,6 +139,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
+        video: '',
         verified: true,
     },
     {
@@ -158,6 +162,7 @@ export const laboratorios = [
             path: "Lab i-CreA",
             src: ["Logo Lab i-CreA - Adriana Moreno.png"],
         },
+        video: '',
         verified: true,
     },
     {
@@ -180,6 +185,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
+        video: '',
         verified: false,
     },
     {
@@ -237,6 +243,7 @@ export const laboratorios = [
                 "Visual Vernacular Puebla - Moises Garcia.jpg",
             ],
         },
+        video: '',
         verified: true,
     },
     {
@@ -267,6 +274,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
+        video: '',
         verified: false,
     },
     {
@@ -304,6 +312,7 @@ export const laboratorios = [
             path: "LAMA",
             src: ["Logo LaMA PNG - Laboratorio Medios Audiovisuales.png"],
         },
+        video: '',
         verified: true,
     },
     {
@@ -334,6 +343,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
+        video: '',
         verified: false,
     },
     {
@@ -370,6 +380,7 @@ export const laboratorios = [
                 "Logo-Tlacuilo Blanco - María del Carmen Díaz Vázquez.png",
             ],
         },
+        video: '',
         verified: true,
     },
     {
@@ -407,6 +418,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
+        video: '',
         verified: false,
     },
     {
@@ -448,9 +460,10 @@ export const laboratorios = [
             url: "https://goo.gl/maps/RVPgGkMp4QNyT6a37",
         },
         images: {
-            path: "",
-            src: [],
+            path: "LAIS",
+            src: ['Taller_2022.jpg', 'En_entrevista_2012.jpg', 'Crefal_2022.jpg'],
         },
+        video: '',
         verified: false,
     },
     {
@@ -481,6 +494,7 @@ export const laboratorios = [
             path: "UAM-I",
             src: ["Logo del LAV - LAV UAM-I.png"],
         },
+        video: '',
         verified: true,
     },
     {
@@ -512,6 +526,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
+        video: '',
         verified: false,
     },
     {
@@ -534,6 +549,7 @@ export const laboratorios = [
             path: "LAVSAN",
             src: ["Logo LAVSAN - Frances Paola Garnica Quiñones.png"],
         },
+        video: '',
         verified: true,
     },
 ]

@@ -32,7 +32,7 @@
       </v-carousel>
       
       <!-- REFERENCIA AL VIDEO -->
-      <iframe width="100%" height="300" class="mt-4" src="https://www.youtube.com/embed/xheOSRBpfPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe v-if="laboratorioSelected.video" width="100%" height="300" class="mt-4" :src="laboratorioSelected.video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </v-card-text>
 
     <!-- ACCIONES DEL COMPONENTE -->
