@@ -81,9 +81,9 @@ export const laboratorios = [
     //   verified: false,
     // },
     {
-        name: "Laboratorio de Medios",
+        name: "Laboratorio de Medios UCEMICH",
         description:
-        "El Laboratorio de Medios, es un espacio que nació dentro de la Licenciatura en Estudios Multiculturales,  de la Universidad de La Ciénega del Estado de Michoacán de Ocampo (UCEMICH), la cual comprende tres ejes formativos: Investigación, gestión cultural y producción de medios. Su finalidad es que estudiantes, profesores, investigadores, cuenten con las herramientas y tecnologías para que desarrollen sus actividades escolares, académicas y de investigación.  Impulsamos la producción audiovisual estudiantil: cortometrajes, reportajes, programas de televisión y podcats.",
+        "El Laboratorio de Medios UCEMICH, es un espacio que nació dentro de la Licenciatura en Estudios Multiculturales,  de la Universidad de La Ciénega del Estado de Michoacán de Ocampo, la cual comprende tres ejes formativos: Investigación, gestión cultural y producción de medios. Su finalidad es que estudiantes, profesores, investigadores, cuenten con las herramientas y tecnologías para que desarrollen sus actividades escolares, académicas y de investigación.  Impulsamos la producción audiovisual estudiantil: cortometrajes, reportajes, programas de televisión y podcats. Asimismo, de la mano del LabMed, surgió la iniciativa de crear el Encuentro y Muestrario de Investigaciones Audiovisuales. Finalmente, este proyecto se encuentra en etapa de consolidación y ampliación de su oferta, actividades y alcance. Por lo anterior, nos gustaría compartir y conocer otras propuestas y experiencias de espacios similares.",
         keywords: ['Docencia', 'Investigación', 'Producción AV'],
         socialMedia: [
             {
@@ -93,23 +93,31 @@ export const laboratorios = [
                 icon: "mdi-facebook",
                 faIcon: "fa-brands fa-facebook-f",
             },
+            {
+                url: "https://www.youtube.com/@laboratoriodemediosucemich5898",
+                username: "laboratoriodemediosucemich5898",
+                type: "youtube",
+                icon: "mdi-youtube",
+                faIcon: "fa-brands fa-youtube",
+            },
         ],
         contact: {
-            mail: "rzepeda@ucemich.edu.mx",
+            // mail: "rzepeda@ucemich.edu.mx",
+            mail: "labmedios@ucemich.edu.mx",
             name: "Roberto Zepeda Anaya",
         },
         website: "",
         fullLocation: {
-            name: "Universidad de La Ciénega del Estado de Michoacán de Ocampo (UCEMICH)",
-            latLng: [20.014459386238457, -102.74361466542592],
-            url: "https://goo.gl/maps/YWiGEn4jSSL13XARA",
+            name: "Universidad de La Ciénega del Estado de Michoacán de Ocampo. (UCEMICH)",
+            latLng: [20.01450176227876, -102.74359077448634],
+            url: "https://goo.gl/maps/US3AoS4eSG2GCLiW9",
         },
         images: {
-            path: "",
-            src: [],
+            path: "UCEMICH",
+            src: ['LABORATORIOS DE MEDIOS ucemich blanco.png', 'LABORATORIOS DE MEDIOS ucemich color.png'],
         },
         video: '',
-        verified: false,
+        verified: true,
     },
     {
         name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59',
@@ -168,9 +176,24 @@ export const laboratorios = [
     {
         name: "Laboratorio Iberoamericano de Documental",
         description:
-        "El Laboratorio Iberoamericano de Documental es una plataforma de pensamiento y producción de arte documental que, desde el Departamento de Comunicación de la Universidad Iberoamericana, propone abordar la realidad adoptando una postura crítica y creativa. Nuestra misión es fomentar la transformación social y el impacto positivo en la consecución de un entorno más justo mediante la producción de contenido de vanguardia y socialmente relevante. Tenemos la visión de crear alternativas de comunicación en el panorama latinoamericano como un vehículo de fortalecimiento comunitario e identitario.",
+        "Espacio de reflexión, experimentación y producción documental perteneciente al Departamento de Comunicación de la Universidad Iberoamericana Ciudad de México.  Trabajamos con una perspectiva crítica y expandida del arte documental como un modo de investigación e intervención de la realidad. Promovemos la innovación técnica y narrativa mediante estrategias pedagógicas y estéticas transmedia. ",
         keywords: ['Docencia', 'Investigación', 'Producción AV'],
-        socialMedia: [],
+        socialMedia: [
+            {
+                url: "https://www.facebook.com/iberodocslab",
+                username: "iberodocslab",
+                type: "facebook",
+                icon: "mdi-facebook",
+                faIcon: "fa-brands fa-facebook-f",
+            },
+            {
+                url: "https://www.instagram.com/iberodocslab/",
+                username: "iberodocslab",
+                type: "instagram",
+                icon: "mdi-instagram",
+                faIcon: "fa-brands fa-instagram",
+            },
+        ],
         contact: {
             mail: "pablo.martinez@ibero.mx",
             name: "Pablo Martínez-Zárate",
@@ -178,15 +201,15 @@ export const laboratorios = [
         website: "https://iberodocslab.org",
         fullLocation: {
             name: "Universidad Iberoamericana Ciudad de México",
-            latLng: [19.37057418636741, -99.26415707493447],
-            url: "https://goo.gl/maps/Suy9d8CkXJ3Pefm7A",
+            latLng: [19.369799781902778, -99.2638998033329],
+            url: "https://goo.gl/maps/ezFhDVWSDZqLdrms9",
         },
         images: {
-            path: "",
-            src: [],
+            path: "IberoDocsLab",
+            src: ['laboratorioiberoamericano.png'],
         },
         video: '',
-        verified: false,
+        verified: true,
     },
     {
         name: 'Laboratorio de lo Invisible',
@@ -249,7 +272,7 @@ export const laboratorios = [
     {
         name: "Laboratorio Interdisciplinario de Investigación Audiovisual",
         description:
-        "LABIIA es un espacio de creación colectiva en el que se desarrollan actividades de formación, investigación y divulgación de saberes a través de proyectos audiovisuales que planteen otras formas de narrar historias relacionadas al Patrimonio Audiovisual. Partimos de un conocimiento interdisciplinario que establece un diálogo entre varias disciplinas, metodologías, saberes, lenguajes, artes, tecnologías y procesos creativos.",
+        "LABIIA es un espacio de creación colectiva en el que se desarrollan actividades de formación, investigación, archivo y divulgación de saberes a través de proyectos audiovisuales que planteen otras formas de narrar historias. Partimos de un conocimiento interdisciplinario que establece un diálogo entre varias disciplinas, metodologías, saberes, lenguajes, artes, tecnologías y procesos creativos.",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
         socialMedia: [
             {
@@ -266,16 +289,16 @@ export const laboratorios = [
         },
         website: "https://labiia.webnode.mx/",
         fullLocation: {
-            name: "Mezquitán 330, Guadalajara, México",
-            latLng: [20.6814644557943, -103.35297560364222],
-            url: "https://goo.gl/maps/1EEVeWQh1bMYNtKd7",
+            name: "C. San Felipe 1291 Col Americana, Santa Teresita, 44600 Guadalajara, Jal.",
+            latLng: [20.679189968086952, -103.36570563214711],
+            url: "https://goo.gl/maps/qCUQU4s1Z1vvDxTQ8",
         },
         images: {
-            path: "",
-            src: [],
+            path: "LABIIA",
+            src: ['LAbIIA.jpg'],
         },
         video: '',
-        verified: false,
+        verified: true,
     },
     {
         name: "Laboratorio de Medios Audiovisuales",
@@ -316,9 +339,9 @@ export const laboratorios = [
         verified: true,
     },
     {
-        name: "Acervo Audiovisual InterNeta. Memoria de las y los invisibles",
+        name: "Acervo Audiovisual InterNeta.Memoria de las y los Invisibles",
         description:
-        "El Acervo Audiovisual InterNeta tiene el objetivo de acopiar, preservar,  conservar, catalogar documentos audiovisuales para su acceso público proactivo y reactivo (consulta y reutilización de los documentos audiovisuales que lo componen). Ya que dichos documentos contienen valor histórico y cultural producido como herencia audiovisual de quienes “no han sido vistos” hasta ahora por las instituciones culturales y académicas de nuestro país. Esta herencia audiovisual es asimismo un patrimonio cultural de barrios urbanos, barrios originarios y comunidades indígenas migrantes.",
+        "El Acervo se integra con siete colecciones de documento audiovisuales realizado con colectivos, grupos y organizaciones indígenas, de pueblos originarios, de cultura popular urbana y de movimientos contraculturales",
         keywords: ['Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
             {
@@ -328,23 +351,31 @@ export const laboratorios = [
                 icon: "mdi-facebook",
                 faIcon: "fa-brands fa-facebook-f",
             },
+            {
+                url: "https://www.youtube.com/@culturasmetropolitanas569",
+                username: "culturasmetropolitanas569",
+                type: "youtube",
+                icon: "mdi-youtube",
+                faIcon: "fa-brands fa-youtube",
+            },
         ],
         contact: {
-            mail: "pgs_uamx@hotmail.com",
+            mail: "pablogaytansantiago@gmail.com",
+            // mail: "pgs_uamx@hotmail.com",
             name: "Pablo Gaytán Santiago",
         },
         website: "",
         fullLocation: {
-            name: "Ciudad de México",
-            latLng: [19.4326111814556, -99.13320220104225],
-            url: "https://goo.gl/maps/a6EYYQjJYxAhzjA2A",
+            name: "Cerrada de Reforma No.8 Sn.Miguel Xicalco, Tlalpan, Ciudad de México",
+            latLng: [19.235077711906378, -99.16401970333501],
+            url: "https://goo.gl/maps/GJ8a3dHHTXVB1SAdA",
         },
         images: {
-            path: "",
-            src: [],
+            path: "InterNeta",
+            src: ['inter_gif2-9.png', 'k_w.png'],
         },
         video: '',
-        verified: false,
+        verified: true,
     },
     {
         name: "Tlacuilo Producción Comunitaria",
@@ -384,9 +415,9 @@ export const laboratorios = [
         verified: true,
     },
     {
-        name: "Faz a Faz",
+        name: "Faz a Faz A.C.",
         description:
-        "Proyecto dedicado a la promoción del cine y el audiovisual a través de la exhibición, realización y preservación. Al reconocer el potencial del cine y el audiovisual como generadores de experiencias, procuramos el desarrollo de procesos formativos desde dinámicas colaborativas y esquemas comunitarios en cada uno de los proyectos que desarrollamos. En la práctica analizamos y exploramos el potencial del audiovisual como recurso y herramienta de organización y reflexión colectiva, al igual que las dinámicas de realización y exhibición cinematográfica como procesos catalizadores de encuentros, capaces de generar espacios en los que es posible observar, dialogar y negociar la vida social. Apostamos por las metodologías participativas y colaborativas, e ideamos formas de aplicar esquemas de producción comunitaria; todo esto desde el diálogo y el intercambio con los agentes locales que se suman a cada uno de los proyectos, en aras de devenir colaboradores. Nuestro objetivo es propiciar encuentros, diálogos y reflexiones colectivas detonadas por las imágenes compartidas, ya sea aquellas que se aprecian y analizan, o las que son creadas en conjunto.",
+        "Faz a Faz tiene como objetivo promover procesos de encuentro y diálogo a través de actividades de exhibición, análisis, formación, realización y resguardo de archivo audiovisual. Por lo anterior, desde 2017 hemos desarrollado proyectos que atiendan a dichas áreas del cine aplicando metodologías participativas y colaborativas. Apostamos por que los procesos se desarrollen al ritmo de quienes nos involucramos,  para que así también afianzar y solidificar los aprendizajes, alianzas y experiencias.",
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV'],
         socialMedia: [
             {
@@ -410,16 +441,16 @@ export const laboratorios = [
         },
         website: "",
         fullLocation: {
-            name: "Tabasco",
-            latLng: [17.989455917953457, -92.94750948232529],
-            url: "https://goo.gl/maps/2dJ7KGn9t4nKAyFH9"
+            name: "Villahermosa, Tabasco",
+            latLng: [17.987667771429468, -92.91945043868668],
+            url: "https://goo.gl/maps/mPpcpHK7bGBd7MhG7"
         },
         images: {
-            path: "",
-            src: [],
+            path: "Faz a Faz",
+            src: ['faf - Diana Armenta.png'],
         },
         video: '',
-        verified: false,
+        verified: true,
     },
     {
         name: "Laboratorio Audiovisual de Investigación Social (LAIS)",
@@ -464,7 +495,7 @@ export const laboratorios = [
             src: ['Taller_2022.jpg', 'En_entrevista_2012.jpg', 'Crefal_2022.jpg'],
         },
         video: '',
-        verified: false,
+        verified: true,
     },
     {
         name: "Laboratorio de Antropología Visual",
