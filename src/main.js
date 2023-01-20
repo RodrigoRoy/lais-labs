@@ -1,23 +1,11 @@
-/**
- * main.js
- *
- * Bootstraps Vuetify and other plugins then mounts the App`
- */
-
-// Components
+import Vue from 'vue'
 import App from './App.vue'
-
-// Composables
-import { createApp } from 'vue'
-
-// Plugins
-import { registerPlugins } from '@/plugins'
-
-// Leaflet
+import vuetify from './plugins/vuetify'
 import 'leaflet/dist/leaflet.css';
 
-const app = createApp(App)
+Vue.config.productionTip = false
 
-registerPlugins(app)
-
-app.mount('#app')
+new Vue({
+  vuetify,
+  render: h => h(App)
+}).$mount('#app')

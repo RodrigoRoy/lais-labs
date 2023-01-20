@@ -1,157 +1,248 @@
 <template>
-  <v-app :theme="theme">
-    <!-- Barra superior -->
-    <!-- Incluye el título e icono para cambiar tema de color -->
-    <v-app-bar color="primary">
-      <!-- Icono de "hamburguesa" que solo aparece en pantalla pequeñas para desplegar lista lateral -->
-      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" class="d-flex d-md-none"></v-app-bar-nav-icon>
-      <v-spacer></v-spacer>
-      <p class="text-uppercase text-center text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</p>
-      <v-spacer></v-spacer>
-      <v-btn icon @click="switchTheme"><v-icon :icon="theme === 'light' ? 'mdi:mdi-weather-sunny' : 'mdi:mdi-weather-night'" /></v-btn >
-    </v-app-bar>
+  <v-theme-provider root>
+    <v-app>
+        <!-- Lista lateral de navegación con los nombres de los laboratorios. Se oculta en pantallas pequeñas y es permanente en pantallas de tamaño mediano en adelante -->
+        <!-- <v-navigation-drawer v-model="drawer" :temporary="$vuetify.breakpoint.smAndDown" :absolute="$vuetify.breakpoint.mdAndUp" width="400" class="bg-secondary"> -->
+        <v-navigation-drawer app v-model="drawer" clipped width="400" color="secondary">
+          <v-list dense nav>
+            <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" :active="laboratorio === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(laboratorio)">
+              <p> {{ laboratorio.name }} </p>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
 
-    <!-- Lista lateral de navegación con los nombres de los laboratorios. Se oculta en pantallas pequeñas y es permanente en pantallas de tamaño mediano en adelante -->
-    <v-navigation-drawer v-model="drawer" :temporary="$vuetify.display.smAndDown" :permanent="$vuetify.display.mdAndUp" location="left" width="400" class="bg-secondary">
-      <v-list density="compact" nav>
-        <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" :active="laboratorio === laboratorioSeleccionado" active-color="primary" rounded="shaped" v-on:click="selectData(laboratorio)">
-          <p> {{ laboratorio.name }} </p>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+        <v-app-bar clipped-left app elevate-on-scroll scroll-target="mainContainer" color="primary">
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn icon @click="switchTheme"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
+        </v-app-bar>
 
-    <!-- Contenedor principal con 2 columnas: -->
-    <!-- * Mapa con marcadores -->
-    <!-- * Información del laboratorio seleccionado -->
-    <v-main>
-      <v-container>
-        <!-- Párrafo explicativo -->
-        <v-row>
-          <v-col cols="12" class="my-8">
-            <p class="text-center text-h6">
-              Departamentos, centros, grupos y laboratorios de México cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales, ya sean de carácter universitarios, comunitarios, de investigación o independientes.
-            </p>
-          </v-col>
-        </v-row>
+        <v-main>
+          <v-container id="mainContainer">
+            <!-- Párrafo explicativo -->
+            <v-row>
+              <v-col cols="12" class="my-8">
+                <p class="text-center text-h6">
+                  Departamentos, centros, grupos y laboratorios de México cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales, ya sean de carácter universitarios, comunitarios, de investigación o independientes.
+                </p>
+              </v-col>
+            </v-row>
 
-        <v-row align="start">
-          <!-- Mapa -->
-          <v-col sm="4" md="6" cols="12">
-            <v-sheet rounded="xl" style="height: 700px">
-              <l-map
-                ref="leafletMap"
-                v-model:zoom="lmap.zoom"
-                :center="lmap.center"
-                :options="lmap.options"
-              >
-                <l-tile-layer
-                  :url="lmap.url"
-                  :attribution="lmap.attribution"
-                ></l-tile-layer>
-                <template v-for="(item, index) in laboratorios" :key="index">
-                  <l-marker
-                    :lat-lng="item.fullLocation.latLng"
-                    :zIndexOffset="item.name === laboratorioSeleccionado.name ? 100 : 0" 
-                    v-on:click="selectData(item)"
-                  >
-                    <l-icon :icon-anchor="[16, 37]" class-name="someExtraClass">
-                      <img
-                        :src="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${item.name === laboratorioSeleccionado.name ? 'F50000' : '00A3F5'}&chf=a,s,ee00FFFF`"
-                      />
-                    </l-icon>
-                  </l-marker>
-                </template>
-              </l-map>
-            </v-sheet>
-          </v-col>
+            <v-row align="start">
+              <!-- Mapa -->
+              <v-col sm="4" md="6" cols="12">
+                <v-sheet rounded="xl" style="height: 700px">
+                  <l-map ref="leafletMap" :zoom="lmap.zoom" :center="lmap.center" :options="lmap.options" @ready="restoreMapBounds" style="z-index:0;">
+                    <l-tile-layer :url="lmap.url" :attribution="lmap.attribution" ></l-tile-layer>
+                    
+                    <l-marker v-for="(laboratorio, index) in laboratorios" :key="index" :lat-lng="laboratorio.fullLocation.latLng" :zIndexOffset="laboratorio.name === laboratorioSeleccionado.name ? 100 : 0" v-on:click="selectData(laboratorio)" >
+                      <l-icon :icon-url="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|${laboratorio.name === laboratorioSeleccionado.name ? 'F50000' : '00A3F5'}&chf=a,s,ee00FFFF`">
+                      </l-icon>
+                      <l-tooltip :options="lmap.tooltipOptions">{{laboratorio.name}}</l-tooltip>
+                    </l-marker>
 
-          <!-- Información del laboratorio seleccionado -->
-          <v-col sm="8" md="6" cols="12">
-            <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
+                    <!-- <l-control position="topleft">
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="primary" icon tile elevation="0" :disabled="false" @click="restoreMapBounds" v-bind="attrs" v-on="on">
+                            <v-icon>fa-solid fa-rotate-left</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Ver todos</span>
+                      </v-tooltip>
+                    </l-control> -->
 
-              <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
-              <info-laboratorio
-                :laboratorioSelected="laboratorioSeleccionado"
-              ></info-laboratorio>
-            </v-sheet>
-          </v-col>
-        </v-row>
-      </v-container>
-    
-      <Footer />
-    </v-main>
-  </v-app>
+                    <l-control position="topright">
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="primary" icon tile outlined elevation="6" :disabled="false" @click.stop="drawer = !drawer" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
+                            <v-icon>fa-solid fa-list</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Laboratorios</span>
+                      </v-tooltip>
+
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="primary" icon tile outlined elevation="6" :disabled="false" @click="restoreMapBounds" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
+                            <v-icon>fa-solid fa-rotate-left</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Ver todos</span>
+                      </v-tooltip>
+
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="primary" icon tile outlined elevation="6" @click="selectPrevious" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
+                            <v-icon>fa-solid fa-backward-step</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Anterior</span>
+                      </v-tooltip>
+
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="primary" icon tile outlined elevation="6" @click="selectNext" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
+                            <v-icon>fa-solid fa-forward-step</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>Siguiente</span>
+                      </v-tooltip>
+                    </l-control>
+                  </l-map>
+                </v-sheet>
+              </v-col>
+
+              <!-- Información del laboratorio seleccionado -->
+              <v-col sm="8" md="6" cols="12">
+                <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
+
+                  <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
+                  <info-laboratorio
+                    :laboratorioSelected="laboratorioSeleccionado"
+                  ></info-laboratorio>
+                </v-sheet>
+              </v-col>
+            </v-row>
+          </v-container>
+
+          <MainFooter />
+        </v-main>
+    </v-app>
+  </v-theme-provider>  
 </template>
 
 <script>
-import InfoLaboratorio from "./components/InfoLaboratorio.vue";
-import Footer from "@/components/Footer.vue";
+import MainFooter from "@/components/MainFooter.vue"
+import InfoLaboratorio from "@/components/InfoLaboratorio.vue"
 import { laboratorios } from "./data/labs.mjs"
-// Vue Leaflet:
-import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet";
-import "leaflet/dist/leaflet.css";
+
+import L from 'leaflet';
+import { LMap, LTileLayer, LMarker, LIcon, LControl, LTooltip } from 'vue2-leaflet'
+
+import { Icon } from 'leaflet'
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
 export default {
-  name: "Labs",
+  name: 'App',
+
   components: {
+    MainFooter,
     InfoLaboratorio,
-    Footer,
+
     LMap,
     LTileLayer,
     LMarker,
     LIcon,
+    LControl,
+    LTooltip,
   },
-  data() {
-    return {
-      // Tema claro/oscuro
-      theme: "light",
-      drawer: true,
-      zoom: 10,
-      // Configuración del mapa <l-map>
-      lmap: {
-        url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        attribution:
-          '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        zoom: 5,
-        center: [23.634501, -102.552784],
-        options: {
-          zoomControl: false,
-          attributionControl: true,
-          zoomSnap: false,
-          scrollWheelZoom: false,
-        },
+
+  data: () => ({
+    drawer: false,
+    laboratorios: [],
+    laboratorioSeleccionado: null,
+
+    lmap: {
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      zoom: 5,
+      center: [23.634501, -102.552784],
+      // maxBounds: null,
+      tooltipOptions: {
+        offset: L.point(0, -42),
+        direction: 'top',
       },
-      laboratorioSeleccionado: null,
-    };
+      options: {
+        zoomControl: true,
+        attributionControl: true,
+        zoomSnap: 1,
+        scrollWheelZoom: true,
+      },
+    },
+  }),
+
+  computed: {
+    labsLatLngBounds: function() {
+      return this.laboratorios.map(lab => lab.fullLocation.latLng)
+    }
   },
+
   methods: {
     /**
      * Intercambiar tema claro a oscuro, y viceversa
-     * <v-app> aplica el cambio de manera general
      */
     switchTheme: function () {
-      this.theme = this.theme === "light" ? "dark" : "light"
-      localStorage.setItem('theme', this.theme)
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      localStorage.setItem('darkTheme', this.$vuetify.theme.dark)
     },
+
+    /**
+     * Muestra/oculta menú lateral
+     */
     switchDrawer: function(){
       this.drawer = !this.drawer
     },
+
     /**
      * Selecciona la información de un laboratorio
+     * Aplica animación de pan y zoom en el mapa
+     * @param {object} selectedData - La información completa del laboratorio
      */
     selectData: function (selectedData) {
       this.laboratorioSeleccionado = selectedData
+      
+      // Cierra drawer en caso de que la pantalla sea muy pequeña:
+      if(this.$vuetify.breakpoint.smAndDown) this.drawer = false
+
+      // Énfasis en el mapa al laboratorio seleccionado
+      this.$refs.leafletMap.mapObject.flyTo(selectedData.fullLocation.latLng, 11, {animate: true, duration: 2})
+    },
+
+    /**
+     * Selecciona la información del laboratorio anterior, usando como referencia
+     * el actual laboratorio seleccionado de la lista
+     */
+    selectPrevious: function(){
+      const labIndex = Array.prototype.indexOf.call(this.laboratorios, this.laboratorioSeleccionado)
+      if(labIndex - 1 < 0) 
+        this.selectData(this.laboratorios[this.laboratorios.length - 1])
+      else
+        this.selectData(this.laboratorios[labIndex - 1])
+    },
+
+    /**
+     * Selecciona la información del laboratorio siguiente, usando como referencia
+     * el actual laboratorio seleccionado de la lista
+     */
+    selectNext: function(){
+      const labIndex = Array.prototype.indexOf.call(this.laboratorios, this.laboratorioSeleccionado)
+      this.selectData(this.laboratorios[(labIndex+1)%(this.laboratorios.length)])
+    },
+
+    /**
+     * Efecto zoom-out (alejarse) en el mapa para observar todos los laboratorios
+     */
+    restoreMapBounds: function(){
+      this.$refs.leafletMap.mapObject.flyToBounds(this.labsLatLngBounds, {animate: true, duration: 2})
     },
   },
+
   beforeMount(){
     this.laboratorios = laboratorios
   },
+
   mounted: function() {
-    this.theme = localStorage.getItem('theme') || 'light'
+    this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true'
     this.laboratorioSeleccionado = this.laboratorios[Math.floor(Math.random()*this.laboratorios.length)] // pre-selected random lab
   },
 };
 </script>
-
-<style scoped>
-</style>
