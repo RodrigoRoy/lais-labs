@@ -6,10 +6,11 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
     icons: {
-        iconfont: 'fa',
+        iconfont: 'fa', // Font Awesome 5
     },
     theme: {
         themes: {
+            // TO DO: Better color palette
             light: {
                 primary: '#009688',
                 secondary: '#00897B',

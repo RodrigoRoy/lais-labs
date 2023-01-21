@@ -1,3 +1,37 @@
+/**
+ * Lista de laboratorios audiovisuales de investigación en México
+ * 
+ * Cada elemento contiene las siguientes propiedades (obligatorios con asterísco):
+ * {
+ *  name*: string, // nombre del laboratorio
+ *  description*: string, // breve descripción
+ *  keywords: [string], // actividades que se realizan
+ *  socialMedia: [{
+ *      url: string, // dirección web
+ *      username: string, // nombre de perfil/cuenta/usuario
+ *      type: string, // nombre de la red social
+ *      icon: string, // Material Design icono a mostrar
+ *      faIcon: string, // Font Awesome icono a mostrar
+ *  }],
+ *  contact: {
+ *      mail: string, // correo electrónico
+ *      name: string, // Nombre de contacto
+ *  },
+ *  website: string, // URL de la página web
+ *  fullLocation*: {
+ *      name: string, // Dirección
+ *      latLng*: [number, number], // Ubicación GPS (latitud, longitud)
+ *      url: string, // Enlace de Google Maps
+ *  },
+ *  images: {
+ *      path: string, // Nombre de directorio con imagenes
+ *      src: [string], // Nombres de srchivos de imagen (jpg y png)
+ *  },
+ *  video: string, // Enlace de YouTube
+ *  verified: boolean, // La información se verificó desde formulario en línea
+ * }
+ */
+
 export const laboratorios = [
     {
         name: "Laboratorio Nacional de Materiales Orales",
@@ -37,12 +71,12 @@ export const laboratorios = [
         contact: {
             mail: "andres.arroyo@lanmo.unam.mx",
             name: "",
-            url: "https://goo.gl/maps/nqpnE573rSoEvZmi7",
         },
         website: "https://lanmo.unam.mx/",
         fullLocation: {
             name: "Escuela Nacional de Estudios Superiores Unidad Morelia, UNAM Campus Morelia",
             latLng: [19.64957329489176, -101.22234970227854],
+            url: "https://goo.gl/maps/nqpnE573rSoEvZmi7",
         },
         images: {
             path: "LANMO",
