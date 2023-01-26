@@ -10,16 +10,16 @@ export default new Vuetify({
     },
     theme: {
         themes: {
-            // TO DO: Better color palette
+            // Based on Jordan Prindle Designs - Color Palettes by Mood
             light: {
-                primary: '#009688',
-                secondary: '#00897B',
-                accent: '#4DD0E1',
+                primary: '#BCAFBD',
+                secondary: '#EFE4E6',
+                accent: '#AA706A',
             },
             dark: {
-                primary: '#673AB7',
-                secondary: '#512DA8',
-                accent: '2196F3',
+                primary: '#5B3547',
+                secondary: '#8B677C',
+                accent: '#EFEADD',
             }
         },
     },
