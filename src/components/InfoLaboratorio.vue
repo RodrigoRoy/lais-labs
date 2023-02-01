@@ -8,7 +8,7 @@
 
       <!-- TÍTULO -->
       <p class="text-h6 text--primary">
-        {{ laboratorioSelected.name }}
+        {{ laboratorioSelected.name }} <v-icon x-small v-if="laboratorioSelected.verified" color="green" disabled>fa-check</v-icon>
       </p>
       
       <!-- SUBTÍTULO -->
@@ -66,7 +66,7 @@
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-if="laboratorioSelected.website" :href="laboratorioSelected.website" target="_blank" icon size="medium" variant="plain" color="accent" v-bind="attrs" v-on="on">
-            <v-icon>fa-light fa-globe</v-icon>
+            <v-icon>fa-globe</v-icon>
           </v-btn>
         </template>
         <span>Sitio web</span>
