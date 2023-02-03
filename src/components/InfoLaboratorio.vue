@@ -42,7 +42,7 @@
           </v-btn>
         </template>
         <!-- IMÁGENES DEL LABORATORIO -->
-        <v-carousel-item v-for="(item,i) in laboratorioSelected.images.src" :key="i" :src="`/Laboratorios/${laboratorioSelected.images.path}/${item}`" contain></v-carousel-item>
+        <v-carousel-item v-for="(item,i) in laboratorioSelected.images.src" :key="i" :src="`${publicPath}Laboratorios/${laboratorioSelected.images.path}/${item}`" contain></v-carousel-item>
       </v-carousel>
       
       <!-- VIDEO -->
@@ -66,7 +66,7 @@
       <v-tooltip top>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-if="laboratorioSelected.website" :href="laboratorioSelected.website" target="_blank" icon size="medium" variant="plain" color="accent" v-bind="attrs" v-on="on">
-            <v-icon>fa-light fa-globe</v-icon>
+            <v-icon>fa-globe</v-icon>
           </v-btn>
         </template>
         <span>Sitio web</span>
@@ -95,6 +95,11 @@ export default {
     // Información completa del laboratorio (@see src/data/labs.mjs)
     laboratorioSelected: { type: Object }, 
   },
+
+  data: () => ({
+    // Ruta del directorio /public
+    publicPath: process.env.BASE_URL,
+  }),
 
   methods: {
     /**
