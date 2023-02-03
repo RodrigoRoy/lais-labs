@@ -87,7 +87,7 @@ export const laboratorios = [
                 "Repositorio Color-30 - Andres Arroyo Vallín.jpg",
             ],
         },
-        video: 'https://www.youtube.com/embed/xheOSRBpfPs',
+        video: 'https://www.youtube.com/embed/YEn9H2wzaNk',
         verified: true,
     },
     // {
@@ -150,7 +150,7 @@ export const laboratorios = [
             path: "UCEMICH",
             src: ['LABORATORIOS DE MEDIOS ucemich blanco.png', 'LABORATORIOS DE MEDIOS ucemich color.png'],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/3M_mUw5gPvE',
         verified: true,
     },
     {
@@ -181,7 +181,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/TxBcpz1OVvk',
         verified: true,
     },
     {
@@ -204,7 +204,7 @@ export const laboratorios = [
             path: "Lab i-CreA",
             src: ["Logo Lab i-CreA - Adriana Moreno.png"],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/Xs7J4lzq3PY',
         verified: true,
     },
     {
@@ -242,7 +242,7 @@ export const laboratorios = [
             path: "IberoDocsLab",
             src: ['laboratorioiberoamericano.png'],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/-pEPJP33IJo',
         verified: true,
     },
     {
@@ -300,7 +300,7 @@ export const laboratorios = [
                 "Visual Vernacular Puebla - Moises Garcia.jpg",
             ],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/y-iN5FizSpk',
         verified: true,
     },
     {
@@ -331,7 +331,7 @@ export const laboratorios = [
             path: "LABIIA",
             src: ['LAbIIA.jpg'],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/C2352z3Eb-E',
         verified: true,
     },
     {
@@ -369,7 +369,7 @@ export const laboratorios = [
             path: "LAMA",
             src: ["Logo LaMA PNG - Laboratorio Medios Audiovisuales.png"],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/4Xw2kEigmnc',
         verified: true,
     },
     {
@@ -408,7 +408,7 @@ export const laboratorios = [
             path: "InterNeta",
             src: ['inter_gif2-9.png', 'k_w.png'],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/cF5txaRLkNg',
         verified: true,
     },
     {
@@ -445,7 +445,7 @@ export const laboratorios = [
                 "Logo-Tlacuilo Blanco - María del Carmen Díaz Vázquez.png",
             ],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/skQHkii6jKo',
         verified: true,
     },
     {
@@ -483,7 +483,7 @@ export const laboratorios = [
             path: "Faz a Faz",
             src: ['faf - Diana Armenta.png'],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/roQr6WFqZXE',
         verified: true,
     },
     {
@@ -528,7 +528,7 @@ export const laboratorios = [
             path: "LAIS",
             src: ['Taller_2022.jpg', 'En_entrevista_2012.jpg', 'Crefal_2022.jpg'],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/RRjnueT4a58',
         verified: true,
     },
     {
@@ -559,7 +559,7 @@ export const laboratorios = [
             path: "UAM-I",
             src: ["Logo del LAV - LAV UAM-I.png"],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/oY15_7XRsi0',
         verified: true,
     },
     {
@@ -591,7 +591,7 @@ export const laboratorios = [
             path: "",
             src: [],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/hzhVeJgWVfw',
         verified: false,
     },
     {
@@ -614,7 +614,7 @@ export const laboratorios = [
             path: "LAVSAN",
             src: ["Logo LAVSAN - Frances Paola Garnica Quiñones.png"],
         },
-        video: '',
+        video: 'https://www.youtube.com/embed/l75ltOBJP3o',
         verified: true,
     },
 ]

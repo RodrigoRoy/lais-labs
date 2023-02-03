@@ -1,24 +1,25 @@
-# lais-laboratorios
+# Laboratorios Audiovisuales de Investigación en México
 
-## Project setup
+Proyecto web con información de diversos departamentos, centros, grupos y laboratorios en México cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales. 
+
+La información se obtuvo del Encuentro de Laboratorios Audiovisuales de Investigación en México, el 14 y 15 de noviembre de 2022 y con el apoyo y aprobación de cada laboratorio.
+
+## Dependencias
+
+- NodeJS (v16)
+
+## Ambiente de desarrollo
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
+## Compilación
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Licencia
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Este proyecto es software libre: puede ser redistribuido y/o modificado bajo los términos de GNU General Public License v3.0 siempre y cuando se mantenga la misma licencia.
+

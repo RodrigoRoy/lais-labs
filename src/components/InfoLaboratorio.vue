@@ -8,7 +8,7 @@
 
       <!-- TÍTULO -->
       <p class="text-h6 text--primary">
-        {{ laboratorioSelected.name }}
+        {{ laboratorioSelected.name }} <v-icon x-small v-if="laboratorioSelected.verified" color="green" disabled>fa-check</v-icon>
       </p>
       
       <!-- SUBTÍTULO -->
