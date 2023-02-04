@@ -46,7 +46,7 @@
       </v-carousel>
       
       <!-- VIDEO -->
-      <iframe v-if="laboratorioSelected.video" width="100%" height="300" class="mt-4" :src="laboratorioSelected.video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe v-if="laboratorioSelected.video" width="100%" height="470" class="mt-4" :src="laboratorioSelected.video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </v-card-text>
 
     <!-- ACCIONES DEL COMPONENTE -->
@@ -113,3 +113,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+iframe[src*=youtube]
+{
+  max-width:100%;
+  max-height:100%;
+}
+</style>
