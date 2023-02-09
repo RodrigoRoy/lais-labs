@@ -34,7 +34,7 @@
 
 export const laboratorios = [
     {
-        name: "Laboratorio Nacional de Materiales Orales",
+        name: "Laboratorio Nacional de Materiales Orales (LANMO)",
         description:
         "El Laboratorio Nacional de Materiales Orales es un espacio de trabajo interinstitucional para el estudio multidisciplinario de los discursos orales y las manifestaciones asociadas a ellos (gestos, sonoridad, memoria, corporalidad, ritualidad, expresiones musicales, etc.). Con esto se pretende abordar desde distintas perspectivas un tipo de materiales orales, que son el objeto de estudio para entender dinámicas sociales, formas de comunicación, estructuras de pensamiento, conformación de saberes locales, prácticas tradicionales, manifestaciones artísticas, etc.",
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
@@ -142,7 +142,7 @@ export const laboratorios = [
         },
         website: "",
         fullLocation: {
-            name: "Universidad de La Ciénega del Estado de Michoacán de Ocampo. (UCEMICH)",
+            name: "Universidad de La Ciénega del Estado de Michoacán de Ocampo (UCEMICH)",
             latLng: [20.01450176227876, -102.74359077448634],
             url: "https://goo.gl/maps/US3AoS4eSG2GCLiW9",
         },
@@ -156,7 +156,7 @@ export const laboratorios = [
     {
         name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59',
         description:
-        "Un proyecto de investigación audiovisual  con alumnos de educación básica,  historia oral y documental.",
+        "Un proyecto de investigación audiovisual con alumnos de educación básica, historia oral y documental. Con el objetivo de incorporar en la formación de los alumnos nociones básicas de investigación de temas basados en testimonios, búsqueda de archivos familiares y las técnicas de registro en imagen y sonido. Se conforma de dos vertientes, la asignatura Taller de Investigación Audiovisual y el Laboratorio de Producción",
         keywords: ['Docencia', 'Investigación'],
         socialMedia: [
             {
@@ -196,7 +196,7 @@ export const laboratorios = [
         },
         website: "",
         fullLocation: {
-            name: "Facultad de Ciencias Sociales, Universidad Autónoma de Coahuila. Saltillo, Coahuila",
+            name: "Facultad de Ciencias Sociales, Universidad Autónoma de Coahuila",
             latLng: [25.421544273802244, -101.00076170221335],
             url: "https://goo.gl/maps/TdjHccpPfhPhW6Va8",
         },
@@ -234,7 +234,7 @@ export const laboratorios = [
         },
         website: "https://iberodocslab.org",
         fullLocation: {
-            name: "Universidad Iberoamericana Ciudad de México",
+            name: "Universidad Iberoamericana, Ciudad de México",
             latLng: [19.369799781902778, -99.2638998033329],
             url: "https://goo.gl/maps/ezFhDVWSDZqLdrms9",
         },
@@ -286,7 +286,7 @@ export const laboratorios = [
         website: 'http://www.laboratoriodeloinvisible.com',
         fullLocation: {
             // Presencial virtual, con múltiples sedes. Solo se incluyó la primera indicada
-            name: "CINEMA | Escuela de Cinematografía y Medios Audiovisuales",
+            name: "CINEMA | Escuela de Cinematografía y Medios Audiovisuales, Puebla",
             latLng: [19.008178409943753, -98.21217772606161],
             url: "https://goo.gl/maps/kzSqNgcDSsjBHqibA",
         },
@@ -323,7 +323,8 @@ export const laboratorios = [
         },
         website: "https://labiia.webnode.mx/",
         fullLocation: {
-            name: "C. San Felipe 1291 Col Americana, Santa Teresita, 44600 Guadalajara, Jal.",
+            // name: "C. San Felipe 1291 Col Americana, Santa Teresita, 44600 Guadalajara, Jal.",
+            name: "Guadalajara, Jalisco",
             latLng: [20.679189968086952, -103.36570563214711],
             url: "https://goo.gl/maps/qCUQU4s1Z1vvDxTQ8",
         },
@@ -335,9 +336,9 @@ export const laboratorios = [
         verified: true,
     },
     {
-        name: "Laboratorio de Medios Audiovisuales",
+        name: "Laboratorio de Medios Audiovisuales (LaMA)",
         description:
-        "Espacio de investigación, docencia y producción audiovisual",
+        "Espacio de investigación, docencia y producción audiovisual que desarrolla actividades diversas divididas en tres grandes categorías: producción, investigación y docencia. Las actividades que desarrolla el laboratorio se pueden identificar con alguna de estas categorías, en la mayoría de los casos están vinculadas, de forma que los procesos que se inician en actividades de docencia (diplomados, talleres, seminarios etc.), pasan a etapas de investigación y producción audiovisual.",
         keywords: ['Digitalización', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
         socialMedia: [
             {
@@ -361,7 +362,8 @@ export const laboratorios = [
             name: "",
         },
         fullLocation: {
-            name: "Calle San Lorenzo 290. Col. Del Valle, Del. Benito Juárez",
+            // name: "Calle San Lorenzo 290. Col. Del Valle, Del. Benito Juárez",
+            name: "Colegio de Humanidades y Ciencias Sociales, UACM, Ciudad de México",
             latLng: [19.374591361838846, -99.171600800434],
             url: "https://goo.gl/maps/poDp21YeYtendUgQ8",
         },
@@ -373,9 +375,9 @@ export const laboratorios = [
         verified: true,
     },
     {
-        name: "Acervo Audiovisual InterNeta.Memoria de las y los Invisibles",
+        name: "Acervo Audiovisual InterNeta. Memoria de las y los Invisibles",
         description:
-        "El Acervo se integra con siete colecciones de documento audiovisuales realizado con colectivos, grupos y organizaciones indígenas, de pueblos originarios, de cultura popular urbana y de movimientos contraculturales",
+        "El Acervo Audiovisual InterNeta tiene el objetivo de acopiar, preservar, conservar, catalogar documentos audiovisuales para su acceso público proactivo y reactivo. Ya que dichos documentos contienen valor histórico y cultural producido como herencia audiovisual de quienes “no han sido vistos” hasta ahora por las instituciones culturales y académicas de nuestro país. El Acervo se integra con siete colecciones de documento audiovisuales realizado con colectivos, grupos y organizaciones indígenas, de pueblos originarios, de cultura popular urbana y de movimientos contraculturales",
         keywords: ['Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
             {
@@ -400,7 +402,8 @@ export const laboratorios = [
         },
         website: "",
         fullLocation: {
-            name: "Cerrada de Reforma No.8 Sn.Miguel Xicalco, Tlalpan, Ciudad de México",
+            // name: "Cerrada de Reforma No.8 Sn.Miguel Xicalco, Tlalpan, Ciudad de México",
+            name: "Tlalpan, Ciudad de México",
             latLng: [19.235077711906378, -99.16401970333501],
             url: "https://goo.gl/maps/GJ8a3dHHTXVB1SAdA",
         },
@@ -431,7 +434,8 @@ export const laboratorios = [
         },
         website: "",
         fullLocation: {
-            name: "Cubículo 213 , Plantel Centro Histórico UACM",
+            // name: "Cubículo 213 , Plantel Centro Histórico UACM, Ciudad de México",
+            name: "Plantel Centro Histórico UACM, Ciudad de México",
             latLng: [19.423988868706267, -99.13832000228066],
             url: "https://goo.gl/maps/Md76WXvod9gK6R5v7",
         },
@@ -451,7 +455,7 @@ export const laboratorios = [
     {
         name: "Faz a Faz A.C.",
         description:
-        "Faz a Faz tiene como objetivo promover procesos de encuentro y diálogo a través de actividades de exhibición, análisis, formación, realización y resguardo de archivo audiovisual. Por lo anterior, desde 2017 hemos desarrollado proyectos que atiendan a dichas áreas del cine aplicando metodologías participativas y colaborativas. Apostamos por que los procesos se desarrollen al ritmo de quienes nos involucramos,  para que así también afianzar y solidificar los aprendizajes, alianzas y experiencias.",
+        "Faz a Faz tiene como objetivo promover procesos de encuentro y diálogo a través de actividades de exhibición, análisis, formación, realización y resguardo de archivo audiovisual. Por lo anterior, desde 2017 se han desarrollado proyectos que atiendan a dichas áreas del cine aplicando metodologías participativas y colaborativas. Se apuesta por que los procesos se desarrollen al ritmo de quienes se involucran, para que así también afianzar y solidificar los aprendizajes, alianzas y experiencias.",
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV'],
         socialMedia: [
             {
@@ -520,7 +524,7 @@ export const laboratorios = [
         },
         website: "http://lais.mora.edu.mx/",
         fullLocation: {
-            name: "Instituto Mora",
+            name: "Instituto Mora, Ciudad de México",
             latLng: [19.376215866305298, -99.18507349164311],
             url: "https://goo.gl/maps/RVPgGkMp4QNyT6a37",
         },
@@ -564,9 +568,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social",
-        description:
-        // Pendiente
-        "Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social (Laboratorio Audiovisual del CIESAS)",
+        description: "",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
             {
@@ -597,7 +599,7 @@ export const laboratorios = [
     {
         name: "Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)",
         description:
-        "El LAVSAN es un espacio para realizar prácticas e investigación de carácter audiovisual promoviendo el diálogo entre arte y antropología con el fin de construir conocimiento social. Nuestros objetivos son 1) desarrollar una línea de investigación en antropología visual; 2) fortalecer la investigación y la docencia apoyando a investigadores y a estudiantes con acervo filmográfico y fotográfico, equipo, capacitación audiovisual y vinculación; y 3) contribuir al intercambio, difusión y divulgación de la producción audiovisual etnográfica y antropológica.",
+        "El LAVSAN es un espacio para realizar prácticas e investigación de carácter audiovisual promoviendo el diálogo entre arte y antropología con el fin de construir conocimiento social. Sus objetivos son 1) desarrollar una línea de investigación en antropología visual; 2) fortalecer la investigación y la docencia apoyando a investigadores y a estudiantes con acervo filmográfico y fotográfico, equipo, capacitación audiovisual y vinculación; y 3) contribuir al intercambio, difusión y divulgación de la producción audiovisual etnográfica y antropológica.",
         keywords: ['Docencia', 'Investigación', 'Producción AV'],
         socialMedia: [],
         contact: {
@@ -606,7 +608,8 @@ export const laboratorios = [
         },
         website: "www.lavsan.colsan.edu.mx",
         fullLocation: {
-            name: "Parque Macul 155, Colinas del Parque, 78260 San Luis, S.L.P.",
+            // name: "Parque Macul 155, Colinas del Parque, 78260 San Luis, S.L.P.",
+            name: "El Colegio de San Luis (COLSAN), San Luis Potosí",
             latLng: [22.12836307981747, -101.01548413244936],
             url: "https://goo.gl/maps/7hck7h9qG19gtiki7",
         },

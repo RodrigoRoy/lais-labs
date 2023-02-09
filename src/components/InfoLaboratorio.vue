@@ -8,7 +8,8 @@
 
       <!-- TÍTULO -->
       <p class="text-h6 text--primary">
-        {{ laboratorioSelected.name }} <v-icon x-small v-if="laboratorioSelected.verified" color="green" disabled>fa-check</v-icon>
+        {{ laboratorioSelected.name }} 
+        <!-- <v-icon x-small v-if="laboratorioSelected.verified" color="green" disabled>fa-check</v-icon> -->
       </p>
       
       <!-- SUBTÍTULO -->
@@ -29,7 +30,7 @@
       </p>
 
       <!-- CARRUSEL CON FOTOS -->
-      <v-carousel hide-delimiters :show-arrows="laboratorioSelected.images.src.length > 1" :show-arrows-on-hover="laboratorioSelected.images.src.length > 1" cycle height="300" v-show="laboratorioSelected.images.src.length > 0" class="my-2">
+      <v-carousel hide-delimiters :show-arrows="laboratorioSelected.images.src.length > 1" :show-arrows-on-hover="laboratorioSelected.images.src.length > 1" cycle height="400" v-show="laboratorioSelected.images.src.length > 0" class="my-2">
         <!-- ICONOS PERSONALIZADOS ANTERIOR/SIGUIENTE -->
         <template v-slot:prev="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
