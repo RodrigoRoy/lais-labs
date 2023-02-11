@@ -23,7 +23,44 @@
           <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="switchTheme"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
+          <v-btn icon @click="dialog = true"><v-icon>fa-circle-info</v-icon></v-btn >
         </v-app-bar>
+
+        <v-dialog v-model="dialog">
+          <v-card >
+            <v-toolbar flat color="primary">
+              <v-toolbar-title> Filtrar laboratorios </v-toolbar-title>
+              <v-btn icon @click="resetFilters"><v-icon>fa-delete-left</v-icon></v-btn>
+              <v-spacer></v-spacer>
+              <v-btn icon @click="dialog = false"><v-icon>fa-xmark</v-icon></v-btn>
+            </v-toolbar>
+            
+            <v-card-text>
+              <h2 class="text-h6 mb-2">
+                Por actividad
+              </h2>
+
+              <v-chip-group v-model="keywordsSelected" column multiple>
+                <v-chip filter outlined v-for="(keyword, index) in keywords" :key="index">
+                  {{ keyword }}
+                </v-chip>
+              </v-chip-group>
+            </v-card-text>
+
+            <!-- <v-card-text>
+              <h2 class="text-h6 mb-2">
+                Por ubicación
+              </h2>
+
+              <v-chip-group v-model="locationSelected" column multiple>
+                <v-chip filter outlined v-for="(location, index) in locations" :key="index">
+                  {{ location }}
+                </v-chip>
+              </v-chip-group>
+            </v-card-text> -->
+
+          </v-card>
+        </v-dialog>
 
         <v-main>
           <v-container id="mainContainer">
@@ -101,9 +138,11 @@
                 <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
 
                   <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
-                  <info-laboratorio
-                    :laboratorioSelected="laboratorioSeleccionado"
-                  ></info-laboratorio>
+                  <transition name="fade">
+                    <info-laboratorio
+                      :laboratorioSelected="laboratorioSeleccionado"
+                    ></info-laboratorio>
+                  </transition>
                 </v-sheet>
               </v-col>
             </v-row>
@@ -151,8 +190,20 @@ export default {
     // controla la visibilidad de navigation-drawer
     drawer: false,
 
+    dialog: false,
+    keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
+    locations: ['Coahuila', 'Ciudad de México', 'Jalisco', 'Michoacán', 'Puebla', 'San Luis Potosí', 'Tabasco'],
+    // socialMedia: ['facebook', 'instagram', 'twitter', 'tiktok', 'website'],
+    keywordsSelected: [],
+    keywordsToFilter: [],
+    locationSelected: [],
+    locationsToFilter: [],
+    // socialMediaSelected: [],
+
     // lista de laboratorios (@see beforeMount)
     laboratorios: [],
+    
+    laboratoriosComplete: [],
 
     // información completa de un laboratorio del listado (@see mounted)
     laboratorioSeleccionado: null,
@@ -183,6 +234,17 @@ export default {
     labsLatLngBounds: function() {
       return this.laboratorios.map(lab => lab.fullLocation.latLng)
     }
+  },
+
+  watch: {
+    keywordsSelected: function(){
+      this.keywordsSelected.forEach(i => { this.keywordsToFilter.push(this.keywords[i]) })
+      this.updateLabList()
+    },
+    locationSelected: function(){
+      this.locationSelected.forEach(i => { this.locationsToFilter.push(this.locations[i]) })
+      this.updateLabList()
+    },
   },
 
   methods: {
@@ -247,12 +309,40 @@ export default {
       // acceder directamente al API de Leaflet con this.$refs.<lmapref>.mapObject
       this.$refs.leafletMap.mapObject.flyToBounds(this.labsLatLngBounds, {animate: true, duration: 2})
     },
+
+    resetFilters: function(){
+      this.keywordsSelected = []
+      this.locationSelected = []
+      // this.socialMediaSelected = []
+    },
+
+    updateLabList: function(){
+      if(this.keywordsSelected.length === 0 && this.locationSelected.length === 0)
+        this.laboratorios = this.laboratoriosComplete
+      else
+        if(this.keywordsSelected.length !== 0)
+          this.laboratorios = this.laboratorios.filter(laboratorio => this.containsKeyword(laboratorio, this.keywordsToFilter))
+        if(this.locationSelected.length !== 0)
+          this.laboratorios = this.laboratorios.filter(laboratorio => this.locationsToFilter.includes(laboratorio.location))
+    },
+
+    containsKeyword: function(lab, keywordsArray){
+      for(const i in keywordsArray)
+        if(!lab.keywords.includes(keywordsArray[i]))
+          return false
+      return true
+    },
+
+    containsLocation: function(lab, locationsArray){
+      return locationsArray.includes(lab.location)
+    },
   },
 
   // Acciones previas al montar componente actual
   beforeMount(){
     // asignar los laboratorios importados desde archivo/módulo externo (@see import)
     this.laboratorios = laboratorios
+    this.laboratoriosComplete = laboratorios
   },
 
   // Acciones antes de renderizar vista
@@ -263,5 +353,14 @@ export default {
     // seleccionar y mostrar un laboratorio al azar
     this.selectData(this.laboratorios[Math.floor(Math.random()*this.laboratorios.length)])
   },
-};
+}
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

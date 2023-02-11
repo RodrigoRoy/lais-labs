@@ -73,6 +73,7 @@ export const laboratorios = [
             name: "",
         },
         website: "https://lanmo.unam.mx/",
+        location: "Michoacán",
         fullLocation: {
             name: "Escuela Nacional de Estudios Superiores Unidad Morelia, UNAM Campus Morelia",
             latLng: [19.64957329489176, -101.22234970227854],
@@ -141,6 +142,7 @@ export const laboratorios = [
             name: "Roberto Zepeda Anaya",
         },
         website: "",
+        location: "Michoacán",
         fullLocation: {
             name: "Universidad de La Ciénega del Estado de Michoacán de Ocampo (UCEMICH)",
             latLng: [20.01450176227876, -102.74359077448634],
@@ -172,6 +174,7 @@ export const laboratorios = [
             name: "Fernando López Martínez",
         },
         website: "",
+        location: "Jalisco",
         fullLocation: {
             name: "Secundaria Mixta 59, Tlaquepaque, Jalisco",
             latLng: [20.615029095430028, -103.31401318508095],
@@ -195,6 +198,7 @@ export const laboratorios = [
             name: "Adriana Marcela Moreno Acosta",
         },
         website: "",
+        location: "Coahuila",
         fullLocation: {
             name: "Facultad de Ciencias Sociales, Universidad Autónoma de Coahuila",
             latLng: [25.421544273802244, -101.00076170221335],
@@ -233,6 +237,7 @@ export const laboratorios = [
             name: "Pablo Martínez-Zárate",
         },
         website: "https://iberodocslab.org",
+        location: "Ciudad de México",
         fullLocation: {
             name: "Universidad Iberoamericana, Ciudad de México",
             latLng: [19.369799781902778, -99.2638998033329],
@@ -284,6 +289,7 @@ export const laboratorios = [
             name: "Moisés García Rojas",
         },
         website: 'http://www.laboratoriodeloinvisible.com',
+        location: "Puebla",
         fullLocation: {
             // Presencial virtual, con múltiples sedes. Solo se incluyó la primera indicada
             name: "CINEMA | Escuela de Cinematografía y Medios Audiovisuales, Puebla",
@@ -322,6 +328,7 @@ export const laboratorios = [
             name: "David Flores Magón Guzmán",
         },
         website: "https://labiia.webnode.mx/",
+        location: "Jalisco",
         fullLocation: {
             // name: "C. San Felipe 1291 Col Americana, Santa Teresita, 44600 Guadalajara, Jal.",
             name: "Guadalajara, Jalisco",
@@ -361,6 +368,7 @@ export const laboratorios = [
             mail: "rodrigo.martinez@uacm.edu.mx",
             name: "",
         },
+        location: 'Ciudad de México',
         fullLocation: {
             // name: "Calle San Lorenzo 290. Col. Del Valle, Del. Benito Juárez",
             name: "Colegio de Humanidades y Ciencias Sociales, UACM, Ciudad de México",
@@ -401,6 +409,7 @@ export const laboratorios = [
             name: "Pablo Gaytán Santiago",
         },
         website: "",
+        location: 'Ciudad de México',
         fullLocation: {
             // name: "Cerrada de Reforma No.8 Sn.Miguel Xicalco, Tlalpan, Ciudad de México",
             name: "Tlalpan, Ciudad de México",
@@ -433,6 +442,7 @@ export const laboratorios = [
             name: "María del Carmen Díaz Vázquez",
         },
         website: "",
+        location: 'Ciudad de México',
         fullLocation: {
             // name: "Cubículo 213 , Plantel Centro Histórico UACM, Ciudad de México",
             name: "Plantel Centro Histórico UACM, Ciudad de México",
@@ -478,6 +488,7 @@ export const laboratorios = [
             name: "Diana Isabel Armenta Ramírez",
         },
         website: "",
+        location: 'Tabasco',
         fullLocation: {
             name: "Villahermosa, Tabasco",
             latLng: [17.987667771429468, -92.91945043868668],
@@ -523,6 +534,7 @@ export const laboratorios = [
             name: "",
         },
         website: "http://lais.mora.edu.mx/",
+        location: 'Ciudad de México',
         fullLocation: {
             name: "Instituto Mora, Ciudad de México",
             latLng: [19.376215866305298, -99.18507349164311],
@@ -554,6 +566,7 @@ export const laboratorios = [
             name: "Karla Ballesteros Gómez",
         },
         website: "https://divcsh.izt.uam.mx/depto_antropologia/",
+        location: 'Ciudad de México',
         fullLocation: {
             name: "Universidad Autónoma Metropolitana Unidad Iztapalapa",
             latLng: [19.36600425171695, -99.07274990644807],
@@ -584,6 +597,7 @@ export const laboratorios = [
             name: "Mauricio Sánchez Álvarez",
         },
         website: "https://lab.ciesas.edu.mx/audiovisual/",
+        location: 'Ciudad de México',
         fullLocation: {
             name: "Centro de Investigaciones y Estudios Superiores en Antropología Social (CIESAS)",
             latLng: [19.289301832744933, -99.16887930029213],
@@ -607,6 +621,7 @@ export const laboratorios = [
             name: "",
         },
         website: "www.lavsan.colsan.edu.mx",
+        location: 'San Luis Potosí',
         fullLocation: {
             // name: "Parque Macul 155, Colinas del Parque, 78260 San Luis, S.L.P.",
             name: "El Colegio de San Luis (COLSAN), San Luis Potosí",
