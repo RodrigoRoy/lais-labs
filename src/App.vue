@@ -23,44 +23,7 @@
           <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="switchTheme"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
-          <v-btn icon @click="dialog = true"><v-icon>fa-circle-info</v-icon></v-btn >
         </v-app-bar>
-
-        <v-dialog v-model="dialog">
-          <v-card >
-            <v-toolbar flat color="primary">
-              <v-toolbar-title> Filtrar laboratorios </v-toolbar-title>
-              <v-btn icon @click="resetFilters"><v-icon>fa-delete-left</v-icon></v-btn>
-              <v-spacer></v-spacer>
-              <v-btn icon @click="dialog = false"><v-icon>fa-xmark</v-icon></v-btn>
-            </v-toolbar>
-            
-            <v-card-text>
-              <h2 class="text-h6 mb-2">
-                Por actividad
-              </h2>
-
-              <v-chip-group v-model="keywordsSelected" column multiple>
-                <v-chip filter outlined v-for="(keyword, index) in keywords" :key="index">
-                  {{ keyword }}
-                </v-chip>
-              </v-chip-group>
-            </v-card-text>
-
-            <!-- <v-card-text>
-              <h2 class="text-h6 mb-2">
-                Por ubicación
-              </h2>
-
-              <v-chip-group v-model="locationSelected" column multiple>
-                <v-chip filter outlined v-for="(location, index) in locations" :key="index">
-                  {{ location }}
-                </v-chip>
-              </v-chip-group>
-            </v-card-text> -->
-
-          </v-card>
-        </v-dialog>
 
         <v-main>
           <v-container id="mainContainer">
@@ -71,6 +34,51 @@
                 <p class="text-center text-h6">
                   Departamentos, centros, grupos y laboratorios de México cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales, ya sean de carácter universitarios, comunitarios, de investigación o independientes.
                 </p>
+              </v-col>
+            </v-row>
+
+            <!-- Filtros -->
+            <v-row>
+              <v-col cols="12" class="my-8">
+                <p class="text-center text-subtitle-1">
+                  Filtrar laboratorios
+                </p>
+                <v-expansion-panels v-model="filterPanel" popout>
+
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Actividades</v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                      <v-chip-group v-model="keywordsSelected" column multiple>
+                        <v-chip filter outlined v-for="(keyword, index) in keywords" :key="index">
+                          {{ keyword }}
+                        </v-chip>
+                      </v-chip-group>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Ubicación</v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                      <v-chip-group v-model="locationSelected" column multiple>
+                        <v-chip filter outlined v-for="(location, index) in locations" :key="index">
+                          {{ location }}
+                        </v-chip>
+                      </v-chip-group>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+
+                  <v-expansion-panel>
+                    <v-expansion-panel-header>Redes sociales</v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                      <v-chip-group v-model="socialMediaSelected" column multiple>
+                        <v-chip filter outlined v-for="(socialMediaItem, index) in socialMedia" :key="index">
+                          {{ socialMediaItem.text }}
+                        </v-chip>
+                      </v-chip-group>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+
+                </v-expansion-panels>
               </v-col>
             </v-row>
 
@@ -190,15 +198,23 @@ export default {
     // controla la visibilidad de navigation-drawer
     drawer: false,
 
-    dialog: false,
+    // auxiliar para mostrar/ocular paneles para filtrar
+    filterPanel: 0,
+
+    // listas de parámetros para filtrar por: palabras clave, ubicación o redes sociales
     keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
     locations: ['Coahuila', 'Ciudad de México', 'Jalisco', 'Michoacán', 'Puebla', 'San Luis Potosí', 'Tabasco'],
-    // socialMedia: ['facebook', 'instagram', 'twitter', 'tiktok', 'website'],
+    socialMedia: [{text: 'Facebook', value: 'facebook'}, {text: 'Instagram', value: 'instagram'}, {text: 'Twitter', value: 'twitter'}, {text: 'TikTok', value: 'tiktok'}, {text: 'Sitio web', value: 'website'}],
+
+    // lista por índices de los elementos seleccionados
     keywordsSelected: [],
-    keywordsToFilter: [],
     locationSelected: [],
+    socialMediaSelected: [],
+
+    // lista por palabras de los elementos seleccionados (@see watch properties)
+    keywordsToFilter: [],
     locationsToFilter: [],
-    // socialMediaSelected: [],
+    socialMediaToFilter: [],
 
     // lista de laboratorios (@see beforeMount)
     laboratorios: [],
@@ -236,13 +252,27 @@ export default {
     }
   },
 
+  // Variables a observar cambios
   watch: {
     keywordsSelected: function(){
+      // limpiar y actualizar la lista de palabras
+      this.keywordsToFilter = []
       this.keywordsSelected.forEach(i => { this.keywordsToFilter.push(this.keywords[i]) })
+      // actualizar la lista de laboratorios
       this.updateLabList()
     },
     locationSelected: function(){
+      // limpiar y actualizar la lista de palabras
+      this.locationsToFilter = []
       this.locationSelected.forEach(i => { this.locationsToFilter.push(this.locations[i]) })
+      // actualizar la lista de laboratorios
+      this.updateLabList()
+    },
+    socialMediaSelected: function(){
+      // limpiar y actualizar la lista de palabras
+      this.socialMediaToFilter = []
+      this.socialMediaSelected.forEach(i => { this.socialMediaToFilter.push(this.socialMedia[i].value)})
+      // actualizar la lista de laboratorios
       this.updateLabList()
     },
   },
@@ -310,22 +340,39 @@ export default {
       this.$refs.leafletMap.mapObject.flyToBounds(this.labsLatLngBounds, {animate: true, duration: 2})
     },
 
+    /**
+     * Limpiar/borrar los filtros
+     */
     resetFilters: function(){
       this.keywordsSelected = []
       this.locationSelected = []
-      // this.socialMediaSelected = []
+      this.socialMediaSelected = []
     },
 
+    /**
+     * Actualiza la lista de laboratorios según los filtros indicados
+     */
     updateLabList: function(){
-      if(this.keywordsSelected.length === 0 && this.locationSelected.length === 0)
-        this.laboratorios = this.laboratoriosComplete
-      else
-        if(this.keywordsSelected.length !== 0)
-          this.laboratorios = this.laboratorios.filter(laboratorio => this.containsKeyword(laboratorio, this.keywordsToFilter))
-        if(this.locationSelected.length !== 0)
-          this.laboratorios = this.laboratorios.filter(laboratorio => this.locationsToFilter.includes(laboratorio.location))
+      this.laboratorios = this.laboratoriosComplete
+      
+      // filtra/elimina laboratorios según los criterios de los filtros
+      if(this.keywordsSelected.length !== 0)
+        this.laboratorios = this.laboratorios.filter(laboratorio => this.containsKeyword(laboratorio, this.keywordsToFilter))
+      if(this.locationSelected.length !== 0)
+        this.laboratorios = this.laboratorios.filter(laboratorio => this.locationsToFilter.includes(laboratorio.location))
+      if(this.socialMediaSelected.length !== 0)
+        this.laboratorios = this.laboratorios.filter(laboratorio => this.containsSocialMedia(laboratorio, this.socialMediaToFilter))
+
+      // hace zoom al nuevo conjunto de laboratorios
+      this.restoreMapBounds()
     },
 
+    /**
+     * Determina si un laboratorio contiene las palabras clave indicadas
+     * @param {object} lab - información completa del laboratorio (@see labs.mjs)
+     * @param {[string]} keywordsArray - lista de actividades a filtrar
+     * @return True si el laboratorio contiene al menos una instancia del arreglo dado como parámetro, false en otro caso
+     */
     containsKeyword: function(lab, keywordsArray){
       for(const i in keywordsArray)
         if(!lab.keywords.includes(keywordsArray[i]))
@@ -333,8 +380,18 @@ export default {
       return true
     },
 
-    containsLocation: function(lab, locationsArray){
-      return locationsArray.includes(lab.location)
+    /**
+     * Determina si un laboratorio contiene las redes sociales indicadas
+     * @param {object} lab - información completa del laboratorio (@see labs.mjs)
+     * @param {[string]} keywordsArray - lista de redes sociales a filtrar
+     * @return True si el laboratorio contiene al menos una instancia del arreglo dado como parámetro, false en otro caso
+     */
+    containsSocialMedia: function(lab, socialMediaArray){
+      for(const i in socialMediaArray)
+        for(const j in lab.socialMedia)
+          if(socialMediaArray[i] === lab.socialMedia[j].type)
+            return true
+      return false
     },
   },
 
@@ -357,6 +414,7 @@ export default {
 </script>
 
 <style scoped>
+/* Animaciones a usar al mostrar/ocultar elementos con Vue */
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
