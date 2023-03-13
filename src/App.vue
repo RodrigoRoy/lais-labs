@@ -40,7 +40,7 @@
             <!-- Filtros -->
             <v-row>
               <v-col cols="12" class="my-8">
-                <p class="text-center text-subtitle-1">
+                <p class="text-subtitle-1">
                   Filtrar laboratorios
                 </p>
                 <v-expansion-panels v-model="filterPanel" popout>
@@ -79,6 +79,39 @@
                   </v-expansion-panel>
 
                 </v-expansion-panels>
+
+
+
+                <!-- <v-card class="text-center justify-center">
+                  <v-toolbar flat color="primary">
+                    <v-toolbar-title> Filtrar laboratorios </v-toolbar-title>
+                    <v-btn icon @click="resetFilters"><v-icon>fa-delete-left</v-icon></v-btn>
+                  </v-toolbar>
+
+                  <v-card-text class="text-center">
+                    <h2 class="text-h6 mb-2">
+                      Por actividad
+                    </h2>
+
+                    <v-chip-group v-model="keywordsSelected" column multiple>
+                      <v-chip filter outlined v-for="(keyword, index) in keywords" :key="index">
+                        {{ keyword }}
+                      </v-chip>
+                    </v-chip-group>
+                  </v-card-text>
+
+                  <v-card-text>
+                    <h2 class="text-h6 mb-2">
+                      Por ubicación
+                    </h2>
+                    <v-chip-group v-model="locationSelected" column multiple>
+                      <v-chip filter outlined v-for="(location, index) in locations" :key="index">
+                        {{ location }}
+                      </v-chip>
+                    </v-chip-group>
+                  </v-card-text>
+
+                </v-card> -->
               </v-col>
             </v-row>
 
@@ -107,16 +140,16 @@
                             <v-icon>fa-solid fa-list</v-icon>
                           </v-btn>
                         </template>
-                        <span>Laboratorios</span>
+                        <span><span v-if="drawer">Ocultar</span><span v-else>Mostrar</span> lista de laboratorios</span>
                       </v-tooltip>
 
                       <v-tooltip bottom>
                         <template v-slot:activator="{ on, attrs }">
                           <v-btn color="primary" icon tile outlined elevation="6" :disabled="false" @click="restoreMapBounds" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
-                            <v-icon>fa-solid fa-rotate-left</v-icon>
+                            <v-icon>fa-solid fa-maximize</v-icon>
                           </v-btn>
                         </template>
-                        <span>Ver todos</span>
+                        <span>Zoom a todos</span>
                       </v-tooltip>
 
                       <v-tooltip bottom>
@@ -125,7 +158,7 @@
                             <v-icon>fa-solid fa-backward-step</v-icon>
                           </v-btn>
                         </template>
-                        <span>Anterior</span>
+                        <span>Anterior laboratorio</span>
                       </v-tooltip>
 
                       <v-tooltip bottom>
@@ -134,7 +167,7 @@
                             <v-icon>fa-solid fa-forward-step</v-icon>
                           </v-btn>
                         </template>
-                        <span>Siguiente</span>
+                        <span>Siguiente laboratorio</span>
                       </v-tooltip>
                     </l-control>
                   </l-map>
@@ -196,17 +229,17 @@ export default {
 
   data: () => ({
     // controla la visibilidad de navigation-drawer
-    drawer: false,
+    drawer: true,
 
-    // auxiliar para mostrar/ocular paneles para filtrar
-    filterPanel: 0,
+    // auxiliar para mostrar/ocular paneles para filtrar (arreglo en caso de elegir multiples)
+    filterPanel: 0, // [0, 1],
 
     // listas de parámetros para filtrar por: palabras clave, ubicación o redes sociales
     keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
     locations: ['Coahuila', 'Ciudad de México', 'Jalisco', 'Michoacán', 'Puebla', 'San Luis Potosí', 'Tabasco'],
     socialMedia: [{text: 'Facebook', value: 'facebook'}, {text: 'Instagram', value: 'instagram'}, {text: 'Twitter', value: 'twitter'}, {text: 'TikTok', value: 'tiktok'}, {text: 'Sitio web', value: 'website'}],
 
-    // lista por índices de los elementos seleccionados
+    // lista por índices de los elementos seleccionados (directamente relacionado a componente v-chip)
     keywordsSelected: [],
     locationSelected: [],
     socialMediaSelected: [],
@@ -217,9 +250,8 @@ export default {
     socialMediaToFilter: [],
 
     // lista de laboratorios (@see beforeMount)
-    laboratorios: [],
-    
-    laboratoriosComplete: [],
+    laboratorios: [], // lista actual (variable)
+    laboratoriosComplete: [], // lista original (no variable)
 
     // información completa de un laboratorio del listado (@see mounted)
     laboratorioSeleccionado: null,
