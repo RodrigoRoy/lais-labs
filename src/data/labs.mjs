@@ -542,7 +542,7 @@ export const laboratorios = [
         },
         images: {
             path: "LAIS",
-            src: ['Taller_2022.jpg', 'En_entrevista_2012.jpg', 'Crefal_2022.jpg'],
+            src: ['Taller_2022.jpg', 'En_entrevista_2012.jpg'],
         },
         video: 'https://www.youtube.com/embed/RRjnueT4a58',
         verified: true,
@@ -580,8 +580,8 @@ export const laboratorios = [
         verified: true,
     },
     {
-        name: "Laboratorio Audiovisual del Centro de Investigaciones y Estudios Superiores en Antropología Social",
-        description: "",
+        name: "Laboratorio Audiovisual del CIESAS",
+        description: "Ubicado en la planta baja del edificio, aproximadamente 60m2 con seis espacios, incluyendo una cabina de grabación",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
             {
@@ -599,13 +599,19 @@ export const laboratorios = [
         website: "https://lab.ciesas.edu.mx/audiovisual/",
         location: 'Ciudad de México',
         fullLocation: {
-            name: "Centro de Investigaciones y Estudios Superiores en Antropología Social (CIESAS)",
+            name: "Calle Juárez 222, Tlalpan Centro, Tlalpan, Ciudad de México",
             latLng: [19.289301832744933, -99.16887930029213],
             url: "https://goo.gl/maps/DfJPXjL2A6oqyEMx5",
         },
         images: {
-            path: "",
-            src: [],
+            path: "CIESAS",
+            src: [
+                "Laboratorio CIESAS logo.jpg",
+                "IMG_5666.jpg",
+                "IMG_5667.jpg",
+                "IMG_6953.jpg",
+                "IMG_7781.jpg"
+            ],
         },
         video: 'https://www.youtube.com/embed/hzhVeJgWVfw',
         verified: false,

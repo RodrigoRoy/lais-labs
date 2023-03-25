@@ -3,6 +3,17 @@
     <v-app>
         <!-- Lista lateral de navegación con los nombres de los laboratorios. Se oculta en pantallas pequeñas y es permanente en pantallas de tamaño mediano en adelante -->
         <v-navigation-drawer app v-model="drawer" clipped width="400" color="secondary">
+          <v-container>
+            <v-row>
+              <v-col>
+                <v-select :items="keywords" label="Actividades" v-model="keywordSelect"></v-select>
+                <v-select :items="locations" label="Ubicación" v-model="locationSelect"></v-select>
+                <!-- <v-select :items="socialMedia" label="Red social" item-text="text" item-value="value" v-model="socialMediaSelect"></v-select> -->
+                <v-btn @click="cleanFilters">Borrar</v-btn>
+              </v-col>
+
+            </v-row>
+          </v-container>
           <v-list dense nav>
             <v-list-item-group v-model="listIndex" color="accent">
               <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" rounded="shaped" v-on:click="selectData(laboratorio)">
@@ -32,13 +43,13 @@
               <v-col cols="12" class="my-8">
                 <!-- TODO: Font style -->
                 <p class="text-center text-h6">
-                  Departamentos, centros, grupos y laboratorios de México cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales, ya sean de carácter universitarios, comunitarios, de investigación o independientes.
+                  El Laboratorio Audiovisual de Investigación Social (LAIS-Instituto Mora) convocó a espacios colectivos cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales al Encuentro de Laboratorios Audiovisuales de Investigación en México, celebrado virtualmente los días 14 y 15 de noviembre de 2022. El objetivo fue conversar sobre las trayectorias, infraestructura, actividades, metodologías, problemáticas, retos y experiencias de cada espacio. A la convocatoria acudieron 16 espacios colectivos. Esta página ofrece un mapeo de tales espacios que incluye la ponencia en video, presentada durante el Encuentro, así como una breve presentación de cada espacio, vínculos a sus páginas web y redes sociales de ser el caso. Faltan varios espacios, por lo que esperamos que en el futuro este mapa se amplie. 
                 </p>
               </v-col>
             </v-row>
 
             <!-- Filtros -->
-            <v-row>
+            <!-- <v-row>
               <v-col cols="12" class="my-8">
                 <p class="text-subtitle-1">
                   Filtrar laboratorios
@@ -82,7 +93,7 @@
 
 
 
-                <!-- <v-card class="text-center justify-center">
+                <v-card class="text-center justify-center">
                   <v-toolbar flat color="primary">
                     <v-toolbar-title> Filtrar laboratorios </v-toolbar-title>
                     <v-btn icon @click="resetFilters"><v-icon>fa-delete-left</v-icon></v-btn>
@@ -111,15 +122,15 @@
                     </v-chip-group>
                   </v-card-text>
 
-                </v-card> -->
+                </v-card>
               </v-col>
-            </v-row>
+            </v-row> -->
 
             <v-row align="start">
               <!-- Mapa -->
               <v-col sm="4" md="6" cols="12">
                 <v-sheet rounded="xl" style="height: 700px">
-                  <l-map ref="leafletMap" :zoom="lmap.zoom" :center="lmap.center" :options="lmap.options" @ready="restoreMapBounds" style="z-index:0;">
+                  <l-map ref="leafletMap" :zoom="lmap.zoom" :center="lmap.center" :maxZoom="lmap.maxZoom" :minZoom="lmap.minZoom" :maxBounds="lmap.maxBounds" :options="lmap.options" @ready="restoreMapBounds" style="z-index:0;">
                     <l-tile-layer :url="lmap.url" :attribution="lmap.attribution" ></l-tile-layer>
 
                     <!-- Escala -->
@@ -239,6 +250,10 @@ export default {
     locations: ['Coahuila', 'Ciudad de México', 'Jalisco', 'Michoacán', 'Puebla', 'San Luis Potosí', 'Tabasco'],
     socialMedia: [{text: 'Facebook', value: 'facebook'}, {text: 'Instagram', value: 'instagram'}, {text: 'Twitter', value: 'twitter'}, {text: 'TikTok', value: 'tiktok'}, {text: 'Sitio web', value: 'website'}],
 
+    keywordSelect: null,
+    locationSelect: null,
+    socialMediaSelect: null,
+
     // lista por índices de los elementos seleccionados (directamente relacionado a componente v-chip)
     keywordsSelected: [],
     locationSelected: [],
@@ -263,6 +278,9 @@ export default {
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 5, 
       center: [23.634501, -102.552784],
+      maxBounds: L.latLngBounds(L.latLng(32.75, -117.773), L.latLng(14.35, -86.396)), // México
+      maxZoom: 17,
+      minZoom: 5,
       tooltipOptions: {
         offset: L.point(0, -42),
         direction: 'top',
@@ -286,26 +304,32 @@ export default {
 
   // Variables a observar cambios
   watch: {
-    keywordsSelected: function(){
-      // limpiar y actualizar la lista de palabras
-      this.keywordsToFilter = []
-      this.keywordsSelected.forEach(i => { this.keywordsToFilter.push(this.keywords[i]) })
-      // actualizar la lista de laboratorios
-      this.updateLabList()
+    // keywordsSelected: function(){
+    //   // limpiar y actualizar la lista de palabras
+    //   this.keywordsToFilter = []
+    //   this.keywordsSelected.forEach(i => { this.keywordsToFilter.push(this.keywords[i]) })
+    //   // actualizar la lista de laboratorios
+    //   this.updateLabList()
+    // },
+    // locationSelected: function(){
+    //   // limpiar y actualizar la lista de palabras
+    //   this.locationsToFilter = []
+    //   this.locationSelected.forEach(i => { this.locationsToFilter.push(this.locations[i]) })
+    //   // actualizar la lista de laboratorios
+    //   this.updateLabList()
+    // },
+    // socialMediaSelected: function(){
+    //   // limpiar y actualizar la lista de palabras
+    //   this.socialMediaToFilter = []
+    //   this.socialMediaSelected.forEach(i => { this.socialMediaToFilter.push(this.socialMedia[i].value)})
+    //   // actualizar la lista de laboratorios
+    //   this.updateLabList()
+    // },
+    locationSelect: function(){
+      this.updateLabListSimple()
     },
-    locationSelected: function(){
-      // limpiar y actualizar la lista de palabras
-      this.locationsToFilter = []
-      this.locationSelected.forEach(i => { this.locationsToFilter.push(this.locations[i]) })
-      // actualizar la lista de laboratorios
-      this.updateLabList()
-    },
-    socialMediaSelected: function(){
-      // limpiar y actualizar la lista de palabras
-      this.socialMediaToFilter = []
-      this.socialMediaSelected.forEach(i => { this.socialMediaToFilter.push(this.socialMedia[i].value)})
-      // actualizar la lista de laboratorios
-      this.updateLabList()
+    keywordSelect: function(){
+      this.updateLabListSimple()
     },
   },
 
@@ -373,31 +397,53 @@ export default {
     },
 
     /**
+     * Actualiza la lista de laboratorios según los filtros indicados
+     */
+    updateLabListSimple: function(){
+      this.laboratorios = this.laboratoriosComplete
+
+      if(this.keywordSelect)
+        this.laboratorios = this.laboratorios.filter(laboratorio => laboratorio.keywords.includes(this.keywordSelect))
+      if(this.locationSelect)
+        this.laboratorios = this.laboratorios.filter(laboratorio => this.locationSelect === laboratorio.location)
+      
+      this.restoreMapBounds()
+    },
+
+    /**
      * Limpiar/borrar los filtros
      */
-    resetFilters: function(){
-      this.keywordsSelected = []
-      this.locationSelected = []
-      this.socialMediaSelected = []
+    cleanFilters: function(){
+      this.locationSelect = null
+      this.keywordSelect = null
     },
+
+    /**
+     * Limpiar/borrar los filtros
+     */
+    // resetFilters: function(){
+    //   this.keywordsSelected = []
+    //   this.locationSelected = []
+    //   this.socialMediaSelected = []
+    // },
 
     /**
      * Actualiza la lista de laboratorios según los filtros indicados
      */
-    updateLabList: function(){
-      this.laboratorios = this.laboratoriosComplete
+    // updateLabList: function(){
+    //   this.laboratorios = this.laboratoriosComplete
       
-      // filtra/elimina laboratorios según los criterios de los filtros
-      if(this.keywordsSelected.length !== 0)
-        this.laboratorios = this.laboratorios.filter(laboratorio => this.containsKeyword(laboratorio, this.keywordsToFilter))
-      if(this.locationSelected.length !== 0)
-        this.laboratorios = this.laboratorios.filter(laboratorio => this.locationsToFilter.includes(laboratorio.location))
-      if(this.socialMediaSelected.length !== 0)
-        this.laboratorios = this.laboratorios.filter(laboratorio => this.containsSocialMedia(laboratorio, this.socialMediaToFilter))
+    //   // filtra/elimina laboratorios según los criterios de los filtros
+    //   if(this.keywordsSelected.length !== 0)
+    //     this.laboratorios = this.laboratorios.filter(laboratorio => this.containsKeyword(laboratorio, this.keywordsToFilter))
+    //   if(this.locationSelected.length !== 0)
+    //     this.laboratorios = this.laboratorios.filter(laboratorio => this.locationsToFilter.includes(laboratorio.location))
+    //   if(this.socialMediaSelected.length !== 0)
+    //     this.laboratorios = this.laboratorios.filter(laboratorio => this.containsSocialMedia(laboratorio, this.socialMediaToFilter))
 
-      // hace zoom al nuevo conjunto de laboratorios
-      this.restoreMapBounds()
-    },
+    //   // hace zoom al nuevo conjunto de laboratorios
+    //   this.restoreMapBounds()
+    // },
 
     /**
      * Determina si un laboratorio contiene las palabras clave indicadas
@@ -405,12 +451,12 @@ export default {
      * @param {[string]} keywordsArray - lista de actividades a filtrar
      * @return True si el laboratorio contiene al menos una instancia del arreglo dado como parámetro, false en otro caso
      */
-    containsKeyword: function(lab, keywordsArray){
-      for(const i in keywordsArray)
-        if(!lab.keywords.includes(keywordsArray[i]))
-          return false
-      return true
-    },
+    // containsKeyword: function(lab, keywordsArray){
+    //   for(const i in keywordsArray)
+    //     if(!lab.keywords.includes(keywordsArray[i]))
+    //       return false
+    //   return true
+    // },
 
     /**
      * Determina si un laboratorio contiene las redes sociales indicadas
@@ -418,13 +464,13 @@ export default {
      * @param {[string]} keywordsArray - lista de redes sociales a filtrar
      * @return True si el laboratorio contiene al menos una instancia del arreglo dado como parámetro, false en otro caso
      */
-    containsSocialMedia: function(lab, socialMediaArray){
-      for(const i in socialMediaArray)
-        for(const j in lab.socialMedia)
-          if(socialMediaArray[i] === lab.socialMedia[j].type)
-            return true
-      return false
-    },
+    // containsSocialMedia: function(lab, socialMediaArray){
+    //   for(const i in socialMediaArray)
+    //     for(const j in lab.socialMedia)
+    //       if(socialMediaArray[i] === lab.socialMedia[j].type)
+    //         return true
+    //   return false
+    // },
   },
 
   // Acciones previas al montar componente actual
