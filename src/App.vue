@@ -3,17 +3,22 @@
     <v-app>
         <!-- Lista lateral de navegación con los nombres de los laboratorios. Se oculta en pantallas pequeñas y es permanente en pantallas de tamaño mediano en adelante -->
         <v-navigation-drawer app v-model="drawer" clipped width="400" color="secondary">
+          
+          <!-- Filtros para lista de laboratorios -->
           <v-container>
             <v-row>
-              <v-col>
+              <v-col cols="12" class="mb-0 pb-0">
+                <v-switch v-model="showFilters" color="accent" label="Filtrar laboratorios"></v-switch>
+              </v-col>
+              <v-col cols="12" class="my-0 py-0" v-show="showFilters">
                 <v-select :items="keywords" label="Actividades" v-model="keywordSelect"></v-select>
                 <v-select :items="locations" label="Ubicación" v-model="locationSelect"></v-select>
                 <!-- <v-select :items="socialMedia" label="Red social" item-text="text" item-value="value" v-model="socialMediaSelect"></v-select> -->
-                <v-btn @click="cleanFilters">Borrar</v-btn>
+                <v-btn icon @click="cleanFilters" v-show="keywordSelect != null || locationSelect != null"><v-icon>fa-backspace</v-icon></v-btn>
               </v-col>
-
             </v-row>
           </v-container>
+
           <v-list dense nav>
             <v-list-item-group v-model="listIndex" color="accent">
               <v-list-item v-for="(laboratorio, index) in laboratorios" :key="index" rounded="shaped" v-on:click="selectData(laboratorio)">
@@ -47,84 +52,6 @@
                 </p>
               </v-col>
             </v-row>
-
-            <!-- Filtros -->
-            <!-- <v-row>
-              <v-col cols="12" class="my-8">
-                <p class="text-subtitle-1">
-                  Filtrar laboratorios
-                </p>
-                <v-expansion-panels v-model="filterPanel" popout>
-
-                  <v-expansion-panel>
-                    <v-expansion-panel-header>Actividades</v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                      <v-chip-group v-model="keywordsSelected" column multiple>
-                        <v-chip filter outlined v-for="(keyword, index) in keywords" :key="index">
-                          {{ keyword }}
-                        </v-chip>
-                      </v-chip-group>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-
-                  <v-expansion-panel>
-                    <v-expansion-panel-header>Ubicación</v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                      <v-chip-group v-model="locationSelected" column multiple>
-                        <v-chip filter outlined v-for="(location, index) in locations" :key="index">
-                          {{ location }}
-                        </v-chip>
-                      </v-chip-group>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-
-                  <v-expansion-panel>
-                    <v-expansion-panel-header>Redes sociales</v-expansion-panel-header>
-                    <v-expansion-panel-content>
-                      <v-chip-group v-model="socialMediaSelected" column multiple>
-                        <v-chip filter outlined v-for="(socialMediaItem, index) in socialMedia" :key="index">
-                          {{ socialMediaItem.text }}
-                        </v-chip>
-                      </v-chip-group>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-
-                </v-expansion-panels>
-
-
-
-                <v-card class="text-center justify-center">
-                  <v-toolbar flat color="primary">
-                    <v-toolbar-title> Filtrar laboratorios </v-toolbar-title>
-                    <v-btn icon @click="resetFilters"><v-icon>fa-delete-left</v-icon></v-btn>
-                  </v-toolbar>
-
-                  <v-card-text class="text-center">
-                    <h2 class="text-h6 mb-2">
-                      Por actividad
-                    </h2>
-
-                    <v-chip-group v-model="keywordsSelected" column multiple>
-                      <v-chip filter outlined v-for="(keyword, index) in keywords" :key="index">
-                        {{ keyword }}
-                      </v-chip>
-                    </v-chip-group>
-                  </v-card-text>
-
-                  <v-card-text>
-                    <h2 class="text-h6 mb-2">
-                      Por ubicación
-                    </h2>
-                    <v-chip-group v-model="locationSelected" column multiple>
-                      <v-chip filter outlined v-for="(location, index) in locations" :key="index">
-                        {{ location }}
-                      </v-chip>
-                    </v-chip-group>
-                  </v-card-text>
-
-                </v-card>
-              </v-col>
-            </v-row> -->
 
             <v-row align="start">
               <!-- Mapa -->
@@ -242,6 +169,9 @@ export default {
     // controla la visibilidad de navigation-drawer
     drawer: true,
 
+    // controla visibilidad de las opciones de filtrado para laboratorios
+    showFilters: false,
+
     // auxiliar para mostrar/ocular paneles para filtrar (arreglo en caso de elegir multiples)
     filterPanel: 0, // [0, 1],
 
@@ -304,32 +234,24 @@ export default {
 
   // Variables a observar cambios
   watch: {
-    // keywordsSelected: function(){
-    //   // limpiar y actualizar la lista de palabras
-    //   this.keywordsToFilter = []
-    //   this.keywordsSelected.forEach(i => { this.keywordsToFilter.push(this.keywords[i]) })
-    //   // actualizar la lista de laboratorios
-    //   this.updateLabList()
-    // },
-    // locationSelected: function(){
-    //   // limpiar y actualizar la lista de palabras
-    //   this.locationsToFilter = []
-    //   this.locationSelected.forEach(i => { this.locationsToFilter.push(this.locations[i]) })
-    //   // actualizar la lista de laboratorios
-    //   this.updateLabList()
-    // },
-    // socialMediaSelected: function(){
-    //   // limpiar y actualizar la lista de palabras
-    //   this.socialMediaToFilter = []
-    //   this.socialMediaSelected.forEach(i => { this.socialMediaToFilter.push(this.socialMedia[i].value)})
-    //   // actualizar la lista de laboratorios
-    //   this.updateLabList()
-    // },
-    locationSelect: function(){
-      this.updateLabListSimple()
+    /**
+     * Reestablece la lista de laboratorios al ocultar filtros
+     */
+    showFilters: function(){
+      if(!this.showFilters)
+        this.cleanFilters()
     },
+    /**
+     * Actualiza la lista de marcadores en el mapa según el filtro de ubicación
+     */
+    locationSelect: function(){
+      this.updateLabList()
+    },
+    /**
+     * Actualiza la lista de marcadores en el mapa según el filtro de actividades
+     */
     keywordSelect: function(){
-      this.updateLabListSimple()
+      this.updateLabList()
     },
   },
 
@@ -399,14 +321,17 @@ export default {
     /**
      * Actualiza la lista de laboratorios según los filtros indicados
      */
-    updateLabListSimple: function(){
+    updateLabList: function(){
+      // Restaurar lista original
       this.laboratorios = this.laboratoriosComplete
 
+      // Aplicar filtros
       if(this.keywordSelect)
         this.laboratorios = this.laboratorios.filter(laboratorio => laboratorio.keywords.includes(this.keywordSelect))
       if(this.locationSelect)
         this.laboratorios = this.laboratorios.filter(laboratorio => this.locationSelect === laboratorio.location)
       
+      // Zoom en mapa a los marcadores de los mapas
       this.restoreMapBounds()
     },
 
@@ -417,60 +342,6 @@ export default {
       this.locationSelect = null
       this.keywordSelect = null
     },
-
-    /**
-     * Limpiar/borrar los filtros
-     */
-    // resetFilters: function(){
-    //   this.keywordsSelected = []
-    //   this.locationSelected = []
-    //   this.socialMediaSelected = []
-    // },
-
-    /**
-     * Actualiza la lista de laboratorios según los filtros indicados
-     */
-    // updateLabList: function(){
-    //   this.laboratorios = this.laboratoriosComplete
-      
-    //   // filtra/elimina laboratorios según los criterios de los filtros
-    //   if(this.keywordsSelected.length !== 0)
-    //     this.laboratorios = this.laboratorios.filter(laboratorio => this.containsKeyword(laboratorio, this.keywordsToFilter))
-    //   if(this.locationSelected.length !== 0)
-    //     this.laboratorios = this.laboratorios.filter(laboratorio => this.locationsToFilter.includes(laboratorio.location))
-    //   if(this.socialMediaSelected.length !== 0)
-    //     this.laboratorios = this.laboratorios.filter(laboratorio => this.containsSocialMedia(laboratorio, this.socialMediaToFilter))
-
-    //   // hace zoom al nuevo conjunto de laboratorios
-    //   this.restoreMapBounds()
-    // },
-
-    /**
-     * Determina si un laboratorio contiene las palabras clave indicadas
-     * @param {object} lab - información completa del laboratorio (@see labs.mjs)
-     * @param {[string]} keywordsArray - lista de actividades a filtrar
-     * @return True si el laboratorio contiene al menos una instancia del arreglo dado como parámetro, false en otro caso
-     */
-    // containsKeyword: function(lab, keywordsArray){
-    //   for(const i in keywordsArray)
-    //     if(!lab.keywords.includes(keywordsArray[i]))
-    //       return false
-    //   return true
-    // },
-
-    /**
-     * Determina si un laboratorio contiene las redes sociales indicadas
-     * @param {object} lab - información completa del laboratorio (@see labs.mjs)
-     * @param {[string]} keywordsArray - lista de redes sociales a filtrar
-     * @return True si el laboratorio contiene al menos una instancia del arreglo dado como parámetro, false en otro caso
-     */
-    // containsSocialMedia: function(lab, socialMediaArray){
-    //   for(const i in socialMediaArray)
-    //     for(const j in lab.socialMedia)
-    //       if(socialMediaArray[i] === lab.socialMedia[j].type)
-    //         return true
-    //   return false
-    // },
   },
 
   // Acciones previas al montar componente actual
