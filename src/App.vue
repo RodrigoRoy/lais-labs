@@ -44,19 +44,48 @@
         <v-main>
           <v-container id="mainContainer">
             <!-- Párrafo explicativo -->
-            <v-row>
+            <!-- <v-row>
               <v-col cols="12" class="my-8">
-                <!-- TODO: Font style -->
                 <p class="text-center text-h6">
                   El Laboratorio Audiovisual de Investigación Social (LAIS-Instituto Mora) convocó a espacios colectivos cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales al Encuentro de Laboratorios Audiovisuales de Investigación en México, celebrado virtualmente los días 14 y 15 de noviembre de 2022. El objetivo fue conversar sobre las trayectorias, infraestructura, actividades, metodologías, problemáticas, retos y experiencias de cada espacio. A la convocatoria acudieron 16 espacios colectivos. Esta página ofrece un mapeo de tales espacios que incluye la ponencia en video, presentada durante el Encuentro, así como una breve presentación de cada espacio, vínculos a sus páginas web y redes sociales de ser el caso. Faltan varios espacios, por lo que esperamos que en el futuro este mapa se amplie. 
                 </p>
               </v-col>
-            </v-row>
+            </v-row> -->
 
             <v-row align="start">
+              <v-col cols="12">
+                <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
+
+                  <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
+                  <transition name="fade">
+                    <lab-text :laboratorio="laboratorioSeleccionado"></lab-text>
+                  </transition>
+                </v-sheet>
+              </v-col>
+
+              <v-col cols="12" sm="4" md="6">
+                <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
+
+                  <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
+                  <transition name="fade">
+                    <lab-picture :laboratorio="laboratorioSeleccionado"></lab-picture>
+                  </transition>
+                </v-sheet>
+              </v-col>
+
+              <v-col cols="12" sm="4" md="6">
+                <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
+
+                  <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
+                  <transition name="fade">
+                    <lab-video :laboratorio="laboratorioSeleccionado"></lab-video>
+                  </transition>
+                </v-sheet>
+              </v-col>
+
               <!-- Mapa -->
-              <v-col sm="4" md="6" cols="12">
-                <v-sheet rounded="xl" style="height: 700px">
+              <v-col cols="12">
+                <v-sheet rounded="xl" style="height: 400px">
                   <l-map ref="leafletMap" :zoom="lmap.zoom" :center="lmap.center" :maxZoom="lmap.maxZoom" :minZoom="lmap.minZoom" :maxBounds="lmap.maxBounds" :options="lmap.options" @ready="restoreMapBounds" style="z-index:0;">
                     <l-tile-layer :url="lmap.url" :attribution="lmap.attribution" ></l-tile-layer>
 
@@ -112,18 +141,6 @@
                 </v-sheet>
               </v-col>
 
-              <!-- Información del laboratorio seleccionado -->
-              <v-col sm="8" md="6" cols="12">
-                <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
-
-                  <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
-                  <transition name="fade">
-                    <info-laboratorio
-                      :laboratorioSelected="laboratorioSeleccionado"
-                    ></info-laboratorio>
-                  </transition>
-                </v-sheet>
-              </v-col>
             </v-row>
           </v-container>
 
@@ -135,7 +152,9 @@
 
 <script>
 import MainFooter from "@/components/MainFooter.vue"
-import InfoLaboratorio from "@/components/InfoLaboratorio.vue"
+import LabText from "@/components/LabText.vue"
+import LabPicture from "@/components/LabPicture.vue"
+import LabVideo from "@/components/LabVideo.vue"
 import { laboratorios } from "./data/labs.mjs" // información completad de los laboratorios
 
 import L from 'leaflet';
@@ -155,7 +174,9 @@ export default {
 
   components: {
     MainFooter,
-    InfoLaboratorio,
+    LabText,
+    LabPicture,
+    LabVideo,
     LMap,
     LTileLayer,
     LMarker,
