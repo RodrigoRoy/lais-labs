@@ -35,6 +35,7 @@
 export const laboratorios = [
     {
         name: "Laboratorio Nacional de Materiales Orales (LANMO)",
+        id: 1,
         description:
         "El Laboratorio Nacional de Materiales Orales es un espacio de trabajo interinstitucional para el estudio multidisciplinario de los discursos orales y las manifestaciones asociadas a ellos (gestos, sonoridad, memoria, corporalidad, ritualidad, expresiones musicales, etc.). Con esto se pretende abordar desde distintas perspectivas un tipo de materiales orales, que son el objeto de estudio para entender dinámicas sociales, formas de comunicación, estructuras de pensamiento, conformación de saberes locales, prácticas tradicionales, manifestaciones artísticas, etc.",
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
@@ -117,6 +118,7 @@ export const laboratorios = [
     // },
     {
         name: "Laboratorio de Medios UCEMICH",
+        id: 2,
         description:
         "El Laboratorio de Medios UCEMICH, es un espacio que nació dentro de la Licenciatura en Estudios Multiculturales,  de la Universidad de La Ciénega del Estado de Michoacán de Ocampo, la cual comprende tres ejes formativos: Investigación, gestión cultural y producción de medios. Su finalidad es que estudiantes, profesores, investigadores, cuenten con las herramientas y tecnologías para que desarrollen sus actividades escolares, académicas y de investigación.  Impulsamos la producción audiovisual estudiantil: cortometrajes, reportajes, programas de televisión y podcats. Asimismo, de la mano del LabMed, surgió la iniciativa de crear el Encuentro y Muestrario de Investigaciones Audiovisuales. Finalmente, este proyecto se encuentra en etapa de consolidación y ampliación de su oferta, actividades y alcance. Por lo anterior, nos gustaría compartir y conocer otras propuestas y experiencias de espacios similares.",
         keywords: ['Docencia', 'Investigación', 'Producción AV'],
@@ -157,6 +159,7 @@ export const laboratorios = [
     },
     {
         name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59',
+        id: 3,
         description:
         "Un proyecto de investigación audiovisual con alumnos de educación básica, historia oral y documental. Con el objetivo de incorporar en la formación de los alumnos nociones básicas de investigación de temas basados en testimonios, búsqueda de archivos familiares y las técnicas de registro en imagen y sonido. Se conforma de dos vertientes, la asignatura Taller de Investigación Audiovisual y el Laboratorio de Producción",
         keywords: ['Docencia', 'Investigación'],
@@ -189,6 +192,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio de Investigación-Creación Audiovisual (Lab i-CreA)",
+        id: 4,
         description:
         'El Lab i-CreA nace en 2019 el marco del proyecto de investigación "Comunidades Emergentes de Conocimiento y Procesos de Investigación-Creación Audiovisual" ganador de la convocatoria Ciencia Básica Fondo SEP-CONACYT , dentro del cual se plantea que el conocimiento se genera y circula en formatos que van más allá del textual y se propone la creación de sistemas de información en formatos visuales, sonoros, cartográficos, entre otros. Es producto también de más de 10 años de trabajo de investigación en los cruces entre artes y ciencias sociales. Desde perspectivas teóricas relacionadas con la interdisciplina, los sistemas complejos, las metodologías participativas, los estudios visuales, asumimos que la investigación/creación tiene lugar cuando implica reflexividad creativa constante. ',
         keywords: ['Difusión', 'Investigación', 'Producción AV'],
@@ -213,6 +217,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio Iberoamericano de Documental",
+        id: 5,
         description:
         "Espacio de reflexión, experimentación y producción documental perteneciente al Departamento de Comunicación de la Universidad Iberoamericana Ciudad de México.  Trabajamos con una perspectiva crítica y expandida del arte documental como un modo de investigación e intervención de la realidad. Promovemos la innovación técnica y narrativa mediante estrategias pedagógicas y estéticas transmedia. ",
         keywords: ['Docencia', 'Investigación', 'Producción AV'],
@@ -252,6 +257,7 @@ export const laboratorios = [
     },
     {
         name: 'Laboratorio de lo Invisible',
+        id: 6,
         description: 'El Laboratorio de lo Invisible es una iniciativa de experimentación y creación audiovisual para personas con y sin discapacidad, cuenta con 5 años de vida pública. Nace a partir de la colaboración entre Cine para Imaginar (el único colectivo en México que realiza traducción audiovisual y accesibilidad de cine para personas con discapacidad) y personas interesadas en la búsqueda de prácticas participativas entre personas con ceguera o baja visión, y sin ceguera. En la actualidad personas de la Comunidad Sorda de México dedicadas al cine, desarrollan piezas en lengua de señas mexicana, visual vernacular, teatro de sombras con gestualidad, y mediación cultural en Lengua de Señas Mexicana junto al Encuentro de Estudios en Comunidades Sordas ECOS. Es un laboratorio nómada, que ha contado con ediciones en México y en el extranjero. Basamos nuestras prácticas con la intuición y diálogos permanentes con la comunalidad, y experiencias e investigación sentidas, como es La Expansión Social propuesta por el fotógrafo ciego Lorenzo Morales.',
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
@@ -311,6 +317,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio Interdisciplinario de Investigación Audiovisual",
+        id: 7,
         description:
         "LABIIA es un espacio de creación colectiva en el que se desarrollan actividades de formación, investigación, archivo y divulgación de saberes a través de proyectos audiovisuales que planteen otras formas de narrar historias. Partimos de un conocimiento interdisciplinario que establece un diálogo entre varias disciplinas, metodologías, saberes, lenguajes, artes, tecnologías y procesos creativos.",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
@@ -344,6 +351,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio de Medios Audiovisuales (LaMA)",
+        id: 8,
         description:
         "Espacio de investigación, docencia y producción audiovisual que desarrolla actividades diversas divididas en tres grandes categorías: producción, investigación y docencia. Las actividades que desarrolla el laboratorio se pueden identificar con alguna de estas categorías, en la mayoría de los casos están vinculadas, de forma que los procesos que se inician en actividades de docencia (diplomados, talleres, seminarios etc.), pasan a etapas de investigación y producción audiovisual.",
         keywords: ['Digitalización', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
@@ -384,6 +392,7 @@ export const laboratorios = [
     },
     {
         name: "Acervo Audiovisual InterNeta. Memoria de las y los Invisibles",
+        id: 9,
         description:
         "El Acervo Audiovisual InterNeta tiene el objetivo de acopiar, preservar, conservar, catalogar documentos audiovisuales para su acceso público proactivo y reactivo. Ya que dichos documentos contienen valor histórico y cultural producido como herencia audiovisual de quienes “no han sido vistos” hasta ahora por las instituciones culturales y académicas de nuestro país. El Acervo se integra con siete colecciones de documento audiovisuales realizado con colectivos, grupos y organizaciones indígenas, de pueblos originarios, de cultura popular urbana y de movimientos contraculturales",
         keywords: ['Producción AV', 'Producción escrita', 'Resguardo'],
@@ -425,6 +434,7 @@ export const laboratorios = [
     },
     {
         name: "Tlacuilo Producción Comunitaria",
+        id: 10,
         description:
         "Es un colectivo interdisciplinario interesado en el arte, el patrimonio, la comunicación y la historia de las comunidades y pueblos originarios del país. A través del uso de los medios audiovisuales, el colectivo pretende contribuir a la recuperación de la memoria y la formación de un archivo que resguarde la historia individual y colectiva.",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita'],
@@ -464,6 +474,7 @@ export const laboratorios = [
     },
     {
         name: "Faz a Faz A.C.",
+        id: 11,
         description:
         "Faz a Faz tiene como objetivo promover procesos de encuentro y diálogo a través de actividades de exhibición, análisis, formación, realización y resguardo de archivo audiovisual. Por lo anterior, desde 2017 se han desarrollado proyectos que atiendan a dichas áreas del cine aplicando metodologías participativas y colaborativas. Se apuesta por que los procesos se desarrollen al ritmo de quienes se involucran, para que así también afianzar y solidificar los aprendizajes, alianzas y experiencias.",
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV'],
@@ -503,6 +514,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio Audiovisual de Investigación Social (LAIS)",
+        id: 12,
         description:
         "El Laboratorio Audiovisual de Investigación Social (LAIS) es un espacio colectivo e interdisciplinario dedicado a la investigación social con imágenes. Creado en 2002 con un equipo multidisciplinario, el LAIS realiza estudios que incorporan imágenes y material audiovisual como fuentes primarias de investigación, sean estas recopiladas en diversidad de acervos y colecciones, o bien generadas desde la misma investigación; forma recursos humanos en esta línea de manera permanente; e impulsa la documentación y divulgación de investigaciones sociales y acervos documentales.",
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
@@ -549,6 +561,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio de Antropología Visual",
+        id: 13,
         description:
         "El Laboratorio de Antropología Visual es un espacio dedicado a la investigación y a la docencia en donde alumnos y profesores desarrollan proyectos antropológicos que requieren de la utilización de la fotografía y el video.",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV'],
@@ -581,6 +594,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio Audiovisual del CIESAS",
+        id: 14,
         description: "Ubicado en la planta baja del edificio, aproximadamente 60m2 con seis espacios, incluyendo una cabina de grabación",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
@@ -618,6 +632,7 @@ export const laboratorios = [
     },
     {
         name: "Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)",
+        id: 15,
         description:
         "El LAVSAN es un espacio para realizar prácticas e investigación de carácter audiovisual promoviendo el diálogo entre arte y antropología con el fin de construir conocimiento social. Sus objetivos son 1) desarrollar una línea de investigación en antropología visual; 2) fortalecer la investigación y la docencia apoyando a investigadores y a estudiantes con acervo filmográfico y fotográfico, equipo, capacitación audiovisual y vinculación; y 3) contribuir al intercambio, difusión y divulgación de la producción audiovisual etnográfica y antropológica.",
         keywords: ['Docencia', 'Investigación', 'Producción AV'],
