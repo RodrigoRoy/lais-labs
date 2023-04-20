@@ -184,8 +184,8 @@ export const laboratorios = [
             url: "https://goo.gl/maps/1jUyzgx3FpjKXz3P9",
         },
         images: {
-            path: "",
-            src: [],
+            path: "Secundaria",
+            src: ["Secundaria1.jpg", "Secundaria2.jpg", "Secundaria3.jpg"],
         },
         video: 'https://www.youtube.com/embed/TxBcpz1OVvk',
         verified: true,

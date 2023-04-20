@@ -47,7 +47,7 @@ export default {
         {img: 'FazAFaz.jpg', name: 'Faz a Faz A.C.', id: 11},
         {img: 'LAIS.png', name: 'Laboratorio Audiovisual de Investigación Social (LAIS)', id: 12, altImg: 'LAIS2.png'},
         {img: 'LAV_UAM-I.png', name: 'Laboratorio de Antropología Visual', id: 13, altImg: 'LAV_UAM-I2.png'},
-        {img: 'CIESAS2.png', name: 'Laboratorio Audiovisual del CIESAS', id: 14},
+        {img: 'CIESAS.jpg', name: 'Laboratorio Audiovisual del CIESAS', id: 14},
         {img: 'LAVSAN.png', name: 'Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)', id: 15, altImg: 'LAVSAN2.png'},
       ]
     }

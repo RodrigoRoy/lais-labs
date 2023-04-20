@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Lista lateral de navegación con los nombres de los laboratorios. Se oculta en pantallas pequeñas y es permanente en pantallas de tamaño mediano en adelante -->
-        <v-navigation-drawer app v-model="drawer" clipped width="400" color="secondary">
+        <v-navigation-drawer app v-model="drawer" clipped width="400" color="secondary" class="py-0">
           
           <!-- Filtros para lista de laboratorios -->
           <v-container>
@@ -13,8 +13,44 @@
                 <v-select :items="keywords" label="Actividades" v-model="keywordSelect"></v-select>
                 <v-select :items="locations" label="Ubicación" v-model="locationSelect"></v-select>
                 <!-- <v-select :items="socialMedia" label="Red social" item-text="text" item-value="value" v-model="socialMediaSelect"></v-select> -->
-                <v-btn icon @click="cleanFilters" v-show="keywordSelect != null || locationSelect != null"><v-icon>fa-backspace</v-icon></v-btn>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon small color="accent" @click="cleanFilters" v-bind="attrs" v-on="on" class="mr-1" v-show="keywordSelect != null || locationSelect != null">
+                      <v-icon>fa-backspace</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Borrar filtros</span>
+                </v-tooltip>
+
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon small color="accent" @click="restoreMapBounds" v-bind="attrs" v-on="on" class="mr-1">
+                      <v-icon>fa-solid fa-maximize</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Zoom a todos</span>
+                </v-tooltip>
+
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon small color="accent" @click="selectPrevious" v-bind="attrs" v-on="on" class="mr-1">
+                      <v-icon>fa-solid fa-backward-step</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Anterior laboratorio</span>
+                </v-tooltip>
+
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon small color="accent" @click="selectNext" v-bind="attrs" v-on="on">
+                      <v-icon>fa-solid fa-forward-step</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Siguiente laboratorio</span>
+                </v-tooltip>
               </v-col>
+
+              
             </v-row>
           </v-container>
 
@@ -32,7 +68,7 @@
         </v-navigation-drawer>
 
         <!-- Barra de navegación en la parte superior -->
-        <v-app-bar clipped-left app elevate-on-scroll scroll-target="mainContainer" color="primary">
+        <v-app-bar dense clipped-left app elevate-on-scroll scroll-target="mainContainer" color="primary">
           <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
           <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
@@ -40,7 +76,7 @@
           <v-btn icon @click="switchTheme"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
         </v-app-bar>
 
-        <v-main>
+        <v-main style="background-color: #0e0e0e;">
           <v-container id="mainContainer">
             <v-row align="center" justify="center">
               <v-col cols="12">
@@ -75,7 +111,7 @@
 
               <!-- Mapa -->
               <v-col cols="12">
-                <v-sheet rounded="xl" style="height: 400px">
+                <v-sheet rounded="xl" style="height: 250px">
                   <l-map ref="leafletMap" :zoom="lmap.zoom" :center="lmap.center" :maxZoom="lmap.maxZoom" :minZoom="lmap.minZoom" :maxBounds="lmap.maxBounds" :options="lmap.options" @ready="restoreMapBounds" style="z-index:0;">
                     <l-tile-layer :url="lmap.url" :attribution="lmap.attribution" ></l-tile-layer>
 
@@ -88,45 +124,6 @@
                       </l-icon>
                       <l-tooltip :options="lmap.tooltipOptions">{{laboratorio.name}}</l-tooltip>
                     </l-marker>
-
-                    <!-- Botones para controlar vista y zoom -->
-                    <l-control position="topright">
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn color="primary" icon tile outlined elevation="6" :disabled="false" @click.stop="switchDrawer" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
-                            <v-icon>fa-solid fa-list</v-icon>
-                          </v-btn>
-                        </template>
-                        <span><span v-if="drawer">Ocultar</span><span v-else>Mostrar</span> lista de laboratorios</span>
-                      </v-tooltip>
-
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn color="primary" icon tile outlined elevation="6" :disabled="false" @click="restoreMapBounds" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
-                            <v-icon>fa-solid fa-maximize</v-icon>
-                          </v-btn>
-                        </template>
-                        <span>Zoom a todos</span>
-                      </v-tooltip>
-
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn color="primary" icon tile outlined elevation="6" @click="selectPrevious" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
-                            <v-icon>fa-solid fa-backward-step</v-icon>
-                          </v-btn>
-                        </template>
-                        <span>Anterior laboratorio</span>
-                      </v-tooltip>
-
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn color="primary" icon tile outlined elevation="6" @click="selectNext" v-bind="attrs" v-on="on" class="mr-1" style="background-color: #f4f4f4;">
-                            <v-icon>fa-solid fa-forward-step</v-icon>
-                          </v-btn>
-                        </template>
-                        <span>Siguiente laboratorio</span>
-                      </v-tooltip>
-                    </l-control>
                   </l-map>
                 </v-sheet>
               </v-col>
@@ -147,7 +144,7 @@ import LabVideo from "@/components/LabVideo.vue"
 import { laboratorios } from "../data/labs.mjs" // información completad de los laboratorios
 
 import L from 'leaflet';
-import { LMap, LTileLayer, LMarker, LIcon, LControl, LTooltip, LControlScale } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LIcon, LTooltip, LControlScale } from 'vue2-leaflet'
 
 // solución rápida cuando los iconos de marcadores en mapa no se muestran:
 import { Icon } from 'leaflet'
@@ -170,7 +167,6 @@ export default {
     LTileLayer,
     LMarker,
     LIcon,
-    LControl,
     LTooltip,
     LControlScale
   },
@@ -229,7 +225,7 @@ export default {
         zoomControl: true,
         attributionControl: true,
         zoomSnap: 1,
-        scrollWheelZoom: true,
+        scrollWheelZoom: false,
       },
     },
   }),
@@ -376,12 +372,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 /* Animaciones a usar al mostrar/ocultar elementos con Vue */
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+  color: #3c4145 !important;
 }
 </style>
