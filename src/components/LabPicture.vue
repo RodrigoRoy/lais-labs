@@ -4,7 +4,7 @@
     <!-- No se usan v-card-title/subtitle para evitar wrap a una línea, impidiendo leer el nombre y ubicación del laboratorio -->
     <v-card-text class="pb-0">
       <!-- CARRUSEL CON FOTOS -->
-      <v-carousel hide-delimiters :show-arrows="laboratorio.images.src.length > 1" :show-arrows-on-hover="laboratorio.images.src.length > 1" cycle height="470" v-show="laboratorio.images.src.length > 0" class="my-2">
+      <v-carousel hide-delimiters :show-arrows="laboratorio.images.src.length > 1" :show-arrows-on-hover="laboratorio.images.src.length > 1" cycle height="460" v-show="laboratorio.images.src.length > 0" class="my-2">
         <!-- ICONOS PERSONALIZADOS ANTERIOR/SIGUIENTE -->
         <template v-slot:prev="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>

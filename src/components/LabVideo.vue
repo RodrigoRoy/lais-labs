@@ -4,7 +4,7 @@
     <!-- No se usan v-card-title/subtitle para evitar wrap a una línea, impidiendo leer el nombre y ubicación del laboratorio -->
     <v-card-text class="pb-0">
       <!-- VIDEO -->
-      <iframe v-if="laboratorio.video" width="100%" height="400" class="mt-0" :src="laboratorio.video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe v-if="laboratorio.video" width="100%" height="460" class="mt-0" :src="laboratorio.video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </v-card-text>
   </v-card>
 </template>

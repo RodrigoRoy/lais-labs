@@ -42,16 +42,7 @@
 
         <v-main>
           <v-container id="mainContainer">
-            <!-- Párrafo explicativo -->
-            <!-- <v-row>
-              <v-col cols="12" class="my-8">
-                <p class="text-center text-h6">
-                  El Laboratorio Audiovisual de Investigación Social (LAIS-Instituto Mora) convocó a espacios colectivos cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales al Encuentro de Laboratorios Audiovisuales de Investigación en México, celebrado virtualmente los días 14 y 15 de noviembre de 2022. El objetivo fue conversar sobre las trayectorias, infraestructura, actividades, metodologías, problemáticas, retos y experiencias de cada espacio. A la convocatoria acudieron 16 espacios colectivos. Esta página ofrece un mapeo de tales espacios que incluye la ponencia en video, presentada durante el Encuentro, así como una breve presentación de cada espacio, vínculos a sus páginas web y redes sociales de ser el caso. Faltan varios espacios, por lo que esperamos que en el futuro este mapa se amplie. 
-                </p>
-              </v-col>
-            </v-row> -->
-
-            <v-row align="start">
+            <v-row align="center" justify="center">
               <v-col cols="12">
                 <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
 
@@ -62,7 +53,7 @@
                 </v-sheet>
               </v-col>
 
-              <v-col cols="12" sm="4" md="6">
+              <v-col cols="12" sm="6">
                 <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
 
                   <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->
@@ -72,7 +63,7 @@
                 </v-sheet>
               </v-col>
 
-              <v-col cols="12" sm="4" md="6">
+              <v-col cols="12" sm="6">
                 <v-sheet rounded="xl" elevation="12" v-if="laboratorioSeleccionado !== null">
 
                   <!-- COMPONENTE PARA MOSTRAR LA INFORMACIÓN DEL LABORATORIO -->

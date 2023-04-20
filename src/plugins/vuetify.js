@@ -22,9 +22,9 @@ export default new Vuetify({
             //     accent: '#EFEADD',
             // }
             light: {
-                primary: '#BDBDBD',
-                secondary: '#E0E0E0',
-                accent: '#FF6F00',
+                primary: '#FFEB3B',
+                secondary: '#FFF176',
+                accent: '#757575',
             },
             dark: {
                 primary: '#3C4145',
