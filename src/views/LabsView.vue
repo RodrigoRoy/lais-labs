@@ -361,6 +361,11 @@ export default {
   mounted: function() {
     // recuperar tema usado por última vez
     this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true'
+    // guardar el tema (en caso de no existir)
+    localStorage.setItem('darkTheme', this.$vuetify.theme.dark)
+
+    // Ocultar drawer por default (panel lateral con lista de laboratorios)
+    this.drawer = false
 
     if(this.$route.query.id) // si hay query URL (?id=3)
       // seleccionar el laboratorio con el id indicado

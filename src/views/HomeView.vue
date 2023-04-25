@@ -79,7 +79,9 @@ export default {
   // Acciones antes de renderizar vista
   mounted: function() {
     // recuperar tema usado por última vez
-    this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true'
+    this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true' // dark por default
+    // guardar el tema (en caso de no existir)
+    localStorage.setItem('darkTheme', this.$vuetify.theme.dark)
   },
 }
 </script>
