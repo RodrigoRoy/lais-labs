@@ -1,6 +1,7 @@
 <template>
   <!-- Información de un laboratorio -->
   <v-card color="primary" height="500">
+    <!-- <p class="text--disabled font-weight-thin text-caption text-uppercase">Imágenes del laboratorio</p> -->
     <!-- No se usan v-card-title/subtitle para evitar wrap a una línea, impidiendo leer el nombre y ubicación del laboratorio -->
     <v-card-text class="pb-0">
       <!-- CARRUSEL CON FOTOS -->

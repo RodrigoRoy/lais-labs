@@ -43,7 +43,7 @@
         <!-- SITIO WEB -->
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-if="laboratorio.website" :href="laboratorio.website" target="_blank" icon size="medium" variant="plain" color="accent" v-bind="attrs" v-on="on">
+            <v-btn v-show="laboratorio.website" :href="laboratorio.website" target="_blank" icon size="medium" variant="plain" color="accent" v-bind="attrs" v-on="on">
               <v-icon>fa-globe</v-icon>
             </v-btn>
           </template>
@@ -53,7 +53,7 @@
         <!-- EMAIL -->
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn v-if="laboratorio.contact.mail" :href="`mailto:${laboratorio.contact.mail}`" target="_blank" icon size="medium" variant="plain" color="accent" v-bind="attrs" v-on="on">
+            <v-btn v-show="laboratorio.contact.mail" :href="`mailto:${laboratorio.contact.mail}`" target="_blank" icon size="medium" variant="plain" color="accent" v-bind="attrs" v-on="on">
               <v-icon>fa-regular fa-envelope</v-icon>
             </v-btn>
           </template>

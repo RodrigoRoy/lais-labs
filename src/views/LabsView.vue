@@ -71,7 +71,7 @@
         <v-app-bar dense clipped-left app elevate-on-scroll scroll-target="mainContainer" color="primary">
           <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
-          <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
+          <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Mapeo de Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="switchTheme"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
         </v-app-bar>
@@ -359,13 +359,16 @@ export default {
 
   // Acciones antes de renderizar vista
   mounted: function() {
+    // Automáticamente ocultar/mostrar el menú lateral después de unos instantes
+    setTimeout(this.switchDrawer, 2500)
+
     // recuperar tema usado por última vez
     this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true'
     // guardar el tema (en caso de no existir)
     localStorage.setItem('darkTheme', this.$vuetify.theme.dark)
 
     // Ocultar drawer por default (panel lateral con lista de laboratorios)
-    this.drawer = false
+    // this.drawer = false
 
     if(this.$route.query.id) // si hay query URL (?id=3)
       // seleccionar el laboratorio con el id indicado

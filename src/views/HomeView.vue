@@ -3,7 +3,7 @@
     <v-parallax :height="parallaxHeight" :src="require('../assets/background.jpg')" id="parallaxBackground">
       <v-row align="center" justify="center">
         <v-col cols="12" class="text-center my-8">
-          <p class="text-uppercase text-center text-xs-h6 text-md-h5 mb-16">Laboratorios Audiovisuales de Investigación en México</p>
+          <p class="text-uppercase text-center text-xs-h6 text-md-h5 mb-16">Mapeo de Laboratorios Audiovisuales de Investigación en México</p>
           <p class="text-center font-weight-light text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6">
             El Laboratorio Audiovisual de Investigación Social (LAIS-Instituto Mora) convocó a espacios colectivos cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales al Encuentro de Laboratorios Audiovisuales de Investigación en México, celebrado virtualmente los días 14 y 15 de noviembre de 2022. 
           </p>
@@ -15,9 +15,11 @@
     </v-parallax>
 
       <v-row align="start" justify="start">
-        <v-col cols="6" sm="4" md="3" v-for="file in logos.files" :key="file.name">
+        <v-col cols="6" sm="4" md="3" v-for="(file, index) in logos.files" :key="index">
           <router-link :to="{ name: 'info', query: { id: `${file.id}`}}">
-            <v-img :src="file.altImg && $vuetify.theme.dark ? require(`../assets/${logos.path}/${file.altImg}`) : require(`../assets/${logos.path}/${file.img}`)" class="ma-2" contain height="200" />
+            <div :class="{ 'animate__animated': true, 'animate__pulse': hover === index, 'animate__infinite': hover === index }" @mouseenter= "hover = index" @mouseleave="hover = false">
+              <v-img :src="file.altImg && $vuetify.theme.dark ? require(`../assets/${logos.path}/${file.altImg}`) : require(`../assets/${logos.path}/${file.img}`)" class="ma-2" contain height="120" />
+            </div>
           </router-link>
         </v-col>
       </v-row>
@@ -26,6 +28,7 @@
 
 <script>
 import { laboratorios } from "../data/labs.mjs" // información completad de los laboratorios
+import 'animate.css'
 
 export default {
   name: 'HomeView',
@@ -50,7 +53,8 @@ export default {
         {img: 'CIESAS.jpg', name: 'Laboratorio Audiovisual del CIESAS', id: 14},
         {img: 'LAVSAN.png', name: 'Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)', id: 15, altImg: 'LAVSAN2.png'},
       ]
-    }
+    },
+    hover: false,
   }),
 
   computed: {
@@ -64,7 +68,7 @@ export default {
         case 'sm': return 600
         case 'md': return 600
         case 'lg': return 600
-        case 'xl': return 600
+        case 'xl': return 400
       }
       return 600
     },
