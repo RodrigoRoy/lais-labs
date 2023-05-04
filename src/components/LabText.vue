@@ -24,7 +24,7 @@
 
       <!-- PALABRAS CLAVE O KEYWORDS -->
       <p>
-        <v-chip v-for="(keyword, index) in laboratorio.keywords" :key="index" outlined color="accent" class="ma-1" size="small">
+        <v-chip v-for="(keyword, index) in laboratorio.keywords" :key="index" outlined small color="accent" class="ma-1">
           {{ keyword }}
         </v-chip>
       </p>

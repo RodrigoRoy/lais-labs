@@ -25,8 +25,7 @@ export default {
   name: 'App',
 
   data: () => ({
-    // controla la visibilidad de navigation-drawer
-    // drawer: true,
+    // no hay necesidad de incluir variables
   }),
 
   methods: {
@@ -37,13 +36,6 @@ export default {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
       localStorage.setItem('darkTheme', this.$vuetify.theme.dark)
     },
-
-    /**
-     * Muestra/oculta menú lateral
-     */
-    // switchDrawer: function(){
-    //   this.drawer = !this.drawer
-    // },
   }
 }
 </script>

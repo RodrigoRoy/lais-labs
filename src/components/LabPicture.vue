@@ -1,11 +1,11 @@
 <template>
   <!-- Información de un laboratorio -->
-  <v-card color="primary" height="500">
-    <!-- <p class="text--disabled font-weight-thin text-caption text-uppercase">Imágenes del laboratorio</p> -->
+  <v-card color="primary" height="400" class="d-flex align-center justify-center">
+    <p class="text--disabled font-weight-thin text-caption text-uppercase" id="background-text">Imágenes del laboratorio</p>
     <!-- No se usan v-card-title/subtitle para evitar wrap a una línea, impidiendo leer el nombre y ubicación del laboratorio -->
     <v-card-text class="pb-0">
       <!-- CARRUSEL CON FOTOS -->
-      <v-carousel hide-delimiters :show-arrows="laboratorio.images.src.length > 1" :show-arrows-on-hover="laboratorio.images.src.length > 1" cycle height="460" v-show="laboratorio.images.src.length > 0" class="my-2">
+      <v-carousel hide-delimiters :show-arrows="laboratorio.images.src.length > 1" :show-arrows-on-hover="laboratorio.images.src.length > 1" cycle height="350" v-show="laboratorio.images.src.length > 0" class="my-2">
         <!-- ICONOS PERSONALIZADOS ANTERIOR/SIGUIENTE -->
         <template v-slot:prev="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
@@ -39,3 +39,21 @@ export default {
   }),
 };
 </script>
+
+<style>
+/* Usar en conjunto con background-text (aparentemente no es necesario) */
+#container {
+  position: relative;
+}
+
+/* Esto evita tener espacio extra solo para incluir el títular */
+#background-text {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+</style>

@@ -73,7 +73,7 @@
           <v-spacer></v-spacer>
           <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Mapeo de Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn icon @click="switchTheme"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
+          <v-btn icon @click="switchTheme" v-show="false"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
         </v-app-bar>
 
         <v-main style="background-color: #0e0e0e;">
@@ -363,9 +363,12 @@ export default {
     setTimeout(this.switchDrawer, 2500)
 
     // recuperar tema usado por última vez
-    this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true'
+    // this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true'
     // guardar el tema (en caso de no existir)
-    localStorage.setItem('darkTheme', this.$vuetify.theme.dark)
+    // localStorage.setItem('darkTheme', this.$vuetify.theme.dark)
+
+    // usar tema oscuro por default
+    this.$vuetify.theme.dark = true
 
     // Ocultar drawer por default (panel lateral con lista de laboratorios)
     // this.drawer = false
