@@ -70,8 +70,9 @@
         <!-- Barra de navegación en la parte superior -->
         <v-app-bar dense clipped-left app elevate-on-scroll scroll-target="mainContainer" color="primary">
           <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
+          <router-link :to="{ name: 'home'}"><v-btn icon><v-icon>fa-solid fa-home</v-icon></v-btn ></router-link>
           <v-spacer></v-spacer>
-          <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5">Mapeo de Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
+          <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5" style="font-family: RobotoCondensed-Light !important;">Mapeo de Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="switchTheme" v-show="false"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
         </v-app-bar>
@@ -384,6 +385,30 @@ export default {
 </script>
 
 <style>
+/* Registrar fuentes tipograficas */
+@font-face {
+  font-family: RobotoCondensed-Regular;
+  src: url('../assets/fonts/RobotoCondensed-Regular.ttf');
+}
+@font-face {
+  font-family: RobotoCondensed-Bold;
+  src: url('../assets/fonts/RobotoCondensed-Bold.ttf');
+}
+@font-face {
+  font-family: RobotoCondensed-Light;
+  src: url('../assets/fonts/RobotoCondensed-Light.ttf');
+}
+/* Emplear las fuentes tipográficas como estilos */
+.text-regular {
+  font-family: RobotoCondensed-Regular !important;
+}
+.text-bold {
+  font-family: RobotoCondensed-Bold !important;
+}
+.text-light {
+  font-family: RobotoCondensed-Light !important;
+}
+
 /* Animaciones a usar al mostrar/ocultar elementos con Vue */
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
@@ -392,6 +417,7 @@ export default {
   opacity: 0;
 }
 
+/* Colores de botones para hacer zoom en mapa */
 .leaflet-control-zoom-in, .leaflet-control-zoom-out {
   color: #3c4145 !important;
 }

@@ -1,20 +1,23 @@
 <template>
-  <v-container fluid id="mainContainer">
-    <v-parallax :height="parallaxHeight" :src="require('../assets/background.jpg')" id="parallaxBackground">
-      <v-row align="center" justify="center">
-        <v-col cols="12" class="text-center my-8">
-          <p class="text-uppercase text-center text-xs-h6 text-md-h5 mb-16">Mapeo de Laboratorios Audiovisuales de Investigación en México</p>
-          <p class="text-center font-weight-light text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6">
-            El Laboratorio Audiovisual de Investigación Social (LAIS-Instituto Mora) convocó a espacios colectivos cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales al Encuentro de Laboratorios Audiovisuales de Investigación en México, celebrado virtualmente los días 14 y 15 de noviembre de 2022. 
-          </p>
-          <p class="text-center font-weight-light text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6">
-            El objetivo fue conversar sobre las trayectorias, infraestructura, actividades, metodologías, problemáticas, retos y experiencias de cada espacio. A la convocatoria acudieron {{ this.laboratorios.length || '15' }} espacios colectivos. Esta página ofrece un mapeo de tales espacios que incluye la ponencia en video, presentada durante el Encuentro, así como una breve presentación de cada espacio, vínculos a sus páginas web y redes sociales de ser el caso. Faltan varios espacios, por lo que esperamos que en el futuro este mapa se amplie.
-          </p>
+  <div id="mainContainer">
+    <v-container fluid id="mainSubContainer">
+      <v-row align="start" justify="start" class="mx-8">
+        <v-col cols="12">
+          <h1 class="text-uppercase text-center text-xs-h6 text-md-h5 my-4 text-bold" color="accent">Mapeo de Laboratorios Audiovisuales de Investigación en México</h1>
         </v-col>
-      </v-row>
-    </v-parallax>
 
-      <v-row align="start" justify="start">
+        <v-col cols="12" sm="6">
+          <blockquote class="text-center font-weight-light text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6 text-light">
+            El Laboratorio Audiovisual de Investigación Social (LAIS-Instituto Mora) convocó a espacios colectivos cuyo eje de trabajo es la investigación sobre lo audiovisual y con herramientas audiovisuales al <strong class="text-bold">Encuentro de Laboratorios Audiovisuales de Investigación en México</strong> (14 y 15 de noviembre de 2022) para conversar sobre las trayectorias, infraestructura, actividades, metodologías, problemáticas, retos y experiencias de cada espacio.
+          </blockquote>
+        </v-col>
+
+        <v-col cols="12" sm="6" class="mb-4">
+          <blockquote class="text-center font-weight-light text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6 text-light">
+            A la convocatoria acudieron <strong class="text-bold">{{ this.laboratorios.length || '15' }} espacios colectivos</strong>. Esta página ofrece un mapeo de tales espacios que incluye la ponencia en video, presentada durante el Encuentro, así como una breve presentación de cada espacio, imágenes o fotografías, contacto, vínculos a sus páginas web y redes sociales de ser el caso. Faltan varios espacios, por lo que esperamos que en el futuro este mapa se amplie.
+          </blockquote>
+        </v-col>
+
         <v-col cols="6" sm="4" md="3" v-for="(file, index) in logos.files" :key="index">
           <router-link :to="{ name: 'info', query: { id: `${file.id}`}}">
             <div :class="{ 'animate__animated': true, 'animate__pulse': hover === index, 'animate__infinite': hover === index }" @mouseenter= "hover = index" @mouseleave="hover = false">
@@ -23,7 +26,9 @@
           </router-link>
         </v-col>
       </v-row>
-  </v-container>
+        
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -93,9 +98,42 @@ export default {
 }
 </script>
 
-<style>
-div#parallaxBackground.v-parallax > div.v-parallax__content{
-  /* background: rgb(93,101,140); */
+<style scoped>
+/* Registrar fuentes tipograficas */
+@font-face {
+  font-family: RobotoCondensed-Regular;
+  src: url('../assets/fonts/RobotoCondensed-Regular.ttf');
+}
+@font-face {
+  font-family: RobotoCondensed-Bold;
+  src: url('../assets/fonts/RobotoCondensed-Bold.ttf');
+}
+@font-face {
+  font-family: RobotoCondensed-Light;
+  src: url('../assets/fonts/RobotoCondensed-Light.ttf');
+}
+/* Emplear las fuentes tipográficas como estilos */
+.text-regular {
+  font-family: RobotoCondensed-Regular !important;
+}
+.text-bold {
+  font-family: RobotoCondensed-Bold !important;
+}
+.text-light {
+  font-family: RobotoCondensed-Light !important;
+}
+
+/* Agrega una imagen como fondo de pantalla */
+#mainContainer {
+  background: url('../assets/background.jpg') no-repeat center center fixed !important;
+  background-size: cover;
+}
+
+/* Agrega un degradado sobre la imagen de fondo de pantalla */
+#mainSubContainer {
+  background: rgb(93,101,140);
   background: linear-gradient(180deg, rgba(93,101,140,0.8) 0%, rgba(0,0,0,0.8) 100%) !important;
+  /* background: rgb(18, 18, 18); */
+  /* background: radial-gradient(circle, rgba(93,101,140,0.8) 0%, rgba(18,18,18,1) 60%) !important;  */
 }
 </style>
