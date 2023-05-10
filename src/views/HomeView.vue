@@ -1,7 +1,7 @@
 <template>
   <div id="mainContainer">
     <v-container fluid id="mainSubContainer">
-      <v-row align="start" justify="start" class="mx-8">
+      <v-row align="start" justify="center" class="mx-8">
         <v-col cols="12">
           <h1 class="text-uppercase text-center text-xs-h6 text-md-h5 my-4 text-bold" color="accent">Mapeo de Laboratorios Audiovisuales de Investigación en México</h1>
         </v-col>
@@ -18,10 +18,10 @@
           </blockquote>
         </v-col>
 
-        <v-col cols="6" sm="4" md="3" v-for="(file, index) in logos.files" :key="index">
+        <v-col cols="6" sm="4" md="2" v-for="(file, index) in logos.files" :key="index">
           <router-link :to="{ name: 'info', query: { id: `${file.id}`}}">
             <div :class="{ 'animate__animated': true, 'animate__pulse': hover === index, 'animate__infinite': hover === index }" @mouseenter= "hover = index" @mouseleave="hover = false">
-              <v-img :src="file.altImg && $vuetify.theme.dark ? require(`../assets/${logos.path}/${file.altImg}`) : require(`../assets/${logos.path}/${file.img}`)" class="ma-2" contain height="120" />
+              <v-img :src="file.altImg && $vuetify.theme.dark ? require(`../assets/${logos.path}/${file.altImg}`) : require(`../assets/${logos.path}/${file.img}`)" class="ma-0 pa-0" contain height="200" />
             </div>
           </router-link>
         </v-col>
@@ -42,22 +42,39 @@ export default {
     logos: {
       path: 'logos',
       files: [
-        {img: 'LANMO.png', name: 'Laboratorio Nacional de Materiales Orales (LANMO)', id: 1, altImg: 'LANMO2.png'},
-        {img: 'UCEMICH2.png', name: 'Laboratorio de Medios UCEMICH', id: 2, altImg: 'UCEMICH.png'},
-        {img: 'Secundaria59.jpg', name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59', id: 3},
-        {img: 'Lab_i-CreA.jpg', name: 'Laboratorio de Investigación-Creación Audiovisual (Lab i-CreA)', id: 4},
-        {img: 'Ibero.png', name: 'Laboratorio Iberoamericano de Documental', id: 5, altImg: 'Ibero2.png'},
-        {img: 'Invisible.jpg', name: 'Laboratorio de lo Invisible', id: 6},
-        {img: 'LAbIIA.jpg', name: 'Laboratorio Interdisciplinario de Investigación Audiovisual', id: 7, altImg: 'LAbIIA2.jpg'},
-        {img: 'LaMA.jpg', name: 'Laboratorio de Medios Audiovisuales (LaMA)', id: 8},
-        {img: 'InterNeta.png', name: 'Acervo Audiovisual InterNeta. Memoria de las y los Invisibles', id: 9, altImg: 'InterNeta2.png'},
-        {img: 'Tlacuilo2.png', name: 'Tlacuilo Producción Comunitaria', id: 10, altImg: 'Tlacuilo.png'},
-        {img: 'FazAFaz.jpg', name: 'Faz a Faz A.C.', id: 11},
-        {img: 'LAIS.png', name: 'Laboratorio Audiovisual de Investigación Social (LAIS)', id: 12, altImg: 'LAIS2.png'},
-        {img: 'LAV_UAM-I.png', name: 'Laboratorio de Antropología Visual', id: 13, altImg: 'LAV_UAM-I2.png'},
-        {img: 'CIESAS.jpg', name: 'Laboratorio Audiovisual del CIESAS', id: 14},
-        {img: 'LAVSAN.png', name: 'Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)', id: 15, altImg: 'LAVSAN2.png'},
+        {img: 'LANMO.png', name: 'Laboratorio Nacional de Materiales Orales (LANMO)', id: 1},
+        {img: 'UCEMICH.png', name: 'Laboratorio de Medios UCEMICH', id: 2},
+        {img: 'Secundaria59.png', name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59', id: 3},
+        {img: 'Lab_i-CreA.png', name: 'Laboratorio de Investigación-Creación Audiovisual (Lab i-CreA)', id: 4},
+        {img: 'Ibero.png', name: 'Laboratorio Iberoamericano de Documental', id: 5},
+        {img: 'Invisible.png', name: 'Laboratorio de lo Invisible', id: 6},
+        {img: 'LAbIIA.png', name: 'Laboratorio Interdisciplinario de Investigación Audiovisual', id: 7},
+        {img: 'LaMA.png', name: 'Laboratorio de Medios Audiovisuales (LaMA)', id: 8},
+        {img: 'InterNeta.png', name: 'Acervo Audiovisual InterNeta. Memoria de las y los Invisibles', id: 9},
+        {img: 'Tlacuilo.png', name: 'Tlacuilo Producción Comunitaria', id: 10},
+        {img: 'FazAFaz.png', name: 'Faz a Faz A.C.', id: 11},
+        {img: 'LAIS.png', name: 'Laboratorio Audiovisual de Investigación Social (LAIS)', id: 12},
+        {img: 'LAV_UAM-I.png', name: 'Laboratorio de Antropología Visual', id: 13},
+        {img: 'CIESAS.png', name: 'Laboratorio Audiovisual del CIESAS', id: 14},
+        {img: 'LAVSAN.png', name: 'Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)', id: 15},
       ]
+      // [
+      //   {img: 'LANMO.png', name: 'Laboratorio Nacional de Materiales Orales (LANMO)', id: 1, altImg: 'LANMO2.png'},
+      //   {img: 'UCEMICH2.png', name: 'Laboratorio de Medios UCEMICH', id: 2, altImg: 'UCEMICH.png'},
+      //   {img: 'Secundaria59.jpg', name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59', id: 3},
+      //   {img: 'Lab_i-CreA.jpg', name: 'Laboratorio de Investigación-Creación Audiovisual (Lab i-CreA)', id: 4},
+      //   {img: 'Ibero.png', name: 'Laboratorio Iberoamericano de Documental', id: 5, altImg: 'Ibero2.png'},
+      //   {img: 'Invisible.jpg', name: 'Laboratorio de lo Invisible', id: 6},
+      //   {img: 'LAbIIA.jpg', name: 'Laboratorio Interdisciplinario de Investigación Audiovisual', id: 7, altImg: 'LAbIIA2.jpg'},
+      //   {img: 'LaMA.jpg', name: 'Laboratorio de Medios Audiovisuales (LaMA)', id: 8},
+      //   {img: 'InterNeta.png', name: 'Acervo Audiovisual InterNeta. Memoria de las y los Invisibles', id: 9, altImg: 'InterNeta2.png'},
+      //   {img: 'Tlacuilo2.png', name: 'Tlacuilo Producción Comunitaria', id: 10, altImg: 'Tlacuilo.png'},
+      //   {img: 'FazAFaz.jpg', name: 'Faz a Faz A.C.', id: 11},
+      //   {img: 'LAIS.png', name: 'Laboratorio Audiovisual de Investigación Social (LAIS)', id: 12, altImg: 'LAIS2.png'},
+      //   {img: 'LAV_UAM-I.png', name: 'Laboratorio de Antropología Visual', id: 13, altImg: 'LAV_UAM-I2.png'},
+      //   {img: 'CIESAS.jpg', name: 'Laboratorio Audiovisual del CIESAS', id: 14},
+      //   {img: 'LAVSAN.png', name: 'Laboratorio de Antropología Visual de El Colegio de San Luis (LAVSAN)', id: 15, altImg: 'LAVSAN2.png'},
+      // ]
     },
     hover: false,
   }),
