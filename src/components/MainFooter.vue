@@ -12,10 +12,14 @@
 
         <!-- Licencia Creative Commons (tamaño pequeño) -->
         <v-col cols="12" sm="8" order="1" order-sm="2" class="text-center">
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-              <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" />
-            </a>
-              Esta obra está bajo una <a class="accent--text" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.
+          <div>
+            Si estás interesada/o en incorporar un laboratorio, contáctanos por <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfOb4SGeQPUwgBr4G1Y9ltM8UiEIJx08lxtyeTkdKkWnq_Cg/viewform?usp=sf_link" target="_blank" class="accent--text">formulario</a>.
+          </div>
+
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" />
+          </a>
+            Esta obra está bajo una <a class="accent--text" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.
         </v-col>
 
         <!-- Información open source -->
