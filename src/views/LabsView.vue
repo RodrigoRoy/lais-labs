@@ -79,8 +79,6 @@
                 <v-text-field label="URL" solo readonly v-model="url" :value="url"></v-text-field>
                 <v-btn v-clipboard:copy="url" v-clipboard:success="onCopy" v:clipboard:error="onError">Copiar</v-btn>
               </v-row>
-
-
               <vue-goodshare-facebook page_url="http://lais.mora.edu.mx/laboratorios" title_social="Facebook" has_icon></vue-goodshare-facebook>
               <vue-goodshare-twitter page_url="http://lais.mora.edu.mx/laboratorios" title_social="Twitter" has_icon></vue-goodshare-twitter>
               <vue-goodshare-linkedin page_url="http://lais.mora.edu.mx/laboratorios" title_social="LinkedIn" has_icon></vue-goodshare-linkedin>
@@ -88,12 +86,6 @@
               <vue-goodshare-telegram page_url="http://lais.mora.edu.mx/laboratorios" title_social="Telegram" has_icon></vue-goodshare-telegram>
               <vue-goodshare-email page_url="http://lais.mora.edu.mx/laboratorios" title_social="Email" has_icon></vue-goodshare-email>
             </v-card-text>
-    
-            <!-- <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="green darken-1" text @click="dialog = false" > Disagree </v-btn>
-              <v-btn color="green darken-1" text @click="dialog = false" > Agree </v-btn>
-            </v-card-actions> -->
           </v-card>
         </v-dialog>
 

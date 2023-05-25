@@ -120,7 +120,7 @@ export const laboratorios = [
         name: "Laboratorio de Medios UCEMICH",
         id: 2,
         description:
-        "El Laboratorio de Medios UCEMICH, es un espacio que nació dentro de la Licenciatura en Estudios Multiculturales,  de la Universidad de La Ciénega del Estado de Michoacán de Ocampo, la cual comprende tres ejes formativos: Investigación, gestión cultural y producción de medios. Su finalidad es que estudiantes, profesores, investigadores, cuenten con las herramientas y tecnologías para que desarrollen sus actividades escolares, académicas y de investigación.  Impulsamos la producción audiovisual estudiantil: cortometrajes, reportajes, programas de televisión y podcats. Asimismo, de la mano del LabMed, surgió la iniciativa de crear el Encuentro y Muestrario de Investigaciones Audiovisuales. Finalmente, este proyecto se encuentra en etapa de consolidación y ampliación de su oferta, actividades y alcance. Por lo anterior, nos gustaría compartir y conocer otras propuestas y experiencias de espacios similares.",
+        "El Laboratorio de Medios UCEMICH, es un espacio que nació dentro de la Licenciatura en Estudios Multiculturales, de la Universidad de La Ciénega del Estado de Michoacán de Ocampo, la cual comprende tres ejes formativos: Investigación, gestión cultural y producción de medios. Su finalidad es que estudiantes, profesores e investigadores cuenten con las herramientas y tecnologías para que desarrollen sus actividades escolares, académicas y de investigación. Se impulsa la producción audiovisual estudiantil: cortometrajes, reportajes, programas de televisión y podcast. Asimismo, de la mano del LabMed, surgió la iniciativa de crear el Encuentro y Muestrario de Investigaciones Audiovisuales. Este proyecto se encuentra en etapa de consolidación y ampliación de su oferta, actividades y alcance.",
         keywords: ['Docencia', 'Investigación', 'Producción AV'],
         socialMedia: [
             {
@@ -161,7 +161,7 @@ export const laboratorios = [
         name: 'Laboratorio de Investigación Audiovisual, Secundaria Mixta 59',
         id: 3,
         description:
-        "Un proyecto de investigación audiovisual con alumnos de educación básica, historia oral y documental. Con el objetivo de incorporar en la formación de los alumnos nociones básicas de investigación de temas basados en testimonios, búsqueda de archivos familiares y las técnicas de registro en imagen y sonido. Se conforma de dos vertientes, la asignatura Taller de Investigación Audiovisual y el Laboratorio de Producción",
+        "Un proyecto de investigación audiovisual con alumnos de educación básica, historia oral y documental, con el objetivo de incorporar en la formación de los alumnos nociones básicas de investigación de temas basados en testimonios, búsqueda de archivos familiares y las técnicas de registro en imagen y sonido. Se conforma de dos vertientes, la asignatura Taller de Investigación Audiovisual y el Laboratorio de Producción",
         keywords: ['Docencia', 'Investigación'],
         socialMedia: [
             {
@@ -394,7 +394,7 @@ export const laboratorios = [
         name: "Acervo Audiovisual InterNeta. Memoria de las y los Invisibles",
         id: 9,
         description:
-        "El Acervo Audiovisual InterNeta tiene el objetivo de acopiar, preservar, conservar, catalogar documentos audiovisuales para su acceso público proactivo y reactivo. Ya que dichos documentos contienen valor histórico y cultural producido como herencia audiovisual de quienes “no han sido vistos” hasta ahora por las instituciones culturales y académicas de nuestro país. El Acervo se integra con siete colecciones de documento audiovisuales realizado con colectivos, grupos y organizaciones indígenas, de pueblos originarios, de cultura popular urbana y de movimientos contraculturales",
+        "El Acervo Audiovisual InterNeta tiene el objetivo de acopiar, preservar, conservar y catalogar documentos audiovisuales para su acceso público proactivo y reactivo, ya que dichos documentos contienen valor histórico y cultural producido como herencia audiovisual de quienes “no han sido vistos” hasta ahora por las instituciones culturales y académicas de nuestro país. El Acervo se integra con siete colecciones de documentos audiovisuales realizado con colectivos, grupos y organizaciones indígenas, de pueblos originarios, de cultura popular urbana y de movimientos contraculturales",
         keywords: ['Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
             {
@@ -476,7 +476,7 @@ export const laboratorios = [
         name: "Faz a Faz A.C.",
         id: 11,
         description:
-        "Faz a Faz tiene como objetivo promover procesos de encuentro y diálogo a través de actividades de exhibición, análisis, formación, realización y resguardo de archivo audiovisual. Por lo anterior, desde 2017 se han desarrollado proyectos que atiendan a dichas áreas del cine aplicando metodologías participativas y colaborativas. Se apuesta por que los procesos se desarrollen al ritmo de quienes se involucran, para que así también afianzar y solidificar los aprendizajes, alianzas y experiencias.",
+        "Faz a Faz tiene como objetivo promover procesos de encuentro y diálogo a través de actividades de exhibición, análisis, formación, realización y resguardo de archivo audiovisual. Por lo anterior, desde 2017 se han desarrollado proyectos que atiendan a dichas áreas del cine aplicando metodologías participativas y colaborativas. Se apuesta por que los procesos se desarrollen al ritmo de quienes se involucran, para así afianzar y solidificar los aprendizajes, alianzas y experiencias.",
         keywords: ['Digitalización', 'Difusión', 'Docencia', 'Investigación', 'Producción AV'],
         socialMedia: [
             {
@@ -641,7 +641,7 @@ export const laboratorios = [
             mail: "lavsan.colsan@gmail.com",
             name: "",
         },
-        website: "www.lavsan.colsan.edu.mx",
+        website: "https://lavsan.colsan.edu.mx/",
         location: 'San Luis Potosí',
         fullLocation: {
             // name: "Parque Macul 155, Colinas del Parque, 78260 San Luis, S.L.P.",
