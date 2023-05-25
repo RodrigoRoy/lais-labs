@@ -1,7 +1,7 @@
 <template>
   <!-- Pie de página -->
   <v-footer >
-    <v-row align="start" justify="center" class="text-caption text--disabled font-weight-light">
+    <v-row align="start" justify="center" class="text-caption text--disabled font-weight-light mb-0">
 
         <!-- Año | Correo del LAIS -->
         <v-col cols="12" sm="2" order="2" order-sm="1" class="text-left d-none d-sm-block">
@@ -12,9 +12,9 @@
 
         <!-- Licencia Creative Commons (tamaño pequeño) -->
         <v-col cols="12" sm="8" order="1" order-sm="2" class="text-center">
-          <div>
+          <!-- <div>
             Si estás interesada/o en incorporar un laboratorio, contáctanos por <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfOb4SGeQPUwgBr4G1Y9ltM8UiEIJx08lxtyeTkdKkWnq_Cg/viewform?usp=sf_link" target="_blank" class="accent--text">formulario</a>.
-          </div>
+          </div> -->
 
           <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
             <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" />

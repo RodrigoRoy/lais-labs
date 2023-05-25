@@ -3,7 +3,7 @@
     <v-container fluid id="mainSubContainer">
       <v-row align="start" justify="center" class="mx-8 mb-6">
         <v-col cols="12">
-          <h1 class="text-uppercase text-center text-xs-h6 text-md-h5 my-4 text-bold" color="accent">Mapeo de Laboratorios Audiovisuales de Investigación en México</h1>
+          <h1 class="text-uppercase text-center text-xs-h6 text-md-h3 my-4 text-bold" color="accent">Mapeo de Laboratorios Audiovisuales de Investigación en México</h1>
         </v-col>
 
         <v-col cols="12" sm="6">
@@ -27,22 +27,31 @@
         </v-col>
       </v-row>
 
-      <MainFooter />
+      <!-- <MainFooter /> -->
     </v-container>
+    <v-footer>
+      <v-row align="start" justify="center" class="text-h6 text--disabled font-weight-regular mb-0">
+          <v-col cols="12" sm="8" class="text-center">
+            <div>
+              Si estás interesada/o en incorporar un laboratorio, contáctanos por <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfOb4SGeQPUwgBr4G1Y9ltM8UiEIJx08lxtyeTkdKkWnq_Cg/viewform?usp=sf_link" target="_blank" class="accent--text">formulario</a>.
+            </div>
+          </v-col>
+      </v-row>
+    </v-footer>
   </div>
 </template>
 
 <script>
-import MainFooter from "@/components/MainFooter.vue"
+// import MainFooter from "@/components/MainFooter.vue"
 import { laboratorios } from "../data/labs.mjs" // información completad de los laboratorios
 import 'animate.css'
 
 export default {
   name: 'HomeView',
 
-  components: {
-    MainFooter,
-  },
+  // components: {
+  //   MainFooter,
+  // },
 
   data: () => ({
     logos: {

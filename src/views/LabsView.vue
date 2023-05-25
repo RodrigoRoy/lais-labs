@@ -67,10 +67,41 @@
           </v-list>
         </v-navigation-drawer>
 
+        <!-- Ventana para compartir en redes -->
+        <v-dialog v-model="dialog" max-width="500">
+          <v-card>
+            <v-card-title class="text-h5">
+              Compartir
+            </v-card-title>
+    
+            <v-card-text>
+              <v-row>
+                <v-text-field label="URL" solo readonly v-model="url" :value="url"></v-text-field>
+                <v-btn v-clipboard:copy="url" v-clipboard:success="onCopy" v:clipboard:error="onError">Copiar</v-btn>
+              </v-row>
+
+
+              <vue-goodshare-facebook page_url="http://lais.mora.edu.mx/laboratorios" title_social="Facebook" has_icon></vue-goodshare-facebook>
+              <vue-goodshare-twitter page_url="http://lais.mora.edu.mx/laboratorios" title_social="Twitter" has_icon></vue-goodshare-twitter>
+              <vue-goodshare-linkedin page_url="http://lais.mora.edu.mx/laboratorios" title_social="LinkedIn" has_icon></vue-goodshare-linkedin>
+              <vue-goodshare-whatsapp page_url="http://lais.mora.edu.mx/laboratorios" title_social="WhatsApp" has_icon></vue-goodshare-whatsapp>
+              <vue-goodshare-telegram page_url="http://lais.mora.edu.mx/laboratorios" title_social="Telegram" has_icon></vue-goodshare-telegram>
+              <vue-goodshare-email page_url="http://lais.mora.edu.mx/laboratorios" title_social="Email" has_icon></vue-goodshare-email>
+            </v-card-text>
+    
+            <!-- <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="dialog = false" > Disagree </v-btn>
+              <v-btn color="green darken-1" text @click="dialog = false" > Agree </v-btn>
+            </v-card-actions> -->
+          </v-card>
+        </v-dialog>
+
         <!-- Barra de navegación en la parte superior -->
         <v-app-bar dense clipped-left app elevate-on-scroll scroll-target="mainContainer" color="primary">
           <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
           <router-link :to="{ name: 'home'}"><v-btn icon><v-icon>fa-solid fa-home</v-icon></v-btn ></router-link>
+          <v-btn icon @click="dialog = true"><v-icon>fa-solid fa-share-nodes</v-icon></v-btn >
           <v-spacer></v-spacer>
           <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5" style="font-family: RobotoCondensed-Light !important;">Mapeo de Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
           <v-spacer></v-spacer>
@@ -144,6 +175,13 @@ import LabPicture from "@/components/LabPicture.vue"
 import LabVideo from "@/components/LabVideo.vue"
 import { laboratorios } from "../data/labs.mjs" // información completad de los laboratorios
 
+import VueGoodshareFacebook from "vue-goodshare/src/providers/Facebook.vue"
+import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter.vue"
+import VueGoodshareLinkedin from "vue-goodshare/src/providers/LinkedIn.vue"
+import VueGoodshareWhatsapp from "vue-goodshare/src/providers/WhatsApp.vue"
+import VueGoodshareTelegram from "vue-goodshare/src/providers/Telegram.vue"
+import VueGoodshareEmail from "vue-goodshare/src/providers/Email.vue"
+
 import L from 'leaflet';
 import { LMap, LTileLayer, LMarker, LIcon, LTooltip, LControlScale } from 'vue2-leaflet'
 
@@ -169,12 +207,27 @@ export default {
     LMarker,
     LIcon,
     LTooltip,
-    LControlScale
+    LControlScale,
+    VueGoodshareFacebook,
+    VueGoodshareTwitter,
+    VueGoodshareLinkedin,
+    VueGoodshareWhatsapp,
+    VueGoodshareTelegram,
+    VueGoodshareEmail
   },
 
   data: () => ({
     // controla la visibilidad de navigation-drawer
     drawer: true,
+
+    // ventana para compartir en redes
+    dialog: false,
+
+    // URL de referencia del proyecto/mapeo
+    url: 'http://lais.mora.edu.mx/laboratorios',
+
+    // mensaje para copiar URL al portapapeles
+    message: 'Copiar URL',
 
     // controla visibilidad de las opciones de filtrado para laboratorios
     showFilters: false,
@@ -348,6 +401,22 @@ export default {
     cleanFilters: function(){
       this.locationSelect = null
       this.keywordSelect = null
+    },
+
+    /**
+     * Acciones al realizar cuando se copia exitosamente a portapapeles
+     * @param {string} e - Texto (URL) a copiar al portapapeles
+     */
+    onCopy: function(e) {
+      console.log(`Copied: ${e.text}`)
+    },
+
+    /**
+     * Acciones a realizar cuando no se puede copiar a portapapeles
+     * @param {string} e - Texto (URL) a copiar al portapapeles
+     */
+    onError: function(e) {
+      console.log(`Failed to copy: ${e.text}`)
     },
   },
 
