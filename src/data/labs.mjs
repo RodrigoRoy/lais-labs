@@ -595,7 +595,7 @@ export const laboratorios = [
     {
         name: "Laboratorio Audiovisual del CIESAS",
         id: 14,
-        description: "Ubicado en la planta baja del edificio, aproximadamente 60m2 con seis espacios, incluyendo una cabina de grabación",
+        description: "El Laboratorio Audiovisual del CIESAS (LAV) participa en las actividades relacionadas con la producción de conocimiento sociocultural audiovisual en la institución. Realiza proyectos propios como la realización de videos y podcasts y la co-organización del Festival Afrodescendencias, así como el Encuentro de Antropología Visual, integrante de la Red Mexicana de Antropología Visual (REMAV) y miembro de la Red de Investigaciones Audiovisuales del CIESAS (RIAV). Imparte cursos de investigación audiovisual en ciencias sociales y talleres de capacitación en el manejo de diferentes soportes tecnológicos (audio y video); promueve la catalogación y archivo de productos audiovisuales (fotografías, pictografías, registros sonoros y videos) realizados por investigadores de la institución; y participa en el Seminario de Investigación Audiovisual del CIESAS, así como en encuentros nacionales e internacionales sobre temáticas audiovisuales.",
         keywords: ['Difusión', 'Docencia', 'Investigación', 'Producción AV', 'Producción escrita', 'Resguardo'],
         socialMedia: [
             {
