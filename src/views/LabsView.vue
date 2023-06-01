@@ -75,16 +75,21 @@
             </v-card-title>
     
             <v-card-text>
-              <v-row>
+              <v-row align="center" justify="center" class="text-subtitle-1 text-weight-medium">
+                Mapeo de laboratorios audiovisuales de investigación en México
+              </v-row>
+              <v-row align="center" justify="center">
                 <v-text-field label="URL" solo readonly v-model="url" :value="url"></v-text-field>
                 <v-btn v-clipboard:copy="url" v-clipboard:success="onCopy" v:clipboard:error="onError">Copiar</v-btn>
               </v-row>
-              <vue-goodshare-facebook page_url="http://lais.mora.edu.mx/laboratorios" title_social="Facebook" has_icon></vue-goodshare-facebook>
-              <vue-goodshare-twitter page_url="http://lais.mora.edu.mx/laboratorios" title_social="Twitter" has_icon></vue-goodshare-twitter>
-              <vue-goodshare-linkedin page_url="http://lais.mora.edu.mx/laboratorios" title_social="LinkedIn" has_icon></vue-goodshare-linkedin>
-              <vue-goodshare-whatsapp page_url="http://lais.mora.edu.mx/laboratorios" title_social="WhatsApp" has_icon></vue-goodshare-whatsapp>
-              <vue-goodshare-telegram page_url="http://lais.mora.edu.mx/laboratorios" title_social="Telegram" has_icon></vue-goodshare-telegram>
-              <vue-goodshare-email page_url="http://lais.mora.edu.mx/laboratorios" title_social="Email" has_icon></vue-goodshare-email>
+              <v-row align="center" justify="center">
+                <vue-goodshare-facebook page_url="http://lais.mora.edu.mx/laboratorios" title_social="Facebook" has_icon></vue-goodshare-facebook>
+                <vue-goodshare-twitter page_url="http://lais.mora.edu.mx/laboratorios" title_social="Twitter" has_icon></vue-goodshare-twitter>
+                <!-- <vue-goodshare-linkedin page_url="http://lais.mora.edu.mx/laboratorios" title_social="LinkedIn" has_icon></vue-goodshare-linkedin> -->
+                <vue-goodshare-whatsapp page_url="http://lais.mora.edu.mx/laboratorios" title_social="WhatsApp" has_icon></vue-goodshare-whatsapp>
+                <!-- <vue-goodshare-telegram page_url="http://lais.mora.edu.mx/laboratorios" title_social="Telegram" has_icon></vue-goodshare-telegram> -->
+                <vue-goodshare-email page_url="http://lais.mora.edu.mx/laboratorios" title_social="Email" has_icon></vue-goodshare-email>
+              </v-row>
             </v-card-text>
           </v-card>
         </v-dialog>
@@ -169,9 +174,9 @@ import { laboratorios } from "../data/labs.mjs" // información completad de los
 
 import VueGoodshareFacebook from "vue-goodshare/src/providers/Facebook.vue"
 import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter.vue"
-import VueGoodshareLinkedin from "vue-goodshare/src/providers/LinkedIn.vue"
+// import VueGoodshareLinkedin from "vue-goodshare/src/providers/LinkedIn.vue"
 import VueGoodshareWhatsapp from "vue-goodshare/src/providers/WhatsApp.vue"
-import VueGoodshareTelegram from "vue-goodshare/src/providers/Telegram.vue"
+// import VueGoodshareTelegram from "vue-goodshare/src/providers/Telegram.vue"
 import VueGoodshareEmail from "vue-goodshare/src/providers/Email.vue"
 
 import L from 'leaflet';
@@ -202,9 +207,9 @@ export default {
     LControlScale,
     VueGoodshareFacebook,
     VueGoodshareTwitter,
-    VueGoodshareLinkedin,
+    // VueGoodshareLinkedin,
     VueGoodshareWhatsapp,
-    VueGoodshareTelegram,
+    // VueGoodshareTelegram,
     VueGoodshareEmail
   },
 
@@ -481,5 +486,9 @@ export default {
 /* Colores de botones para hacer zoom en mapa */
 .leaflet-control-zoom-in, .leaflet-control-zoom-out {
   color: #3c4145 !important;
+}
+
+.theme--dark.v-chip:hover::before {
+  opacity: 0 !important;
 }
 </style>

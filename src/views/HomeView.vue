@@ -14,7 +14,7 @@
 
         <v-col cols="12" sm="6" class="mb-4">
           <blockquote class="text-center font-weight-light text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6 text-light">
-            A la convocatoria acudieron <strong class="text-bold">{{ this.laboratorios.length || '15' }} espacios colectivos</strong>. Esta página ofrece un mapeo de tales espacios que incluye la ponencia en video, presentada durante el Encuentro, así como una breve presentación de cada espacio, imágenes o fotografías, contacto, vínculos a sus páginas web y redes sociales de ser el caso. Faltan varios espacios, por lo que esperamos que en el futuro este mapa se amplie.
+            A la convocatoria acudieron <strong class="text-bold">{{ this.laboratorios.length || '15' }} espacios colectivos</strong>. Esta página ofrece un mapeo abierto de tales espacios que incluye la ponencia en video, presentada durante el Encuentro, así como una breve presentación de cada espacio, imágenes o fotografías, contacto, vínculos a sus páginas web y redes sociales de ser el caso. Faltan varios espacios, por lo que esperamos que en el futuro este mapa se amplie.
           </blockquote>
         </v-col>
 

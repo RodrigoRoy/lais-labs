@@ -316,7 +316,7 @@ export const laboratorios = [
         verified: true,
     },
     {
-        name: "Laboratorio Interdisciplinario de Investigación Audiovisual",
+        name: "Laboratorio Interdisciplinario de Investigación Audiovisual (LABIIA)",
         id: 7,
         description:
         "LABIIA es un espacio de creación colectiva en el que se desarrollan actividades de formación, investigación, archivo y divulgación de saberes a través de proyectos audiovisuales que planteen otras formas de narrar historias. Partimos de un conocimiento interdisciplinario que establece un diálogo entre varias disciplinas, metodologías, saberes, lenguajes, artes, tecnologías y procesos creativos.",
