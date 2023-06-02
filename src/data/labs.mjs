@@ -554,7 +554,7 @@ export const laboratorios = [
         },
         images: {
             path: "LAIS",
-            src: ['Taller_2022.jpg', 'Entrevista Juanita_0005.jpg', 'LIM9875.jpg', 'En_entrevista_2012.jpg', 'LAM_0894.jpg'],
+            src: ['Taller_2022.jpg', 'Entrevista Juanita_0005.jpg', 'LIM9875.jpg', 'DSC_0327.jpg', 'LAM_0894.jpg'],
         },
         video: 'https://www.youtube.com/embed/RRjnueT4a58',
         verified: true,
