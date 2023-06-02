@@ -96,10 +96,10 @@
         <v-app-bar dense clipped-left app elevate-on-scroll scroll-target="mainContainer" color="primary">
           <v-app-bar-nav-icon @click.stop="switchDrawer"></v-app-bar-nav-icon>
           <router-link :to="{ name: 'home'}"><v-btn icon><v-icon>fa-solid fa-home</v-icon></v-btn ></router-link>
-          <v-btn icon @click="dialog = true"><v-icon>fa-solid fa-share-nodes</v-icon></v-btn >
-          <v-spacer></v-spacer>
-          <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5" style="font-family: RobotoCondensed-Light !important;">Mapeo de Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
-          <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
+            <v-toolbar-title class="text-uppercase text-center text-xs-h6 text-md-h5" style="font-family: RobotoCondensed-Light !important;">Mapeo de Laboratorios Audiovisuales de Investigación en México</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon @click="dialog = true"><v-icon>fa-solid fa-share-nodes</v-icon></v-btn >
           <v-btn icon @click="switchTheme" v-show="false"><v-icon>{{ $vuetify.theme.dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun' }}</v-icon></v-btn >
         </v-app-bar>
 
