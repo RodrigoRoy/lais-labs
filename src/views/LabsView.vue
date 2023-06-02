@@ -70,24 +70,22 @@
         <!-- Ventana para compartir en redes -->
         <v-dialog v-model="dialog" max-width="500">
           <v-card>
-            <v-card-title class="text-h5">
+            <v-card-title class="text-h5 mb-2">
               Compartir
             </v-card-title>
     
             <v-card-text>
-              <v-row align="center" justify="center" class="text-subtitle-1 text-weight-medium">
+              <v-row align="center" justify="center" class="text-subtitle-1 text-weight-medium mb-2">
                 Mapeo de laboratorios audiovisuales de investigación en México
               </v-row>
               <v-row align="center" justify="center">
-                <v-text-field label="URL" solo readonly v-model="url" :value="url"></v-text-field>
-                <v-btn v-clipboard:copy="url" v-clipboard:success="onCopy" v:clipboard:error="onError">Copiar</v-btn>
+                <v-text-field outlined rounded dense solo v-model="url" :value="url"></v-text-field>
+                <!-- <v-btn @click="copy(input)">Copiar</v-btn> -->
               </v-row>
               <v-row align="center" justify="center">
-                <vue-goodshare-facebook page_url="http://lais.mora.edu.mx/laboratorios" title_social="Facebook" has_icon></vue-goodshare-facebook>
-                <vue-goodshare-twitter page_url="http://lais.mora.edu.mx/laboratorios" title_social="Twitter" has_icon></vue-goodshare-twitter>
-                <!-- <vue-goodshare-linkedin page_url="http://lais.mora.edu.mx/laboratorios" title_social="LinkedIn" has_icon></vue-goodshare-linkedin> -->
-                <vue-goodshare-whatsapp page_url="http://lais.mora.edu.mx/laboratorios" title_social="WhatsApp" has_icon></vue-goodshare-whatsapp>
-                <!-- <vue-goodshare-telegram page_url="http://lais.mora.edu.mx/laboratorios" title_social="Telegram" has_icon></vue-goodshare-telegram> -->
+                <vue-goodshare-facebook page_url="http://lais.mora.edu.mx/laboratorios" title_social="Facebook" has_icon class="mr-2"></vue-goodshare-facebook>
+                <vue-goodshare-twitter page_url="http://lais.mora.edu.mx/laboratorios" title_social="Twitter" has_icon class="mr-2"></vue-goodshare-twitter>
+                <vue-goodshare-whatsapp page_url="http://lais.mora.edu.mx/laboratorios" title_social="WhatsApp" has_icon class="mr-2"></vue-goodshare-whatsapp>
                 <vue-goodshare-email page_url="http://lais.mora.edu.mx/laboratorios" title_social="Email" has_icon></vue-goodshare-email>
               </v-row>
             </v-card-text>
@@ -174,9 +172,7 @@ import { laboratorios } from "../data/labs.mjs" // información completad de los
 
 import VueGoodshareFacebook from "vue-goodshare/src/providers/Facebook.vue"
 import VueGoodshareTwitter from "vue-goodshare/src/providers/Twitter.vue"
-// import VueGoodshareLinkedin from "vue-goodshare/src/providers/LinkedIn.vue"
 import VueGoodshareWhatsapp from "vue-goodshare/src/providers/WhatsApp.vue"
-// import VueGoodshareTelegram from "vue-goodshare/src/providers/Telegram.vue"
 import VueGoodshareEmail from "vue-goodshare/src/providers/Email.vue"
 
 import L from 'leaflet';
@@ -207,9 +203,7 @@ export default {
     LControlScale,
     VueGoodshareFacebook,
     VueGoodshareTwitter,
-    // VueGoodshareLinkedin,
     VueGoodshareWhatsapp,
-    // VueGoodshareTelegram,
     VueGoodshareEmail
   },
 
@@ -222,9 +216,6 @@ export default {
 
     // URL de referencia del proyecto/mapeo
     url: 'http://lais.mora.edu.mx/laboratorios',
-
-    // mensaje para copiar URL al portapapeles
-    message: 'Copiar URL',
 
     // controla visibilidad de las opciones de filtrado para laboratorios
     showFilters: false,
@@ -329,6 +320,13 @@ export default {
     },
 
     /**
+     * Oculta menú lateral
+     */
+     closeDrawer: function(){
+      this.drawer = false
+    },
+
+    /**
      * Selecciona la información de un laboratorio
      * Aplica animación de pan y zoom en el mapa
      * @param {object} selectedData - La información completa del laboratorio
@@ -399,22 +397,6 @@ export default {
       this.locationSelect = null
       this.keywordSelect = null
     },
-
-    /**
-     * Acciones al realizar cuando se copia exitosamente a portapapeles
-     * @param {string} e - Texto (URL) a copiar al portapapeles
-     */
-    onCopy: function(e) {
-      console.log(`Copied: ${e.text}`)
-    },
-
-    /**
-     * Acciones a realizar cuando no se puede copiar a portapapeles
-     * @param {string} e - Texto (URL) a copiar al portapapeles
-     */
-    onError: function(e) {
-      console.log(`Failed to copy: ${e.text}`)
-    },
   },
 
   // Acciones previas al montar componente actual
@@ -426,8 +408,8 @@ export default {
 
   // Acciones antes de renderizar vista
   mounted: function() {
-    // Automáticamente ocultar/mostrar el menú lateral después de unos instantes
-    setTimeout(this.switchDrawer, 2500)
+    // Automáticamente ocultar el menú lateral después de unos instantes
+    setTimeout(this.closeDrawer, 2500)
 
     // recuperar tema usado por última vez
     // this.$vuetify.theme.dark = localStorage.getItem('darkTheme') === 'true'
