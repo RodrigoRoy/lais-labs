@@ -7,7 +7,7 @@
     <v-card-text>
 
       <!-- TÍTULO -->
-      <p class="text-h6 text--primary">
+      <p class="text-h6 accent--text">
         {{ laboratorio.name }} 
         <!-- <v-icon x-small v-if="laboratorio.verified" color="green" disabled>fa-check</v-icon> -->
       </p>
@@ -24,7 +24,7 @@
 
       <!-- PALABRAS CLAVE O KEYWORDS -->
       <p>
-        <v-chip v-for="(keyword, index) in laboratorio.keywords" :key="index" outlined small color="accent" class="ma-1">
+        <v-chip v-for="(keyword, index) in laboratorio.keywords" :key="index" outlined small color="white" class="ma-1">
           {{ keyword }}
         </v-chip>
       </p>
